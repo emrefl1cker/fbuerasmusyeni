@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Öğrenim Hareketliliği | UİDPM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Ortak CSS Dosyası -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* DİKEY SEKME (TAB) VE İÇERİK MİMARİSİ */
+        .layout-wrapper {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            align-items: flex-start;
+            padding: 0 20px;
+        }
+
+        /* Sol Menü (Sidebar) */
+        .sidebar-menu {
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 20px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px; /* Sayfa kaydırıldığında ekranda sabit kalması için */
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            text-align: left;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+        .tab-btn:last-child { border-bottom: none; margin-bottom: 0; }
+        .tab-btn:hover { background: #f8fafc; color: var(--fbu-blue); }
+        
+        .tab-btn.active {
+            background: var(--fbu-blue);
+            color: white;
+            border-bottom: none;
+            box-shadow: 0 4px 15px rgba(10, 61, 122, 0.2);
+        }
+        .tab-btn .icon { font-size: 18px; }
+
+        /* Sağ İçerik Alanı */
+        .content-area {
+            flex-grow: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px;
+            min-height: 600px;
+            line-height: 1.8;
+        }
+
+        .content-area h2 {
+            color: var(--fbu-blue);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .tab-pane { 
+            display: none; 
+            animation: fadeIn 0.4s ease; 
+        }
+        .tab-pane.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Tablo ve Uyarı Kutuları Stilleri */
+        .warning-box {
+            background-color: #fffbeb;
+            color: #b45309;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Yol Rehberi (Zaman Çizelgesi) Stilleri */
+        .roadmap-container { margin-top: 30px; position: relative; border-left: 3px solid var(--fbu-yellow); padding-left: 30px; margin-left: 15px; }
+        .roadmap-step { margin-bottom: 40px; position: relative; }
+        .roadmap-step::before {
+            content: ''; position: absolute; left: -41px; top: 0; width: 16px; height: 16px;
+            background: white; border: 4px solid var(--fbu-blue); border-radius: 50%;
+        }
+        .roadmap-step h3 { color: var(--fbu-blue); margin-top: -5px; font-size: 18px; font-weight: 800; }
+        .roadmap-step p { color: var(--text-dark); font-size: 14px; margin-bottom: 10px; }
+        .roadmap-step ul { margin: 0; padding-left: 20px; font-size: 14px; }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 900px) {
+            .layout-wrapper { flex-direction: column; padding: 0 15px; }
+            .sidebar-menu { width: 100%; position: static; padding: 15px; margin-bottom: 20px; }
+            .content-area { padding: 25px; min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / MENÜ -->
+    <!-- HEADER / MENÜ -->
+    <header>
+        <!-- GÜNCELLENEN LOGO ALANI -->
+        <a href="index.html" class="logo-area">
+            <img src="fbu-logo.png" alt="FBU Logo" class="header-logo">
+            <div class="logo-separator"></div>
+            <div class="logo-text">
+                <span class="logo-title-top">FENERBAHÇE ÜNİVERSİTESİ</span>
+                <span class="logo-title-bottom">ULUSLARARASI İŞ BİRLİKLERİ &</span>
+		<span class="logo-title-bottom">VE DEĞİŞİM PROGRAMLARI</span>
+            </div>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">☰</button>
+        <ul class="nav-list" id="navList">
+            <li class="nav-item"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Erasmus+ ▾</a>
+                <div class="dropdown-menu">
+                    <a href="fbu-eche-belgesi.html" class="dropdown-item">ECHE (2021-2027)</a>
+                    <a href="ogrenci-beyannamesi.html" class="dropdown-item">Öğrenci Beyannamesi</a>
+                    <a href="fbu-politika-beyani.html" class="dropdown-item">Erasmus Politika Beyanı</a>
+                    <a href="icerme-destegi.html" class="dropdown-item">İçerme Desteği</a>
+                    <a href="aktsnotdonusum.html" class="dropdown-item">AKTS Not Dönüşüm Tablosu</a>
+                    <a href="akran-danismanligi.html" class="dropdown-item">Akran Danışmanlığı</a>
+                    <a href="degisim-komisyonu.html" class="dropdown-item">Değişim Programları Seçim Komisyonu</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Giden Yönlü Hareketlilik ▾</a>
+                <div class="dropdown-menu">
+                    <a href="ogrenci-ogrenim.html" class="dropdown-item">Öğrenci Öğrenim</a>
+                    <a href="ogrenci-staj.html" class="dropdown-item">Öğrenci Staj</a>
+                    <a href="personel-dersverme.html" class="dropdown-item">Personel Ders Verme</a>
+                    <a href="personel-egitimalma.html" class="dropdown-item">Personel Eğitim Alma</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Gelen Yönlü Hareketlilik ▾</a>
+                <div class="dropdown-menu">
+                    <a href="gelen-ogrenci.html" class="dropdown-item">Gelen Öğrenci</a>
+                    <a href="gelen-personel.html" class="dropdown-item">Gelen Personel</a>
+                </div>
+            </li>
+            <!-- Henüz oluşturmadığımız sayfalar için geçici olarak # bıraktım -->
+            <li class="nav-item"><a href="partner-kurumlar.html" class="nav-link" style="color: var(--fbu-yellow);">Partner Kurumlar</a></li>
+            <li class="nav-item"><a href="duyurular-haberler.html" class="nav-link">Duyurular &amp; Haberler</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" style="color: var(--fbu-yellow);">İletişim</a></li>
+            
+            <!-- DİL SEÇİCİ -->
+            <div class="lang-switch">
+                <a href="#" class="active">TR</a>
+                <span style="color: var(--border-color);">|</span>
+                <a href="#">EN</a>
+            </div>
+        </ul>
+    </header>
+    <!-- SAYFA BAŞLIĞI -->
+    <div class="page-header">
+        <h1>Erasmus+ Öğrenci Öğrenim Hareketliliği</h1>
+    </div>
+
+    <!-- SEKMELİ (TAB) İÇERİK MİMARİSİ -->
+    <div class="layout-wrapper">
+        
+        <!-- Sol Menü -->
+        <div class="sidebar-menu">
+            <button class="tab-btn active" onclick="openTab(event, 'sartlar')">
+                <span class="icon">📋</span> Başvuru Şartları
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'kriterler')">
+                <span class="icon">📊</span> Seçim Kriterleri ve Puanlama
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'hibe')">
+                <span class="icon">💶</span> Hibe ve Seyahat Desteği
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'surec')">
+                <span class="icon">🗺️</span> Hareketlilik Süreci (Yol Rehberi)
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'kurumlar')">
+                <span class="icon">🏛️</span> Anlaşmalı Kurumlar
+            </button>
+        </div>
+
+        <!-- Sağ İçerik Alanı -->
+        <div class="content-area">
+            
+            <!-- TAB 1: Başvuru Şartları -->
+            <div id="sartlar" class="tab-pane active">
+                <h2>Öğrenim Hareketliliği Başvuru Şartları</h2>
+                <p>Erasmus+ Öğrenim Hareketliliğine başvuracak öğrencilerin eğitim düzeylerine göre aşağıdaki şartları sağlaması gerekmektedir:</p>
+                
+                <h3 style="color: var(--fbu-blue); margin-top: 25px;">Ön Lisans ve Lisans Öğrencileri</h3>
+                <ul>
+                    <li>Tam zamanlı öğrenci olmak.</li>
+                    <li>En az bir yarıyıl eğitime devam etmiş olmak.</li>
+                    <li>Güncel genel not ortalamasının (GNO) en az <strong>2.20/4.00</strong> olması.</li>
+                    <li>Hareketlilik kapsamında alınacak dersler İngilizce dışında bir dilde veriliyorsa, karşı kurumun belirlemiş olduğu asgari dil düzeyini belgelendirmek.</li>
+                    <li>İngilizce/Türkçe dil hazırlık ile bilimsel hazırlık öğrencileri başvuramazlar.</li>
+                    <li>Kayıt donduran öğrenciler, dondurdukları dönemde başvuru yapabilir ancak hareketlilik gerçekleştiremezler.</li>
+                    <li>Öğrenim düzeyi içerisinde hareketlilik süresi toplamda 12 ayı geçemez.</li>
+                </ul>
+
+                <h3 style="color: var(--fbu-blue); margin-top: 25px;">Lisansüstü Öğrencileri</h3>
+                <ul>
+                    <li>Tam zamanlı öğrenci olmak ve GNO'nun en az <strong>2.50/4.00</strong> olması. (Ortalaması henüz oluşmamış öğrenciler, önceki mezuniyet notları ile başvurabilir.)</li>
+                    <li>Araştırma görevlilerinin ilgili birim yöneticisinden yazılı onay alması gerekmektedir.</li>
+                    <li>Kredili/kredisiz ders yükünü tamamlamamış lisansüstü öğrenciler için tez danışmanı, anabilim dalı başkanı ve Enstitü yönetim kurulu kararı/onayı gerekir.</li>
+                </ul>
+            </div>
+
+            <!-- TAB 2: Seçim Kriterleri -->
+            <div id="kriterler" class="tab-pane">
+                <h2>Seçim Kriterleri ve Puanlama</h2>
+                <table class="fbu-table" style="width: 100%; border-collapse: collapse; border: 1px solid var(--border-color);">
+                    <thead>
+                        <tr>
+                            <th style="background-color: var(--fbu-blue); color: white; padding: 12px; text-align: left;">Seçim Kriteri</th>
+                            <th style="background-color: var(--fbu-blue); color: white; padding: 12px; text-align: center;">Puanlama Oranı / Etkisi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 12px;">Akademik Başarı Düzeyi (GNO)</td>
+                            <td style="padding: 12px; text-align: center; font-weight: bold;">%50 (toplam 100 puan üzerinden)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;">
+                            <td style="padding: 12px;">Dil Seviyesi (en az B1)</td>
+                            <td style="padding: 12px; text-align: center; font-weight: bold;">%50 (toplam 100 puan üzerinden)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 12px;">Şehit ve gazi çocukları</td>
+                            <td style="padding: 12px; text-align: center; color: #166534; font-weight: bold;">+15 Puan</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;">
+                            <td style="padding: 12px;">Engelli öğrenciler / 2828 Sayılı Kanun kapsamındakiler / AFAD afetzede yardımı alanlar</td>
+                            <td style="padding: 12px; text-align: center; color: #166534; font-weight: bold;">+10 Puan</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 12px;">Aynı proje türünden daha önce yararlanma / Vatandaşı olunan ülkede katılma</td>
+                            <td style="padding: 12px; text-align: center; color: #991b1b; font-weight: bold;">-10 Puan</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;">
+                            <td style="padding: 12px;">Süresinde feragat etmeden katılmama / İki hareketliliğe aynı anda başvurma</td>
+                            <td style="padding: 12px; text-align: center; color: #991b1b; font-weight: bold;">-10 Puan</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px;">Toplantılara mazeretsiz katılmama / Dil sınavına mazeretsiz girmeme</td>
+                            <td style="padding: 12px; text-align: center; color: #991b1b; font-weight: bold;">-5 Puan</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Önemli Not:</strong> Yukarıda yer alan seçim kriterleri, puanlamalar ve ek hibe imkanları sözleşme yıllarına ve güncel projelere göre değişiklik gösterebilmektedir. Başvuru dönemlerinde ofis tarafından yayımlanan güncel ilan metinlerinin dikkatle takip edilmesi gerekmektedir.
+                </div>
+            </div>
+
+            <!-- TAB 3: Hibe Desteği -->
+            <div id="hibe" class="tab-pane">
+                <h2>Hibe ve Seyahat Desteği</h2>
+                <p>Öğrenim hareketliliğinden faydalanacak öğrencilere en fazla 5 ay için hibe desteği sağlanır. Hibe desteği karşı kurumdan alınacak kabul mektubundaki tarihler üzerinden hesaplanır.</p>
+                
+                <ul>
+                    <li><strong>Aylık 600 Euro:</strong> Almanya, Avusturya, Belçika, Fransa, İtalya, İspanya, Hollanda gibi 1. ve 2. grup program ülkeleri.</li>
+                    <li><strong>Aylık 450 Euro:</strong> Polonya, Macaristan, Romanya, Kuzey Makedonya gibi 3. grup program ülkeleri.</li>
+                    <li><strong>İlave Hibe (Dezavantajlı Gruplar):</strong> Sınırlı imkanlara sahip öğrencilere (2828 SK, AFAD desteği, yetim aylığı vb.) aylık ek <strong>250 Euro</strong> destek sağlanır.</li>
+                </ul>
+
+                <h3 style="color: var(--fbu-blue); margin-top: 25px;">Seyahat Desteği</h3>
+                <p>Avrupa Komisyonu mesafe hesaplayıcısı baz alınarak uzaklığa göre gidiş-dönüş seyahat desteği verilir. Düşük karbon emisyonlu araçları (otobüs, tren vb.) kullanan öğrenciler <strong>Yeşil Seyahat</strong> hibesinden faydalanabilir.</p>
+                
+                <table class="fbu-table" style="width: 100%; border-collapse: collapse; border: 1px solid var(--border-color); margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th style="background-color: var(--fbu-blue); color: white; padding: 10px;">Seyahat Mesafesi</th>
+                            <th style="background-color: var(--fbu-blue); color: white; padding: 10px;">Standart Hibe</th>
+                            <th style="background-color: var(--fbu-blue); color: white; padding: 10px;">Yeşil Seyahat</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td>10 - 99 KM</td><td>28 Euro</td><td>56 Euro</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;"><td>100 - 499 KM</td><td>211 Euro</td><td>285 Euro</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td>500 - 1999 KM</td><td>309 Euro</td><td>417 Euro</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;"><td>2000 - 2999 KM</td><td>395 Euro</td><td>535 Euro</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td>3000 - 3999 KM</td><td>580 Euro</td><td>785 Euro</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- TAB 4: Yol Rehberi -->
+            <div id="surec" class="tab-pane">
+                <h2>Öğrenci Öğrenim Hareketliliği Yol Rehberi</h2>
+                <p>Hareketlilik sürecinin her aşamasında öğrencilerin sorumluluklarını zamanında yerine getirmesi büyük önem taşımaktadır. Süreci aşağıdaki aşamalardan takip edebilirsiniz.</p>
+
+                <div class="roadmap-container">
+                    <div class="roadmap-step">
+                        <h3>1. Nominasyon ve Karşı Kuruma Başvuru</h3>
+                        <p>Erasmus Ofisi tarafından öğrencinin aday olduğuna dair bilgilendirme (nominasyon) karşı kuruma e-posta ile yapılır. Karşı kurumun belirlediği son başvuru tarihinden önce öğrenci istenilen belgeleri hazırlayarak başvurusunu bizzat yapmalıdır.</p>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <h3>2. Kabul Mektubu ve Vize Süreci</h3>
+                        <p>Başvuruyu olumlu değerlendiren karşı kurum öğrenciye kabul mektubu (Acceptance Letter) gönderir. Kabul mektubu gelmeden vize başvurusu yapılması önerilmez. Vize, seyahat ve konaklama süreçlerinin takibi tamamen öğrencinin sorumluluğundadır.</p>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <h3>3. Hareketlilik Öncesi İşlemler</h3>
+                        <ul>
+                            <li>Öğrencilerin EWP/OLA platformu üzerinden <strong>Çevrimiçi Öğrenim Anlaşması (Online Learning Agreement)</strong> hazırlaması zorunludur.</li>
+                            <li>Öğrencinin bir yarıyılda minimum 24, maksimum 36 AKTS (tercihen 30 AKTS) değerinde ders alması gerekir. Karşılık gelen FBU derslerinin kredi farkı en fazla +/- 3 AKTS olabilir.</li>
+                            <li>Hareketlilik başlamadan <strong>en az 15 gün önce</strong> Kabul Belgesi, OLA, TEB Euro Hesabı bilgisi, Fakülte YK Kararı ve Sağlık Sigortası ofise teslim edilip <strong>Hibe Sözleşmesi</strong> imzalanmalıdır.</li>
+                        </ul>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <h3>4. Hareketlilik Sırası (During Mobility)</h3>
+                        <p>Gidilen kurumda ders değişikliği yapılması gerekirse, akademik dönemin başlamasını takip eden <strong>en geç 4-7 hafta içerisinde</strong> OLA üzerinden değişiklik yapılmalı ve Fakülte Yönetim Kurulu kararı güncellenmelidir.<br>
+                        <strong>Önemli:</strong> Öğrencinin karşı kurumda bir yarıyılda aldığı en az <strong>21 AKTS</strong> değerindeki dersten başarılı olması gerekir. Aksi halde nihai hibesinden %20 kesinti uygulanır.</p>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <h3>5. Hareketlilik Sonrası ve Ders Saydırma</h3>
+                        <p>Dönüşte, Orijinal Transkript ile bölüm koordinatörüne başvurularak ders saydırma işlemi tamamlanır. İşlemler bittikten sonra Uluslararası Ofis'e Katılım Sertifikası, Transkript ve FBU güncel Transkripti teslim edilir. Son olarak gönderilen EU Survey (Çevrimiçi AB Anketi) doldurulmalıdır.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: Anlaşmalı Kurumlar -->
+            <div id="kurumlar" class="tab-pane">
+                <h2>Bölümümün Hangi Kurumlarla Anlaşması Var?</h2>
+                <p>Hareketliliğe yalnızca kayıtlı olduğunuz bölüm/program ile anlaşması bulunan kurumlara başvuru yapabilirsiniz. Anlaşmalı kurumlar listesi başvuru sistemi açılana kadar güncellenebilmektedir.</p>
+                <p>Bölümünüzün anlaşmalı olduğu üniversiteleri, kontenjan durumlarını ve geçmiş yıllardaki AKTS not dönüşümlerini incelemek için aşağıdaki bağlantıları kullanabilirsiniz.</p>
+                
+                <div style="margin-top: 30px; display: flex; gap: 15px;">
+                    <a href="partner-kurumlar.html" class="fbu-btn">Anlaşmalı Kurumlar Listesi ➔</a>
+                    <a href="akts-not-donusum.html" class="fbu-btn" style="background-color: var(--fbu-yellow); color: var(--fbu-blue);">AKTS Not Dönüşüm Tabloları ➔</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>İletişim Bilgileri</h3>
+                <p><span class="footer-icon">📍</span><span><strong>Fenerbahçe Üniversitesi</strong><br>Uluslararası Ofis<br>Atatürk Mah. Ataşehir Bulvarı,<br>Ataşehir / İstanbul, Türkiye</span></p>
+            </div>
+            <div class="footer-col">
+                <h3>Bize Ulaşın</h3>
+                <p><span class="footer-icon">✉️</span><span>erasmus@fbu.edu.tr</span></p>
+                <p><span class="footer-icon">📞</span><span>0216 910 19 07 / 1993</span></p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Fenerbahçe Üniversitesi. Erasmus ve Değişim Programları. Tüm hakları saklıdır.</div>
+    </footer>
+
+    <!-- Ortak JS Dosyası -->
+    <script src="script.js"></script>
+
+    <!-- TAB DEĞİŞTİRME MANTIĞI -->
+    <script>
+        function openTab(evt, tabId) {
+            // Tüm içerik alanlarını gizle
+            const tabcontent = document.getElementsByClassName("tab-pane");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Tüm menü butonlarından active sınıfını kaldır
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            // Seçilen tab'ı ve butonu aktif yap
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
