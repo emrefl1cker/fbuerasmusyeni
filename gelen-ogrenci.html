@@ -1,216 +1,60 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gelen Öğrenci | UİDPM</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Ortak CSS Dosyası -->
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erasmus+ Gelen Öğrenci Hareketliliği | Fenerbahçe Üniversitesi</title>
+<meta name="description" content="Erasmus+ gelen öğrenciler için fakülte bazlı İngilizce ders katalogları, adaylık, kayıt ve akademik takvim bilgileri.">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="incoming-guide.css">
 </head>
 <body>
-
-    <!-- HEADER / MENÜ -->
-    <header>
-        <!-- GÜNCELLENEN LOGO ALANI -->
-        <a href="index.html" class="logo-area">
-            <img src="fbu-logo.png" alt="FBU Logo" class="header-logo">
-            <div class="logo-separator"></div>
-            <div class="logo-text">
-                <span class="logo-title-top">FENERBAHÇE ÜNİVERSİTESİ</span>
-                <span class="logo-title-bottom">ULUSLARARASI İŞ BİRLİKLERİ &</span>
-		<span class="logo-title-bottom">VE DEĞİŞİM PROGRAMLARI</span>
-            </div>
-        </a>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">☰</button>
-        <ul class="nav-list" id="navList">
-            <li class="nav-item"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Erasmus+ ▾</a>
-                <div class="dropdown-menu">
-                    <a href="fbu-eche-belgesi.html" class="dropdown-item">ECHE (2021-2027)</a>
-                    <a href="ogrenci-beyannamesi.html" class="dropdown-item">Öğrenci Beyannamesi</a>
-                    <a href="fbu-politika-beyani.html" class="dropdown-item">Erasmus Politika Beyanı</a>
-                    <a href="icerme-destegi.html" class="dropdown-item">İçerme Desteği</a>
-                    <a href="aktsnotdonusum.html" class="dropdown-item">AKTS Not Dönüşüm Tablosu</a>
-                    <a href="akran-danismanligi.html" class="dropdown-item">Akran Danışmanlığı</a>
-                    <a href="degisim-komisyonu.html" class="dropdown-item">Değişim Programları Seçim Komisyonu</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Giden Yönlü Hareketlilik ▾</a>
-                <div class="dropdown-menu">
-                    <a href="ogrenci-ogrenim.html" class="dropdown-item">Öğrenci Öğrenim</a>
-                    <a href="ogrenci-staj.html" class="dropdown-item">Öğrenci Staj</a>
-                    <a href="personel-dersverme.html" class="dropdown-item">Personel Ders Verme</a>
-                    <a href="personel-egitimalma.html" class="dropdown-item">Personel Eğitim Alma</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Gelen Yönlü Hareketlilik ▾</a>
-                <div class="dropdown-menu">
-                    <a href="gelen-ogrenci.html" class="dropdown-item">Gelen Öğrenci</a>
-                    <a href="gelen-personel.html" class="dropdown-item">Gelen Personel</a>
-                </div>
-            </li>
-            <!-- Henüz oluşturmadığımız sayfalar için geçici olarak # bıraktım -->
-            <li class="nav-item"><a href="partner-kurumlar.html" class="nav-link" style="color: var(--fbu-yellow);">Partner Kurumlar</a></li>
-            <li class="nav-item"><a href="duyurular-haberler.html" class="nav-link">Duyurular &amp; Haberler</a></li>
-            <li class="nav-item"><a href="#" class="nav-link" style="color: var(--fbu-yellow);">İletişim</a></li>
-
-            <!-- DİL SEÇİCİ -->
-            <div class="lang-switch">
-                <a href="#" class="active">TR</a>
-                <span style="color: var(--border-color);">|</span>
-                <a href="#">EN</a>
-            </div>
-        </ul>
-    </header>
-
-    <!-- SAYFA BAŞLIĞI -->
-    <div class="page-header">
-        <h1>Gelen Öğrenci</h1>
-    </div>
-
-    <!-- İÇERİK ALANI -->
-    <div class="page-content">
-
-        <p>Değerli Erasmus+ Aday Öğrencileri, Fenerbahçe Üniversitesi (FBÜ) ile ilgilendiğiniz için teşekkür ederiz. Erasmus+ değişim programları kapsamında gelen öğrenciler için hazırlanan bilgileri aşağıda kategoriler halinde bulabilirsiniz.</p>
-
-        <!-- HIZLI MENÜ -->
-        <div class="quick-nav">
-            <a href="#genel-bilgi">📋 Genel Bilgi</a>
-            <a href="#kayit-oryantasyon">🛂 Kayıt &amp; Oryantasyon</a>
-            <a href="#saglik-sigortasi">🩺 Sağlık Sigortası</a>
-            <a href="#ders-kataloglari">📚 Ders Katalogları</a>
-            <a href="#ikamet-izni">🏠 İkamet İzni Rehberi</a>
-            <a href="#akademik-takvim">🗓️ Akademik Takvim</a>
-        </div>
-
-        <!-- 1. GENEL BİLGİ -->
-        <section id="genel-bilgi">
-            <h2>Genel Bilgi</h2>
-
-            <h3>1. Kimler Erasmus+ kapsamında gelen öğrenci olabilir?</h3>
-            <p>Erasmus+ kapsamında gelen öğrenci olmak için, kendi üniversitenizin FBÜ ile Erasmus+ kurumlararası anlaşmasını (IIA) imzalamış olması gerekmektedir. Lütfen böyle bir anlaşmanın olup olmadığını ve Erasmus+ kapsamında gelen öğrenci olarak aday gösterilip gösterilemeyeceğinizi öğrenmek için kendi üniversitenizdeki koordinatörle iletişime geçiniz.</p>
-
-            <h3>2. Erasmus+ kapsamında gelen öğrenci olmak için nasıl aday olunur?</h3>
-            <p>Kendi üniversitenizdeki koordinatör, son başvuru tarihinden önce <a href="mailto:erasmus@fbu.edu.tr" style="color: var(--fbu-blue); font-weight: 700;">erasmus@fbu.edu.tr</a> adresine bir e-posta göndererek sizi FBÜ'deki Erasmus+ öğrenci öğrenim/staj hareketliliği için aday göstermelidir. Adaylık e-postasında aşağıdaki bilgiler yer almalıdır:</p>
-            <ul>
-                <li>Anlaşmalı olan kurumun Erasmus+ ID'si</li>
-                <li>Öğrencinin adı ve soyadı</li>
-                <li>Öğrencinin e-posta adresi</li>
-                <li>Bölüm ve konu alan kodu</li>
-                <li>Öğrencinin öğrenim kademesi</li>
-                <li>Hareketlilik süresi ve dönemi</li>
-            </ul>
-
-            <h3>3. Nasıl başvurulur?</h3>
-            <p>Adaylık bilgileriniz bize ulaştığında sizlere gerekli başvuru bilgileri gönderilecektir.</p>
-
-            <h3>4. Önemli Tarihler!</h3>
-            <div class="table-wrapper">
-                <table class="fbu-table">
-                    <thead>
-                        <tr>
-                            <th>Dönem</th>
-                            <th>Adaylık Son Tarihi</th>
-                            <th>Son Başvuru Tarihi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Güz Dönemi</td>
-                            <td>1 Haziran</td>
-                            <td>1 Temmuz</td>
-                        </tr>
-                        <tr>
-                            <td>Bahar Dönemi</td>
-                            <td>1 Kasım</td>
-                            <td>1 Aralık</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 2. KAYIT & ORYANTASYON -->
-        <section id="kayit-oryantasyon">
-            <h2>Kayıt İşlemleri &amp; Oryantasyon</h2>
-            <p>İstanbul'a gelir gelmez kayıt işlemleri için FBÜ Uluslararası İlişkiler Direktörlüğü (UİD) ile iletişime geçmelisiniz. FBÜ öğrenci kartınızın hazırlanabilmesi için bir adet biyometrik fotoğraf Öğrenci İşleri Direktörlüğü'ne teslim edilmelidir. UİD sizi üniversite ve ders kaydı için ilgili Erasmus+ Bölüm Koordinatörüne ve Öğrenci İşleri Direktörlüğü'ne yönlendirecektir.</p>
-            <p>Ülkeye geldikten sonraki bir ay içerisinde oturma izni için başvuru yapmanız gerekmektedir. UİD ve öğrenci kulübümüz bu süreçte size yardımcı olacaktır.</p>
-            <p>Ek olarak, öğrenciler için aşağıdaki konularda bir oryantasyon günü düzenlenecektir:</p>
-            <ul>
-                <li>Kampüs tanıtımı</li>
-                <li>Oturma izni kuralları ve sağlık sigortası gereksinimleri</li>
-            </ul>
-        </section>
-
-        <!-- 3. SAĞLIK SİGORTASI -->
-        <section id="saglik-sigortasi">
-            <h2>Sağlık Sigortası</h2>
-            <p>Öğrencilerin hareketlilik süresince tüm masrafları karşılayan, Türkiye'de geçerliliği olan bir sağlık sigortasına ihtiyaçları vardır. Aşağıdaki sağlık sigortası seçeneklerinden birini seçebilirsiniz:</p>
-            <ul>
-                <li>Türk Sosyal Güvenlik Kurumu Genel Sağlık Sigortası</li>
-                <li>Bazı ülkeler ile Türk Sosyal Güvenlik Kurumu arasındaki Sosyal Güvenlik Anlaşmaları</li>
-                <li>Kendi ülkesinde bulunan özel bir sigorta şirketi</li>
-                <li>Türkiye'de bulunan özel bir sigorta şirketi</li>
-            </ul>
-        </section>
-
-        <!-- 4. DERS KATALOGLARI -->
-        <section id="ders-kataloglari">
-            <h2>Ders Katalogları</h2>
-            <div class="info-box placeholder">
-                Bölümlere ait ders kataloğu listesi hazırlık aşamasındadır, yakında bu alanda paylaşılacaktır.
-            </div>
-        </section>
-
-        <!-- 5. İKAMET İZNİ REHBERİ -->
-        <section id="ikamet-izni">
-            <h2>İkamet İzni Rehberi</h2>
-            <div class="info-box placeholder">
-                İkamet izni başvuru rehberi hazırlık aşamasındadır, yakında bu alanda paylaşılacaktır.
-            </div>
-        </section>
-
-        <!-- 6. AKADEMİK TAKVİM -->
-        <section id="akademik-takvim">
-            <h2>Akademik Takvim</h2>
-            <p>Akademik takvime aşağıdaki bağlantıdan ulaşabilirsiniz.</p>
-            <a href="#" class="fbu-btn">Akademik Takvimi Görüntüle</a>
-        </section>
-
-        <p style="margin-top: 10px; padding: 20px; background-color: #f8fafc; border-left: 4px solid var(--fbu-yellow); border-radius: 6px; font-size: 15px;">
-            <strong>Sorularınız için:</strong> <a href="mailto:erasmus@fbu.edu.tr" style="color: var(--fbu-blue); font-weight: 700; text-decoration: none;">erasmus@fbu.edu.tr</a> adresinden bize ulaşabilirsiniz.
-        </p>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>İletişim Bilgileri</h3>
-                <p><span class="footer-icon">📍</span><span><strong>Fenerbahçe Üniversitesi</strong><br>Uluslararası Ofis<br>Atatürk Mah. Ataşehir Bulvarı,<br>Ataşehir / İstanbul, Türkiye</span></p>
-            </div>
-            <div class="footer-col">
-                <h3>Bize Ulaşın</h3>
-                <p><span class="footer-icon">✉️</span><span>erasmus@fbu.edu.tr</span></p>
-                <p><span class="footer-icon">📞</span><span>0216 910 19 07 / 1993</span></p>
-            </div>
-            <div class="footer-col">
-                <h3>Çalışma Saatleri</h3>
-                <p><span class="footer-icon">🕒</span><span>Pazartesi - Cuma<br>08:30 - 17:30</span></p>
-            </div>
-        </div>
-        <div class="footer-bottom">© 2026 Fenerbahçe Üniversitesi. Erasmus ve Değişim Programları. Tüm hakları saklıdır.</div>
-    </footer>
-
-    <!-- Ortak JS Dosyası -->
-    <script src="script.js"></script>
-</body>
-</html>
+<script src="components.js" data-part="header"></script>
+<div class="page-header"><h1>Erasmus+ Gelen Öğrenci Hareketliliği</h1></div>
+<div class="incoming-hero"><div class="incoming-hero__inner"><div><strong>Ders seçimine İngilizce ders listesinden başlayın</strong><p>Önce fakülte kataloğunu, ardından ayrıntılı ders bilgileri için Akademik Bilgi Paketini inceleyin.</p></div><a href="#dersler">Ders kataloglarını görüntüle ↓</a></div></div>
+<div class="layout-wrapper">
+  <nav class="sidebar-menu" role="tablist" aria-label="Gelen öğrenci rehberi bölümleri"><button class="tab-btn active" id="tab-dersler" role="tab" aria-controls="dersler" aria-selected="true" tabindex="0" data-tab="dersler"><span class="icon" aria-hidden="true">📚</span>Ders Katalogları</button>
+<button class="tab-btn" id="tab-adaylik" role="tab" aria-controls="adaylik" aria-selected="false" tabindex="-1" data-tab="adaylik"><span class="icon" aria-hidden="true">📝</span>Adaylık ve Başvuru</button>
+<button class="tab-btn" id="tab-varis" role="tab" aria-controls="varis" aria-selected="false" tabindex="-1" data-tab="varis"><span class="icon" aria-hidden="true">🎓</span>Varış ve Oryantasyon</button>
+<button class="tab-btn" id="tab-sigorta" role="tab" aria-controls="sigorta" aria-selected="false" tabindex="-1" data-tab="sigorta"><span class="icon" aria-hidden="true">🩺</span>Sağlık Sigortası</button>
+<button class="tab-btn" id="tab-ikamet" role="tab" aria-controls="ikamet" aria-selected="false" tabindex="-1" data-tab="ikamet"><span class="icon" aria-hidden="true">🏠</span>İkamet İzni</button>
+<button class="tab-btn" id="tab-takvim" role="tab" aria-controls="takvim" aria-selected="false" tabindex="-1" data-tab="takvim"><span class="icon" aria-hidden="true">🗓️</span>Akademik Takvim</button></nav>
+  <main class="content-area"><section class="tab-pane active" role="tabpanel" id="dersler" aria-labelledby="tab-dersler"><h2>Fakülte Bazlı İngilizce Ders Katalogları</h2>
+<p>Öğrenim anlaşmanızı (Learning Agreement) hazırlamadan önce <strong>ilgili fakültede İngilizce olarak verilen dersleri</strong> inceleyiniz. Hazırlanan listeler her fakülte için ayrı Excel dosyası olarak paylaşılacaktır.</p>
+<div class="incoming-step"><span class="incoming-step__index">1</span><strong>Fakültenizi seçin, İngilizce ders listesini indirin</strong></div>
+<div id="incoming-catalogue-grid" class="catalogue-grid" data-prefix="" aria-live="polite"></div>
+<p class="catalogue-note">Ders listeleri hazırlanmaktadır. İlgili Excel dosyası yüklendiğinde indirme bağlantısı otomatik olarak görünecektir. Derslerin açılma durumunu ve öğretim dilini ilgili bölüm koordinatörüyle teyit ediniz.</p>
+<div class="incoming-step"><span class="incoming-step__index">2</span><strong>Ders içeriklerini ve AKTS bilgilerini inceleyin</strong></div>
+<p>Fakültenizin İngilizce ders listesini inceledikten sonra ders açıklamaları, öğrenme çıktıları, AKTS kredileri ve program detayları için Fenerbahçe Üniversitesi <strong>Akademik Bilgi Paketi</strong> bağlantısını kullanabilirsiniz.</p>
+<div class="incoming-actions"><a href="https://ois.fbu.edu.tr/bilgipaketi/eobsakts/akademik/tip/L/menu_id/3_17/ln/en" target="_blank" rel="noopener noreferrer">Akademik Bilgi Paketi · Lisans ↗</a></div>
+<div class="incoming-info">Akademik Bilgi Paketi ayrıntılı program bilgisi sunar. İlgili dersin değişim döneminde İngilizce açılıp açılmayacağı ayrıca bölüm koordinatörü ile teyit edilmelidir.</div></section>
+<section class="tab-pane" role="tabpanel" id="adaylik" aria-labelledby="tab-adaylik"><h2>Aday Gösterme ve Başvuru</h2>
+<h3>Kimler gelen Erasmus+ öğrencisi olabilir?</h3>
+<p>Fenerbahçe Üniversitesinde Erasmus+ öğrenim hareketliliği gerçekleştirmek isteyen öğrencinin gönderen üniversitesi ile FBÜ arasında geçerli bir <strong>Erasmus+ Kurumlararası Anlaşma (IIA)</strong> bulunmalıdır. Adaylık öncesinde kendi üniversitenizin Erasmus+ koordinatörüyle iletişime geçiniz.</p>
+<h3>Aday gösterme süreci</h3><p>Gönderen üniversitenin Erasmus+ koordinatörü, adaylık son tarihinden önce <a href="mailto:erasmus@fbu.edu.tr">erasmus@fbu.edu.tr</a> adresine aşağıdaki bilgileri içeren e-posta göndermelidir:</p>
+<ul><li>Gönderen üniversitenin Erasmus+ kodu</li><li>Öğrencinin adı, soyadı ve e-posta adresi</li><li>Bölüm ve konu alanı kodu</li><li>Öğrenim kademesi</li><li>Planlanan hareketlilik süresi ve dönemi</li></ul>
+<h3>Adaylık sonrasında ne olacak?</h3><p>Aday gösterme bilgileri tarafımıza ulaştığında Uluslararası İlişkiler Daire Başkanlığı tarafından başvuru adımlarına ilişkin bilgilendirme iletilir.</p>
+<h3>Adaylık ve başvuru tarihleri</h3>
+<div class="incoming-table-wrap"><table class="incoming-table"><thead><tr><th>Dönem</th><th>Adaylık son tarihi</th><th>Başvuru son tarihi</th></tr></thead><tbody><tr><td>Güz</td><td>1 Haziran</td><td>1 Temmuz</td></tr><tr><td>Bahar</td><td>1 Kasım</td><td>1 Aralık</td></tr></tbody></table></div>
+<p class="catalogue-note">Bu tarihler mevcut Gelen Öğrenci bilgilendirmesinden alınmıştır. İlgili hareketlilik dönemi için son tarihleri Uluslararası İlişkiler Daire Başkanlığı ile teyit ediniz.</p></section>
+<section class="tab-pane" role="tabpanel" id="varis" aria-labelledby="tab-varis"><h2>Üniversiteye Varış, Kayıt ve Oryantasyon</h2>
+<p>Üniversitemize vardığınızda öncelikle <strong>Uluslararası İlişkiler Daire Başkanlığı</strong> ile iletişime geçiniz. Kayıt işlemleri için yönlendirilecek, ders kayıtlarıyla ilgili olarak Erasmus+ Bölüm Koordinatörü ve Öğrenci İşleri birimine ulaşmanız sağlanacaktır.</p>
+<ul><li>Gerekli üniversite kayıt işlemlerini tamamlayın.</li><li>Öğrenci kimlik kartı işlemleri için talep edildiğinde Öğrenci İşleri birimine bir adet biyometrik fotoğraf teslim edin.</li><li>Ders seçimleri ve Öğrenim Anlaşması (Learning Agreement) için bölüm koordinatörünüzle görüşün.</li><li>Gelen öğrencilere yönelik duyurulan oryantasyon etkinliklerine katılın.</li></ul>
+<div class="incoming-info"><strong>Yardıma mı ihtiyacınız var?</strong> Üniversiteye gelmeden önce veya geldikten sonra <a href="mailto:erasmus@fbu.edu.tr">erasmus@fbu.edu.tr</a> adresine yazabilirsiniz.</div></section>
+<section class="tab-pane" role="tabpanel" id="sigorta" aria-labelledby="tab-sigorta"><h2>Sağlık Sigortası</h2><p>Gelen Erasmus+ öğrencilerinin hareketlilik süresi boyunca <strong>Türkiye'de geçerli sağlık sigortası</strong> bulunmalıdır. Sigortanın kendileri için geçerli koşulları karşılayıp karşılamadığını kontrol etmeleri önerilir.</p>
+<p>Uygunluk ve kişisel duruma göre değerlendirilebilecek seçenekler şunlardır:</p>
+<ul><li>Türkiye Sosyal Güvenlik Kurumu (SGK) Genel Sağlık Sigortası</li><li>Uygulanabildiği durumlarda ikili sosyal güvenlik anlaşmaları</li><li>Türkiye'de geçerli olan, kendi ülkesindeki özel sağlık sigortası</li><li>Türkiye'de düzenlenen özel sağlık sigortası</li></ul>
+<p>Ülkeye gelmeden önce teminat kapsamını ve ilgili koşulları kontrol ediniz. Gerekli birimlere yönlendirme konusunda Uluslararası İlişkiler Daire Başkanlığından destek alabilirsiniz.</p></section>
+<section class="tab-pane" role="tabpanel" id="ikamet" aria-labelledby="tab-ikamet"><h2>İkamet İzni</h2><div class="incoming-info"><p style="margin:0">Üniversitemize gelen değişim öğrencilerinin, <strong>ikamet izni işlemleri</strong> hakkında bilgi ve yönlendirme almak üzere üniversiteye varışlarının ardından <strong>Uluslararası İlişkiler Daire Başkanlığı</strong> ile iletişime geçmeleri gerekmektedir. Başvuru sürecinde gerekli rehberlik sağlanacaktır.</p></div></section>
+<section class="tab-pane" role="tabpanel" id="takvim" aria-labelledby="tab-takvim"><h2>Akademik Takvim</h2><p>Fenerbahçe Üniversitesinin güncel akademik takvimine aşağıdaki resmî bağlantıdan ulaşabilirsiniz. Seyahat planınızı oluşturmadan önce ilgili akademik yılın ve dönemin tarihlerini kontrol ediniz.</p><div class="incoming-actions"><a href="https://www.fbu.edu.tr/en/academic-calendar" target="_blank" rel="noopener noreferrer">Akademik Takvimi Görüntüle ↗</a></div></section>
+  <div class="incoming-contact"><strong>Erasmus+ hareketliliğiniz hakkında sorunuz mu var?</strong> <a href="mailto:erasmus@fbu.edu.tr">erasmus@fbu.edu.tr</a></div>
+  </main>
+</div>
+<script src="data/incoming-course-catalogs.js"></script>
+<script src="incoming-guide.js"></script>
+<script src="components.js" data-part="footer"></script>
+<script src="script.js"></script>
+</body></html>

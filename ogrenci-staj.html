@@ -1,17 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Öğrenci Staj Hareketliliği | UİDPM</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Ortak CSS Dosyası -->
-    <link rel="stylesheet" href="style.css">
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Öğrenci Staj Hareketliliği | UİDPM</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Ortak CSS Dosyası -->
+<link href="style.css" rel="stylesheet"/>
+<style>
         /* DİKEY SEKME (TAB) VE İÇERİK MİMARİSİ */
         .layout-wrapper {
             display: flex;
@@ -31,7 +30,7 @@
             padding: 20px;
             flex-shrink: 0;
             position: sticky;
-            top: 100px; 
+            top: 100px; /* Sayfa kaydırıldığında ekranda sabit kalması için */
         }
 
         .tab-btn {
@@ -108,17 +107,6 @@
             margin-bottom: 20px;
         }
 
-        .info-box {
-            background-color: #f0fdf4;
-            color: #166534;
-            padding: 15px 20px;
-            border-radius: 6px;
-            border-left: 4px solid #22c55e;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
         /* Yol Rehberi (Zaman Çizelgesi) Stilleri */
         .roadmap-container { margin-top: 30px; position: relative; border-left: 3px solid var(--fbu-yellow); padding-left: 30px; margin-left: 15px; }
         .roadmap-step { margin-bottom: 40px; position: relative; }
@@ -137,339 +125,142 @@
             .content-area { padding: 25px; min-height: auto; }
         }
     </style>
-</head>
+<style>
+/* Learning guide additions */
+.guide-version{background:#f1f6fa;border-left:4px solid var(--fbu-blue);padding:15px 18px;border-radius:8px;margin:18px 0 22px;display:grid;gap:7px;font-size:13px;line-height:1.7;color:#35546e}
+.guide-version strong{font-size:14px;color:#123c69}.guide-hint{background:#fff9e9;border-left:4px solid #d6ad46;padding:15px 18px;border-radius:8px;margin:22px 0;font-size:13px;line-height:1.7;color:#6c521f}
+.guide-table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55;margin:16px 0 25px}
+.guide-table th{background:var(--fbu-blue);color:#fff;text-align:left;font-size:13px}.guide-table th,.guide-table td{padding:12px 13px;border:1px solid #dbe5ee;vertical-align:top}.guide-table tbody tr:nth-child(even){background:#f6f9fb}.guide-table td:last-child{white-space:nowrap;font-weight:700;color:#224c78}
+.guide-steps{padding-left:23px}.guide-steps li{margin:0 0 16px;padding-left:4px}.guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.guide-actions .fbu-btn{text-decoration:none;display:inline-flex;align-items:center;min-height:42px;padding:8px 15px;border-radius:7px}.guide-btn-secondary{background:#eaf1f8!important;color:#123b67!important}
+.guide-quick{max-width:1200px;margin:24px auto -20px;padding:0 20px}.guide-quick__inner{display:flex;gap:15px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#eff5fb;border:1px solid #d8e6f2;padding:17px 22px;border-radius:10px}.guide-quick__inner strong{color:#103b72}.guide-quick__inner p{font-size:13px;color:#4e6982;margin:3px 0 0}.guide-quick__inner a{font-size:13px;font-weight:800;color:#114d86;white-space:normal}
+@media(max-width:650px){.guide-table{font-size:12px}.guide-table th,.guide-table td{padding:9px 7px}.guide-table td:last-child{white-space:normal}.guide-quick{margin-bottom:0}}
+</style><style>
+/* Traineeship guide: prevent narrow-screen flex and comparison table overflow. */
+@media(max-width:900px){.layout-wrapper .sidebar-menu{box-sizing:border-box;min-width:0;max-width:100%;align-self:stretch}.layout-wrapper .content-area{box-sizing:border-box;min-width:0;width:100%;max-width:100%;overflow-wrap:anywhere}.guide-table{display:block;overflow-x:auto;max-width:100%}}
+</style></head>
 <body>
-
-    <!-- HEADER / MENÜ -->
-    <!-- HEADER / MENÜ -->
-    <header>
-        <!-- GÜNCELLENEN LOGO ALANI -->
-        <a href="index.html" class="logo-area">
-            <img src="fbu-logo.png" alt="FBU Logo" class="header-logo">
-            <div class="logo-separator"></div>
-            <div class="logo-text">
-                <span class="logo-title-top">FENERBAHÇE ÜNİVERSİTESİ</span>
-                <span class="logo-title-bottom">ULUSLARARASI İŞ BİRLİKLERİ &</span>
-		<span class="logo-title-bottom">VE DEĞİŞİM PROGRAMLARI</span>
-            </div>
-        </a>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">☰</button>
-        <ul class="nav-list" id="navList">
-            <li class="nav-item"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Erasmus+ ▾</a>
-                <div class="dropdown-menu">
-                    <a href="fbu-eche-belgesi.html" class="dropdown-item">ECHE (2021-2027)</a>
-                    <a href="ogrenci-beyannamesi.html" class="dropdown-item">Öğrenci Beyannamesi</a>
-                    <a href="fbu-politika-beyani.html" class="dropdown-item">Erasmus Politika Beyanı</a>
-                    <a href="icerme-destegi.html" class="dropdown-item">İçerme Desteği</a>
-                    <a href="aktsnotdonusum.html" class="dropdown-item">AKTS Not Dönüşüm Tablosu</a>
-                    <a href="akran-danismanligi.html" class="dropdown-item">Akran Danışmanlığı</a>
-                    <a href="degisim-komisyonu.html" class="dropdown-item">Değişim Programları Seçim Komisyonu</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Giden Yönlü Hareketlilik ▾</a>
-                <div class="dropdown-menu">
-                    <a href="ogrenci-ogrenim.html" class="dropdown-item">Öğrenci Öğrenim</a>
-                    <a href="ogrenci-staj.html" class="dropdown-item">Öğrenci Staj</a>
-                    <a href="personel-dersverme.html" class="dropdown-item">Personel Ders Verme</a>
-                    <a href="personel-egitimalma.html" class="dropdown-item">Personel Eğitim Alma</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Gelen Yönlü Hareketlilik ▾</a>
-                <div class="dropdown-menu">
-                    <a href="gelen-ogrenci.html" class="dropdown-item">Gelen Öğrenci</a>
-                    <a href="gelen-personel.html" class="dropdown-item">Gelen Personel</a>
-                </div>
-            </li>
-            <!-- Henüz oluşturmadığımız sayfalar için geçici olarak # bıraktım -->
-            <li class="nav-item"><a href="partner-kurumlar.html" class="nav-link" style="color: var(--fbu-yellow);">Partner Kurumlar</a></li>
-            <li class="nav-item"><a href="duyurular-haberler.html" class="nav-link">Duyurular &amp; Haberler</a></li>
-            <li class="nav-item"><a href="#" class="nav-link" style="color: var(--fbu-yellow);">İletişim</a></li>
-            
-            <!-- DİL SEÇİCİ -->
-            <div class="lang-switch">
-                <a href="#" class="active">TR</a>
-                <span style="color: var(--border-color);">|</span>
-                <a href="#">EN</a>
-            </div>
-        </ul>
-    </header>
-
-    <!-- SAYFA BAŞLIĞI -->
-    <div class="page-header">
-        <h1>Erasmus+ Öğrenci Staj Hareketliliği</h1>
-    </div>
-
-    <!-- SEKMELİ (TAB) İÇERİK MİMARİSİ -->
-    <div class="layout-wrapper">
-        
-        <!-- Sol Menü -->
-        <div class="sidebar-menu">
-            <button class="tab-btn active" onclick="openTab(event, 'sartlar')">
-                <span class="icon">📋</span> Başvuru Şartları
-            </button>
-            <button class="tab-btn" onclick="openTab(event, 'basvuru')">
-                <span class="icon">💻</span> Başvuru Nasıl Yapılır?
-            </button>
-            <button class="tab-btn" onclick="openTab(event, 'kriterler')">
-                <span class="icon">📊</span> Seçim Kriterleri ve Puanlama
-            </button>
-            <button class="tab-btn" onclick="openTab(event, 'hibe')">
-                <span class="icon">💶</span> Hibe ve Seyahat Desteği
-            </button>
-            <button class="tab-btn" onclick="openTab(event, 'surec')">
-                <span class="icon">🗺️</span> Hareketlilik Süreci (Yol Rehberi)
-            </button>
-            <button class="tab-btn" onclick="openTab(event, 'tavsiyeler')">
-                <span class="icon">💡</span> Staj Yeri Bulma Tavsiyeleri
-            </button>
-        </div>
-
-        <!-- Sağ İçerik Alanı -->
-        <div class="content-area">
-            
-            <!-- TAB 1: Başvuru Şartları -->
-            <div id="sartlar" class="tab-pane active">
-                <h2>Staj Hareketliliği Başvuru Şartları</h2>
-                <div class="info-box">
-                    Staj hareketliliği, öğrencinin öğrenim programının tamamlayıcı bir parçası olarak yurtdışında bir işletmede, araştırma enstitüsünde, laboratuvarda veya bir kurumda mesleki eğitim almasıdır. Yükseköğretim kurumunda ders takibi staj olarak kabul edilmez. <strong>Staj yeri bulmak tamamen öğrencinin sorumluluğundadır ve kurumlararası anlaşma şartı aranmaz.</strong>
-                </div>
-
-                <p>Erasmus+ Staj Hareketliliğine başvuracak öğrencilerin eğitim düzeylerine göre aşağıdaki şartları sağlaması gerekmektedir:</p>
-                
-                <h3 style="color: var(--fbu-blue); margin-top: 25px;">Ön Lisans ve Lisans Öğrencileri</h3>
-                <ul>
-                    <li>Tam zamanlı öğrenci olmak.</li>
-                    <li>En az bir yarıyıl eğitime devam etmiş olmak.</li>
-                    <li>Güncel genel not ortalamasının (GNO) en az <strong>2.20/4.00</strong> olması.</li>
-                    <li>İngilizce/Türkçe dil hazırlık ile bilimsel hazırlık öğrencileri başvuramazlar.</li>
-                    <li>Staj hareketliliğinin süresi <strong>en az 60 gün</strong> olmalıdır.</li>
-                    <li>Öğrenim düzeyi içerisinde hareketlilik süresi toplamda 12 ayı geçemez.</li>
-                </ul>
-
-                <h3 style="color: var(--fbu-blue); margin-top: 25px;">Lisansüstü Öğrencileri</h3>
-                <ul>
-                    <li>Tam zamanlı öğrenci olmak ve GNO'nun en az <strong>2.50/4.00</strong> olması. (Ortalaması henüz oluşmamış öğrenciler, önceki mezuniyet notları ile başvurabilir.)</li>
-                    <li>Kredili/kredisiz ders yükünü tamamlamamış lisansüstü öğrenciler için tez danışmanı, anabilim dalı başkanı ve Enstitü yönetim kurulu kararı/onayı gerekir.</li>
-                    <li>Doktora yeterlilik veya tez önerisi savunmasına girilmesi gereken son yarıyılda ya da azami sürenin son yarıyılında olan öğrenciler başvuramaz.</li>
-                </ul>
-
-                <h3 style="color: var(--fbu-blue); margin-top: 25px;">Mezuniyet Sonrası Staj</h3>
-                <ul>
-                    <li>Başvurunun öğrenci mezun olmadan önce yapılmış olması şarttır.</li>
-                    <li>Hareketlilik, mezuniyet tarihinden itibaren <strong>12 ay içinde</strong> tamamlanmış olmalıdır.</li>
-                </ul>
-            </div>
-
-            <!-- TAB 2: Başvuru Nasıl Yapılır? -->
-            <div id="basvuru" class="tab-pane">
-                <h2>Başvuru Nasıl Yapılır?</h2>
-                <p>Erasmus+ Staj Hareketliliği başvuruları dijital ortamda alınmaktadır. Başvuru sürecini başlatabilmeniz için öncelikle bir staj yeri ayarlamış ve kabul mektubunuzu almış olmanız şarttır.</p>
-                
-                <ul>
-                    <li style="margin-bottom: 10px;">Başvurular <strong>https://turnaportal.ua.gov.tr/</strong> adresi üzerinden <strong>e-devlet</strong> kimlik doğrulaması ile yapılmaktadır.</li>
-                    <li style="margin-bottom: 10px;">Öğrenciler başvuru süresi içerisinde sisteme giriş yapıp, güncel transkriptlerini ve staj yapılacak kurumdan alınan <strong>Kabul Mektubunu (Acceptance Letter)</strong> eksiksiz olarak yüklemelidirler.</li>
-                    <li style="margin-bottom: 10px;">İlan süresi içinde tamamlanmayan veya eksik belge yüklenen başvurular geçersiz sayılacaktır.</li>
-                </ul>
-
-                <h3 style="color: var(--fbu-blue); margin-top: 25px;">Yabancı Dil Sınavı Aşaması</h3>
-                <p>Çevrimiçi başvurular tamamlandıktan sonra, başvuru yapan öğrencilere yönelik İngilizce Dil Sınavı düzenlenir.</p>
-                <ul>
-                    <li>Staj hareketliliğine hak kazanabilmek için öğrencilerin bu sınavdan <strong>en az B1</strong> seviyesinde puan almaları gerekmektedir.</li>
-                    <li>Dil sınavının formatı, tarihi ve uygulaması hakkındaki detaylı bilgilendirmeler için <strong>Yabancı Diller Bölümü</strong> ile görüşebilirsiniz.</li>
-                </ul>
-            </div>
-
-            <!-- TAB 3: Seçim Kriterleri -->
-            <div id="kriterler" class="tab-pane">
-                <h2>Seçim Kriterleri ve Puanlama</h2>
-                <table class="fbu-table" style="width: 100%; border-collapse: collapse; border: 1px solid var(--border-color);">
-                    <thead>
-                        <tr>
-                            <th style="background-color: var(--fbu-blue); color: white; padding: 12px; text-align: left;">Seçim Kriteri</th>
-                            <th style="background-color: var(--fbu-blue); color: white; padding: 12px; text-align: center;">Puanlama Oranı / Etkisi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 12px;">Akademik Başarı Düzeyi (GNO)</td>
-                            <td style="padding: 12px; text-align: center; font-weight: bold;">%50 (toplam 100 puan üzerinden)</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;">
-                            <td style="padding: 12px;">Dil Seviyesi (en az B1)</td>
-                            <td style="padding: 12px; text-align: center; font-weight: bold;">%50 (toplam 100 puan üzerinden)</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 12px;">Başvuru esnasında staj yeri Kabul Mektubu sunma</td>
-                            <td style="padding: 12px; text-align: center; color: #166534; font-weight: bold;">+10 Puan</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;">
-                            <td style="padding: 12px;">Zorunlu staj kapsamında başvuru yapmak</td>
-                            <td style="padding: 12px; text-align: center; color: #166534; font-weight: bold;">+5 Puan</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 12px;">Dijital becerileri geliştirmeye yönelik stajlar (DOTS)</td>
-                            <td style="padding: 12px; text-align: center; color: #166534; font-weight: bold;">+5 Puan</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;">
-                            <td style="padding: 12px;">Şehit ve gazi çocukları</td>
-                            <td style="padding: 12px; text-align: center; color: #166534; font-weight: bold;">+15 Puan</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 12px;">Engelli öğrenciler / 2828 Sayılı Kanun / AFAD yardım alanlar</td>
-                            <td style="padding: 12px; text-align: center; color: #166534; font-weight: bold;">+10 Puan</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;">
-                            <td style="padding: 12px;">Aynı proje türünden daha önce yararlanma / Vatandaşı olunan ülkede katılma</td>
-                            <td style="padding: 12px; text-align: center; color: #991b1b; font-weight: bold;">-10 Puan</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 12px;">Süresinde feragat etmeden katılmama / İki hareketliliğe aynı anda başvurma</td>
-                            <td style="padding: 12px; text-align: center; color: #991b1b; font-weight: bold;">-10 Puan</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; background: #f8fafc;">Toplantılara mazeretsiz katılmama / Dil sınavına mazeretsiz girmeme</td>
-                            <td style="padding: 12px; background: #f8fafc; text-align: center; color: #991b1b; font-weight: bold;">-5 Puan</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="warning-box">
-                    <strong>⚠️ Önemli Not:</strong> Yukarıda yer alan seçim kriterleri, puanlamalar ve ek hibe imkanları sözleşme yıllarına ve güncel projelere göre değişiklik gösterebilmektedir. Başvuru dönemlerinde ofis tarafından yayımlanan güncel ilan metinlerinin dikkatle takip edilmesi gerekmektedir.
-                </div>
-            </div>
-
-            <!-- TAB 4: Hibe Desteği -->
-            <div id="hibe" class="tab-pane">
-                <h2>Hibe ve Seyahat Desteği</h2>
-                <p>Staj hareketliliğinden faydalanacak öğrencilere en fazla <strong>3 ay (90 gün)</strong> için hibe desteği sağlanır. Hareketlilik süresi ise en az 60 gün olmak zorundadır.</p>
-                
-                <ul>
-                    <li><strong>Aylık 750 Euro:</strong> Almanya, Avusturya, Belçika, Fransa, İtalya, İspanya, Hollanda gibi 1. ve 2. grup program ülkeleri.</li>
-                    <li><strong>Aylık 600 Euro:</strong> Polonya, Macaristan, Romanya, Kuzey Makedonya gibi 3. grup program ülkeleri.</li>
-                    <li><strong>İlave Hibe (Dezavantajlı Gruplar):</strong> Sınırlı imkanlara sahip öğrencilere (2828 SK, AFAD desteği, yetim aylığı vb.) aylık ek <strong>250 Euro</strong> destek sağlanır.</li>
-                </ul>
-
-                <h3 style="color: var(--fbu-blue); margin-top: 25px;">Seyahat Desteği</h3>
-                <p>Avrupa Komisyonu mesafe hesaplayıcısı baz alınarak uzaklığa göre gidiş-dönüş seyahat desteği verilir. Düşük karbon emisyonlu araçları (otobüs, tren vb.) kullanan öğrenciler <strong>Yeşil Seyahat</strong> hibesinden faydalanabilir.</p>
-                
-                <table class="fbu-table" style="width: 100%; border-collapse: collapse; border: 1px solid var(--border-color); margin-top: 15px;">
-                    <thead>
-                        <tr>
-                            <th style="background-color: var(--fbu-blue); color: white; padding: 10px;">Seyahat Mesafesi</th>
-                            <th style="background-color: var(--fbu-blue); color: white; padding: 10px;">Standart Hibe</th>
-                            <th style="background-color: var(--fbu-blue); color: white; padding: 10px;">Yeşil Seyahat</th>
-                        </tr>
-                    </thead>
-                    <tbody style="text-align: center;">
-                        <tr style="border-bottom: 1px solid var(--border-color);"><td>10 - 99 KM</td><td>28 Euro</td><td>56 Euro</td></tr>
-                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;"><td>100 - 499 KM</td><td>211 Euro</td><td>285 Euro</td></tr>
-                        <tr style="border-bottom: 1px solid var(--border-color);"><td>500 - 1999 KM</td><td>309 Euro</td><td>417 Euro</td></tr>
-                        <tr style="border-bottom: 1px solid var(--border-color); background: #f8fafc;"><td>2000 - 2999 KM</td><td>395 Euro</td><td>535 Euro</td></tr>
-                        <tr style="border-bottom: 1px solid var(--border-color);"><td>3000 - 3999 KM</td><td>580 Euro</td><td>785 Euro</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- TAB 5: Yol Rehberi -->
-            <div id="surec" class="tab-pane">
-                <h2>Öğrenci Staj Hareketliliği Yol Rehberi</h2>
-                <div class="info-box">
-                    Staj hareketliliğinde öğrenim hareketliliğinden farklı olarak <strong>nominasyon süreci (ofisler arası bildirim) bulunmamaktadır.</strong> Kurumu ve staj pozisyonunu ayarlamak tamamen öğrencinin sorumluluğundadır. Süreç aşağıdaki adımlarla ilerler:
-                </div>
-
-                <div class="roadmap-container">
-                    <div class="roadmap-step">
-                        <h3>1. Staj Yeri Bulma ve Kabul Mektubu Alma</h3>
-                        <p>Öğrenci çalışmak istediği kurumu bulur ve bir Kabul Mektubu (Acceptance Letter) talep eder. Belgede hareketliliğin staj kapsamında olduğu, kesin tarih aralığı, staj konusu ve kurum yetkilisinin iletişim bilgileri bulunmalıdır.</p>
-                    </div>
-
-                    <div class="roadmap-step">
-                        <h3>2. Başvuru ve Dil Sınavı</h3>
-                        <p>Kabul mektubu alındıktan sonra <strong>TURNAPortal</strong> üzerinden e-devlet ile çevrimiçi başvuru yapılır. Ardından Üniversite tarafından düzenlenen İngilizce dil sınavına girilir.</p>
-                    </div>
-
-                    <div class="roadmap-step">
-                        <h3>3. Seçim Süreci Sonrası: Mobility Agreement ve Fakülte Kararı</h3>
-                        <p>Değerlendirmeler sonucunda staj yapmaya hak kazanan öğrenciler için evrak işlemleri başlar. Hareketlilik öncesinde <strong>Mobility Agreement for Traineeships</strong> belgesinin "Before the Mobility" kısmı öğrenci, FBU bölüm koordinatörü ve karşı kurum tarafından imzalanmalıdır.</p>
-                        <p>İmzalar tamamlandıktan sonra öğrenci fakültesine dilekçe verir ve stajı için Fakülte Yönetim Kurulu Kararı alınır. <em>(Not: Mezuniyet sonrası yapılacak stajlar için fakülte kararı gerekmez.)</em></p>
-                    </div>
-
-                    <div class="roadmap-step">
-                        <h3>4. Vize ve Hibe Sözleşmesi İşlemleri</h3>
-                        <p>Resmi evraklar tamamlandıktan sonra öğrenci vize başvurusunu yapar. Vize süreci kendi sorumluluğundadır. Vizesini alan öğrenci, hareketlilik başlamadan önce Uluslararası Ofis ile <strong>Hibe Sözleşmesini</strong> imzalar.</p>
-                    </div>
-
-                    <div class="roadmap-step">
-                        <h3>5. Hareketlilik Sırası (During Mobility)</h3>
-                        <p>Staj programında veya sorumluluklarda bir değişiklik olması durumunda, ders değişikliği (add-drop) yapılmaz; bunun yerine Mobility Agreement belgesinin <strong>"During the Mobility"</strong> kısmı zamanı geldiğinde doldurulup imzalatılır.</p>
-                    </div>
-
-                    <div class="roadmap-step">
-                        <h3>6. Hareketlilik Sonrası (After Mobility)</h3>
-                        <p>Staj bitiminde öğrenci, dönüş işlemlerini başlatır. Kurum tarafından imzalanmış <strong>Katılım Sertifikası (Certificate of Attendance)</strong> ve Mobility Agreement'ın <strong>"After the Mobility"</strong> bölümü ofise teslim edilir. Son olarak çevrimiçi EU Survey anketi doldurularak süreç başarıyla kapatılır.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 6: Staj Yeri Bulma -->
-            <div id="tavsiyeler" class="tab-pane">
-                <h2>Staj Yeri Bulma Tavsiyeleri</h2>
-                <p>Erasmus+ Staj Hareketliliğinde kurum bulmak sizin sorumluluğunuzdadır. Bu süreçte başarılı olmak için aşağıdaki stratejileri izleyebilirsiniz:</p>
-                
-                <ul>
-                    <li style="margin-bottom: 15px;"><strong>Ağınızı Kullanın:</strong> Çevrenizdeki alanında yetkin insanlarla veya hocalarınızla sohbet edin. Derslerde örnek verilen kurumlara ve gitmeyi planladığınız ülkedeki şirketlere odaklanın.</li>
-                    <li style="margin-bottom: 15px;"><strong>Doğru İletişim:</strong> Özgeçmişinizi (CV) ve o kurumda neden staj yapmak istediğinizi anlatan etkili bir "Motivasyon Mektubu" (Cover Letter) hazırlayın. Farklı kurumlara özelleştirilmiş e-postalar göndererek kabul almaya çalışın.</li>
-                    <li style="margin-bottom: 15px;"><strong>Dijital Staj Platformları:</strong> İnternette yer alan uluslararası staj portallarını, LinkedIn'i ve Erasmus+ staj ilanlarının paylaşıldığı iletişim ağlarını düzenli takip edin.</li>
-                    <li><strong>DOTS (Dijital Fırsatlar) Avantajı:</strong> Dijital pazarlama, veri analitiği, yazılım geliştirme, yapay zeka, grafik/mimari tasarım veya siber güvenlik gibi dijital becerileri geliştirmeye yönelik stajlar değerlendirmelerde <strong>+5 ek puan</strong> kazandırmaktadır.</li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>İletişim Bilgileri</h3>
-                <p><span class="footer-icon">📍</span><span><strong>Fenerbahçe Üniversitesi</strong><br>Uluslararası Ofis<br>Atatürk Mah. Ataşehir Bulvarı,<br>Ataşehir / İstanbul, Türkiye</span></p>
-            </div>
-            <div class="footer-col">
-                <h3>Bize Ulaşın</h3>
-                <p><span class="footer-icon">✉️</span><span>erasmus@fbu.edu.tr</span></p>
-                <p><span class="footer-icon">📞</span><span>0216 910 19 07 / 1993</span></p>
-            </div>
-        </div>
-        <div class="footer-bottom">© 2026 Fenerbahçe Üniversitesi. Erasmus ve Değişim Programları. Tüm hakları saklıdır.</div>
-    </footer>
-
-    <!-- Ortak JS Dosyası -->
-    <script src="script.js"></script>
-
-    <!-- TAB DEĞİŞTİRME MANTIĞI -->
-    <script>
-        function openTab(evt, tabId) {
-            // Tüm içerik alanlarını gizle
-            const tabcontent = document.getElementsByClassName("tab-pane");
-            for (let i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            
-            // Tüm menü butonlarından active sınıfını kaldır
-            const tablinks = document.getElementsByClassName("tab-btn");
-            for (let i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            
-            // Seçilen tab'ı ve butonu aktif yap
-            document.getElementById(tabId).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-    </script>
+<!-- HEADER / MENÜ -->
+<script data-part="header" src="components.js"></script>
+<!-- SAYFA BAŞLIĞI -->
+<div class="page-header">
+<h1>Erasmus+ Öğrenci Staj Hareketliliği</h1>
+</div><div class="guide-quick"><div class="guide-quick__inner"><div><strong>Staj ilanları, dil sınavları ve sonuçlar tek sayfada</strong><p>Her çağrının tarihleri, kontenjanları, kabul mektubu teslim süresi ve değerlendirme sonuçları ilan detayında yayımlanır.</p></div><a href="duyurular-haberler.html">İlanlara ve sonuçlara git ↗</a></div></div>
+<!-- SEKMELİ (TAB) İÇERİK MİMARİSİ -->
+<div class="layout-wrapper">
+<!-- Sol Menü -->
+<div class="sidebar-menu"><button class="tab-btn active" onclick="openTab(event, 'sartlar')"><span class="icon">📋</span> Başvuru Şartları</button><button class="tab-btn" onclick="openTab(event, 'basvuru')"><span class="icon">📝</span> Başvuru ve Belgeler</button><button class="tab-btn" onclick="openTab(event, 'kriterler')"><span class="icon">📊</span> Seçim Kriterleri ve Puanlama</button><button class="tab-btn" onclick="openTab(event, 'hibe')"><span class="icon">💶</span> Hibe ve Seyahat Desteği</button><button class="tab-btn" onclick="openTab(event, 'surec')"><span class="icon">🗺️</span> Hareketlilik Süreci</button><button class="tab-btn" onclick="openTab(event, 'tavsiyeler')"><span class="icon">💡</span> Staj Yeri Bulma</button></div>
+<!-- Sağ İçerik Alanı -->
+<div class="content-area"><div class="tab-pane active" id="sartlar">
+<h2>Staj Hareketliliği: Kimler Başvurabilir?</h2>
+<p>Erasmus+ staj hareketliliği, öğrencinin akademik alanıyla bağlantılı bir işletme, araştırma enstitüsü, laboratuvar veya başka bir kuruluşta yurtdışında iş deneyimi edinmesidir. Staj, öğrenim programını tamamlayıcı nitelikte olmalıdır; yalnızca bir yükseköğretim kurumunda derslere katılmak <strong>staj sayılmaz.</strong></p>
+<div class="guide-version"><strong>Bilgilerin geçerliliği: 2026 KA131 staj çağrısı</strong><span>Bu sayfa, 20 Ekim 2026 tarihli, 2026–2027 akademik yılına yönelik Türkçe ve İngilizce birinci çağrı belgeleri esas alınarak güncellendi. Gelecek çağrılarda koşullar değişebilir; başvurulacak <strong>çağrının resmî ilanı ve düzeltmeleri belirleyicidir.</strong></span></div>
+<h3>Akademik durum ve not ortalaması</h3><ul>
+<li>Ön lisans, lisans veya lisansüstü bir programa kayıtlı <strong>tam zamanlı öğrenci</strong> olmak.</li>
+<li>Ön lisans/lisans öğrencileri için en az <strong>2.20/4.00</strong>, lisansüstü öğrencileri için en az <strong>2.50/4.00</strong> genel not ortalaması.</li>
+<li>Henüz üniversite transkripti oluşmamış, ön lisanstan geçiş yapanlar için ön lisans mezuniyet notunun en az 2.20/4.00 olması; hazırlık ve birinci sınıf öğrencileri için lise mezuniyet notunun en az <strong>75/100</strong> olması, incelenen çağrıda belirtilmiştir.</li>
+<li>Lisansüstü programında henüz not ortalaması oluşmayanlar, önceki lisans/yüksek lisans mezuniyet notlarını ilgili belgelerle sunarak başvurabilir.</li>
+</ul>
+<h3>Diğer uygunluk şartları</h3><ul>
+<li>Çift anadal öğrencileri aynı başvuru döneminde yalnızca <strong>bir anadalı</strong> üzerinden başvuru yapabilir.</li>
+<li>Kayıt dondurulmuş dönemde başvuru yapılabilir; <strong>kayıt dondurulan dönemde hareketlilik yapılamaz.</strong></li>
+<li>Ders yükünü tamamlamamış tezli yüksek lisans/doktora öğrencileri için danışman ve anabilim dalı başkanının olumlu görüşü ile Enstitü Yönetim Kurulu kararı aranır.</li>
+<li>Aynı öğrenim kademesinde öğrenim ve staj hareketliliklerinin toplam süresi, hibeli veya hibesiz, genel olarak <strong>12 ay</strong> ile sınırlıdır. Bazı bütünleşik/tek kademeli programlarda <strong>24 ay</strong> sınırı uygulanabilir.</li>
+<li>İncelenen çağrı metni, doktora yeterlik, tez önerisi savunması veya azami süreyle ilgili belirli son yarıyıllarda hareketliliğe izin vermemektedir. Bu durumdaki öğrenciler Enstitü ve Uluslararası Ofisle görüşmelidir.</li>
+<li><strong>Mezuniyet sonrası staj</strong> için başvuru, mezun olmadan önce yapılmalı ve staj mezuniyet tarihinden itibaren 12 ay içinde tamamlanmalıdır.</li>
+</ul>
+<h3>Staj süresi ve kurum</h3><ul><li>İncelenen çağrıda stajın <strong>en az 60 gün</strong> olması ve en fazla <strong>90 gün için hibe</strong> verilmesi öngörülüyor. Faaliyet süresi ile hibeli süre aynı olmak zorunda değildir.</li>
+<li>Staj yeri bulma sorumluluğu öğrencidedir. İlgili program koşullarını sağlayan ev sahibi kuruluşla staj için <strong>kurumlararası anlaşma şartı aranmaz.</strong></li></ul>
+<div class="guide-hint">Bir sonraki çağrıda dönem, proje yılı, uygunluk şartları veya hibeli süre değişebilir. Son başvuru ve kabul mektubu tarihleri, bu sayfada değil ilgili çağrı detayında yer alır.</div>
+</div><div class="tab-pane" id="basvuru">
+<h2>Başvuru Nasıl Yapılır? Hangi Belgeler Gerekir?</h2>
+<p>Başvuru ve belge yükleme süreci 2026 KA131 staj çağrısı temel alınarak açıklanmıştır. <strong>Kesin başvuru takvimi, sınav günü ve kabul mektubu teslim son tarihi</strong> ilgili ilanda duyurulur.</p>
+<ol class="guide-steps">
+<li><strong>Çağrıyı kontrol edin.</strong> Proje, akademik yıl, son başvuru tarihi, hibeli kontenjan, sınav ve sonuç takvimini <a href="duyurular-haberler.html">Duyurular</a> bölümünden inceleyin.</li>
+<li><strong>TurnaPortal üzerinden başvurun.</strong> <a href="https://turnaportal.ua.gov.tr/" rel="noopener noreferrer" target="_blank">turnaportal.ua.gov.tr</a> adresinde e-Devlet ile kimlik doğrulaması yapılır.</li>
+<li><strong>QR kodlu güncel transkript yükleyin.</strong> Transkript, başvuru dönemi içinde alınmış ve doğrulanabilir olmalıdır. Belgeler PDF biçiminde istenir. Yeni kayıtlı lisansüstü öğrencilerin önceki öğrenimlerine ilişkin transkript eklemeleri gerekebilir.</li>
+<li><strong>Varsa kabul mektubunuzu ekleyin.</strong> 2026 çağrısına göre başvuru sırasında geçerli kabul mektubu sunmak <strong>+10 puan</strong> sağlar. Kabul mektubunun sonraki teslim son tarihi ayrıca ilan edilir; başvuru aşamasında mektubu olmayanlar çağrıdaki teslim şartını kontrol etmelidir.</li>
+<li><strong>Dil sınavı ve sonuçları takip edin.</strong> Sınava girecekler listesi, ön değerlendirme, itiraz ve nihai değerlendirme belgeleri aynı ilan detayında yayımlanır.</li>
+</ol>
+<h3>Kabul mektubunda bulunması gereken bilgiler</h3>
+<ul><li>Stajın Erasmus+ Öğrenci Staj Hareketliliği kapsamında yürütüleceğine dair ifade.</li><li>Stajın başlangıç ve bitiş tarihleri (vize hazırlık süresi dikkate alınmalıdır).</li><li>Stajın konusu veya pozisyonu.</li><li>Ev sahibi kuruluşun adı ve bilgileri.</li><li>Kabulü onaylayan kişinin adı, görevi ve iletişim bilgileri.</li></ul>
+<div class="guide-hint">Kaynak Türkçe ve İngilizce çağrılarda, not ortalaması oluşmamış yeni lisansüstü öğrencilerin eski transkriptine ilişkin akademik yıl <strong>farklı yazılmıştır.</strong> Esas alınacak transkript dönemini güncel ilan veya ofis duyurusu üzerinden teyit edin.</div>
+<div class="guide-actions"><a class="fbu-btn" href="duyurular-haberler.html">Güncel staj ilanları ↗</a><a [onclick*='tavsiyeler]").click();"' class="fbu-btn guide-btn-secondary" href="#" onclick="event.preventDefault();document.getElementsByClassName('tab-btn')[5].click();">Staj yeri bulma rehberi</a></div>
+</div><div class="tab-pane" id="kriterler">
+<h2>Seçim Kriterleri ve Puanlama</h2>
+<p>Bu tablo, <strong>2026 KA131 staj birinci çağrısında</strong> yer alan puanlama düzenini gösterir. Önceliklendirme ve azaltma hükümlerinin uygulanabilmesi için ilgili belgelerin ibrazı gerekebilir.</p>
+<table class="guide-table"><thead><tr><th>Seçim kriteri</th><th>Puanlama</th></tr></thead><tbody>
+<tr><td>Akademik başarı düzeyi (GNO)</td><td>%50</td></tr><tr><td>Yabancı dil düzeyi (en az B1)</td><td>%50</td></tr>
+<tr><td>Zorunlu staj kapsamında başvuru</td><td>+5 puan</td></tr><tr><td>Başvuru esnasında staj kabul mektubu sunma</td><td>+10 puan</td></tr>
+<tr><td>Şehit ve gazi çocukları</td><td>+15 puan</td></tr><tr><td>Engelli öğrenciler (belgelendirme koşuluyla)</td><td>+10 puan</td></tr>
+<tr><td>2828 ve 5395 sayılı kanunlar kapsamında korunma/bakım/barınma kararı</td><td>+10 puan</td></tr><tr><td>Kendisi veya birinci derece yakını AFAD afetzede yardımı alanlar</td><td>+10 puan</td></tr>
+<tr><td>Dijital beceri geliştirme amaçlı staj (DOTs)</td><td>+5 puan</td></tr>
+<tr><td>Aynı proje türünde aynı öğrenim kademesinde daha önce yararlanma (hibeli/hibesiz)</td><td>−10 puan</td></tr>
+<tr><td>Vatandaşı olunan ülkede hareketliliğe katılma</td><td>−10 puan</td></tr>
+<tr><td>Süresi içinde feragat bildirmeden hareketliliğe katılmama</td><td>−10 puan</td></tr>
+<tr><td>İki hareketlilik türüne aynı anda başvurma (tercih edilen türe uygulanır)</td><td>−10 puan</td></tr>
+<tr><td>Hareketlilik toplantı/eğitimlerine mazeretsiz katılmama (sonraki başvuruda)</td><td>−5 puan</td></tr>
+<tr><td>Dil sınavına katılacağını beyan edip mazeretsiz girmeme (sonraki başvuruda)</td><td>−5 puan</td></tr>
+</tbody></table>
+<h3>Dijital beceri stajı (DOTs) nedir?</h3><p>Kaynak çağrı; yazılım, web geliştirme, veri analitiği ve görselleştirme, siber güvenlik, dijital pazarlama, dijital tasarım, yapay zekâ ve benzeri dijital beceri kazandıran faaliyetleri örnek göstermektedir. <strong>Rutin veri girişi, genel müşteri hizmetleri ve sıradan ofis işleri</strong> DOTs kapsamında sayılmaz.</p>
+<div class="guide-hint">Puanlama kriterleri ilgili çağrının yayımlandığı döneme aittir. Geçmiş çağrıların sonuçları geriye dönük olarak güncel tablolarla yeniden değerlendirilmez.</div>
+</div><div class="tab-pane" id="hibe">
+<h2>Hibe ve Seyahat Desteği</h2>
+<div class="guide-version"><strong>Kaynak proje: 2026 KA131 staj çağrısı</strong><span>Aşağıdaki hibe tutarları, gönderilen 20 Ekim 2026 tarihli <strong>2026–2027 akademik yılı staj ilanına</strong> aittir; tüm gelecek çağrılar için sabit tutar olarak okunmamalıdır. Çağrı kapsamında hibeli kontenjan <strong>10 kişi</strong> olarak belirtilmiştir. Başvuruya özel kontenjanlar duyuruda ayrıca gösterilir.</span></div>
+<h3>Aylık bireysel destek hibeleri</h3>
+<table class="guide-table"><thead><tr><th>Ülke grubu</th><th>Örnek ülkeler</th><th>Aylık hibe</th></tr></thead><tbody>
+<tr><td>1. ve 2. grup</td><td>Almanya, Avusturya, Belçika, Çekya, Danimarka, Estonya, Finlandiya, Fransa, Güney Kıbrıs Rum Yönetimi, Hollanda, İrlanda, İspanya, İsveç, İtalya, İzlanda, Letonya, Lihtenştayn, Lüksemburg, Malta, Norveç, Portekiz, Slovakya, Slovenya, Yunanistan</td><td>750 €</td></tr>
+<tr><td>3. grup</td><td>Bulgaristan, Hırvatistan, Kuzey Makedonya, Litvanya, Macaristan, Polonya, Romanya, Sırbistan</td><td>600 €</td></tr>
+</tbody></table>
+<p>Kaynak çağrıya göre staj en az <strong>60 gün</strong> sürmeli; en fazla <strong>90 gün</strong> için hibe sağlanır. Öğrenciler, uygun koşullarla <strong>hibesiz hareketlilik</strong> gerçekleştirmeyi de seçebilir.</p>
+<h3>2026 çağrısında seyahat hibesi (gidiş-dönüş toplamı)</h3>
+<table class="guide-table"><thead><tr><th>Mesafe bandı</th><th>Standart</th><th>Yeşil seyahat</th></tr></thead><tbody>
+<tr><td>10–99 km</td><td>28 €</td><td>56 €</td></tr><tr><td>100–499 km</td><td>211 €</td><td>285 €</td></tr><tr><td>500–1.999 km</td><td>309 €</td><td>417 €</td></tr><tr><td>2.000–2.999 km</td><td>395 €</td><td>535 €</td></tr><tr><td>3.000–3.999 km</td><td>580 €</td><td>785 €</td></tr><tr><td>4.000–7.999 km</td><td>1.188 €</td><td>1.188 €</td></tr><tr><td>8.000 km ve üzeri</td><td>1.735 €</td><td>1.735 €</td></tr>
+</tbody></table>
+<p>Mesafe, <a href="https://erasmus-plus.ec.europa.eu/resources-and-tools/distance-calculator" rel="noopener noreferrer" target="_blank">Avrupa Komisyonunun mesafe hesaplayıcısı</a> ile belirlenir. Tablo <strong>gidiş-dönüş için toplam tutarı</strong> içerir; ikiyle çarpılmaz. Yeşil seyahat için gidiş ve dönüşte düşük emisyonlu ulaşım tercih edilmeli ve yolculuk mesafesinin yarısından fazlası bu şekilde gerçekleştirilmelidir.</p>
+<p>Kaynak ilanda, gerekli durumlarda standart seyahat için en fazla <strong>2 gün</strong>, yeşil seyahat için en fazla <strong>6 gün</strong> seyahat gününe bireysel destek verilebileceği belirtilmektedir.</p>
+<h3>İlave hibe ve içerme desteği</h3><p>Belgelendirilmiş kısıtlı imkânlara sahip katılımcılar için kaynak çağrıda <strong>aylık 250 € ilave hibe</strong> belirtilmiştir. Ayrıca özel ihtiyaçları bulunan katılımcılar için <a href="icerme-destegi.html">İçerme Desteği</a> kapsamında ek kaynak talep edilebilir. Kapsam, belgeler ve uygunluk her çağrının resmî koşullarına göre değerlendirilir.</p>
+<div class="guide-hint">Hibe ile seyahat desteği miktarları <strong>proje ve çağrı dönemine bağlıdır.</strong> Güncel bir başvuru yaparken yalnızca bu tarihli rehbere dayanmayın; ilgili ilanın hükümlerini kontrol edin.</div>
+</div><div class="tab-pane" id="surec">
+<h2>Staj Hareketliliği: Adım Adım Yol Rehberi</h2>
+<ol class="guide-steps">
+<li><strong>Alanınıza uygun ev sahibi kuruluş bulun.</strong> Kurumlararası anlaşma gerekli değildir; stajın akademik alanınızla bağlantısını ve kurumun kabulünü değerlendirin.</li>
+<li><strong>Çağrıya başvurun.</strong> Başvuru dönemi içinde TurnaPortal üzerinden belgeleri ve varsa kabul mektubunu yükleyin.</li>
+<li><strong>Yabancı dil sınavı ve değerlendirmeye katılın.</strong> Sınav katılımcı listesi, değerlendirme ve itiraz tarihlerini ilgili ilan sayfasından izleyin.</li>
+<li><strong>Ev sahibi kurumla kabul mektubunu netleştirin.</strong> Staj faaliyetinin niteliği, sorumlu kişi, kurum bilgileri ve başlangıç/bitiş tarihleri belgelenmelidir.</li>
+<li><strong>Akademik ve idari belgeleri tamamlayın.</strong> Erasmus+ staj öğrenim anlaşması (Learning Agreement for Traineeships), vize, sigorta ve hibe sözleşmesi gibi belgeleri ofisin güncel kontrol listesine göre hazırlayın.</li>
+<li><strong>Stajı gerçekleştirin.</strong> Faaliyet tarihlerini ve belge değişikliklerini zamanında bildirin. Öğrenci stajla ilgili yükümlülüklerini yerine getirmelidir.</li>
+<li><strong>Staj sonu belgeleri ve tanınma sürecini tamamlayın.</strong> Ev sahibi kuruluşun değerlendirme/katılım belgelerini ve üniversitenizin istediği kapanış evrakını zamanında iletin.</li>
+</ol>
+<p>Başvurunun seçilmesi staj kuruluşunca kabul anlamına gelmez; kabul, vize ve diğer gerekli şartlar ayrıca yerine getirilmelidir.</p>
+<div class="guide-actions"><a class="fbu-btn" href="duyurular-haberler.html">İlan ve sonuç takvimi ↗</a><a class="fbu-btn guide-btn-secondary" href="icerme-destegi.html">İçerme Desteği ↗</a></div>
+</div><div class="tab-pane" id="tavsiyeler">
+<h2>Staj Yeri Nasıl Bulunur?</h2>
+<p>Staj hareketliliğinde kurumlararası anlaşma ön koşul değildir; <strong>ev sahibi kuruluş bulmak öğrencinin sorumluluğundadır.</strong> Uygunluk şartları ve başvuru dönemi yine ilgili ilandan kontrol edilmelidir.</p>
+<ol class="guide-steps">
+<li><strong>Hedefinizi belirleyin.</strong> Bölümünüzle ilişkili görevleri, öğrenmek istediğiniz becerileri ve tercih ettiğiniz ülke/şehirleri listeleyin.</li>
+<li><strong>Akademik çevrenize danışın.</strong> Derslerde tanıdığınız kuruluşları, öğretim elemanlarının sektörel bağlantılarını ve araştırma laboratuvarlarını araştırın.</li>
+<li><strong>Kuruluşları doğrudan araştırın.</strong> Kurum siteleri, staj portalları ve mesleki ağlarda ilgili pozisyonları arayın.</li>
+<li><strong>Özelleştirilmiş e-posta gönderin.</strong> Özgeçmişinizi ve ilgilendiğiniz pozisyonu, olası staj tarihlerinizi ve Erasmus+ programıyla ilgili kısa bir açıklamayı ekleyin.</li>
+<li><strong>Kabul mektubunu kontrol edin.</strong> Kurum, sorumlu kişi, pozisyon ve tarihlerin eksiksiz olmasına dikkat edin.</li>
+</ol>
+<h3>Dijital beceri geliştirmeye yönelik stajlar (DOTs)</h3><p>Kaynak 2026 çağrısında veri analitiği, yazılım/web geliştirme, siber güvenlik, yapay zekâ, dijital pazarlama ve tasarım gibi alanlar dijital beceri önceliği kapsamında örneklendirilmiştir. <strong>Rutin veri girişi ve genel ofis işleri</strong> bu kapsama girmez.</p>
+<div class="guide-hint">Staj teklifini kabul etmeden önce görev tanımını, konaklama/vize hazırlığını, sigorta koşullarını ve kurumun hukuki/kurumsal bilgilerini doğrulayın.</div>
+</div></div>
+</div>
+<script data-part="footer" src="components.js"></script>
+<!-- Ortak JS Dosyası -->
+<script src="script.js"></script>
+<!-- TAB DEĞİŞTİRME MANTIĞI -->
+<script>
+function activateGuideTab(tabId, updateHash){
+  const pane=document.getElementById(tabId);if(!pane||!pane.classList.contains('tab-pane'))return;
+  document.querySelectorAll('.tab-pane').forEach(e=>e.classList.toggle('active',e===pane));
+  document.querySelectorAll('.sidebar-menu .tab-btn').forEach(b=>{const on=(b.getAttribute('onclick')||'').includes("'"+tabId+"'");b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
+  if(updateHash){try{history.replaceState(null,'','#'+tabId)}catch(_){location.hash=tabId}}
+}
+function openTab(evt,tabId){activateGuideTab(tabId,true)}
+document.addEventListener('DOMContentLoaded',()=>{let tab=decodeURIComponent((location.hash||'').slice(1));if(tab)activateGuideTab(tab,false)});
+</script>
 </body>
 </html>

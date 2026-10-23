@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Öğrenci Öğrenim Hareketliliği | UİDPM</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Ortak CSS Dosyası -->
+<link href="style.css" rel="stylesheet"/>
+<style>
+        /* DİKEY SEKME (TAB) VE İÇERİK MİMARİSİ */
+        .layout-wrapper {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            align-items: flex-start;
+            padding: 0 20px;
+        }
+
+        /* Sol Menü (Sidebar) */
+        .sidebar-menu {
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 20px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px; /* Sayfa kaydırıldığında ekranda sabit kalması için */
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            text-align: left;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+        .tab-btn:last-child { border-bottom: none; margin-bottom: 0; }
+        .tab-btn:hover { background: #f8fafc; color: var(--fbu-blue); }
+        
+        .tab-btn.active {
+            background: var(--fbu-blue);
+            color: white;
+            border-bottom: none;
+            box-shadow: 0 4px 15px rgba(10, 61, 122, 0.2);
+        }
+        .tab-btn .icon { font-size: 18px; }
+
+        /* Sağ İçerik Alanı */
+        .content-area {
+            flex-grow: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px;
+            min-height: 600px;
+            line-height: 1.8;
+        }
+
+        .content-area h2 {
+            color: var(--fbu-blue);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .tab-pane { 
+            display: none; 
+            animation: fadeIn 0.4s ease; 
+        }
+        .tab-pane.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Tablo ve Uyarı Kutuları Stilleri */
+        .warning-box {
+            background-color: #fffbeb;
+            color: #b45309;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Yol Rehberi (Zaman Çizelgesi) Stilleri */
+        .roadmap-container { margin-top: 30px; position: relative; border-left: 3px solid var(--fbu-yellow); padding-left: 30px; margin-left: 15px; }
+        .roadmap-step { margin-bottom: 40px; position: relative; }
+        .roadmap-step::before {
+            content: ''; position: absolute; left: -41px; top: 0; width: 16px; height: 16px;
+            background: white; border: 4px solid var(--fbu-blue); border-radius: 50%;
+        }
+        .roadmap-step h3 { color: var(--fbu-blue); margin-top: -5px; font-size: 18px; font-weight: 800; }
+        .roadmap-step p { color: var(--text-dark); font-size: 14px; margin-bottom: 10px; }
+        .roadmap-step ul { margin: 0; padding-left: 20px; font-size: 14px; }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 900px) {
+            .layout-wrapper { flex-direction: column; padding: 0 15px; }
+            .sidebar-menu { width: 100%; position: static; padding: 15px; margin-bottom: 20px; }
+            .content-area { padding: 25px; min-height: auto; }
+        }
+    </style>
+<style>
+/* Learning guide additions */
+.guide-version{background:#f1f6fa;border-left:4px solid var(--fbu-blue);padding:15px 18px;border-radius:8px;margin:18px 0 22px;display:grid;gap:7px;font-size:13px;line-height:1.7;color:#35546e}
+.guide-version strong{font-size:14px;color:#123c69}.guide-hint{background:#fff9e9;border-left:4px solid #d6ad46;padding:15px 18px;border-radius:8px;margin:22px 0;font-size:13px;line-height:1.7;color:#6c521f}
+.guide-table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55;margin:16px 0 25px}
+.guide-table th{background:var(--fbu-blue);color:#fff;text-align:left;font-size:13px}.guide-table th,.guide-table td{padding:12px 13px;border:1px solid #dbe5ee;vertical-align:top}.guide-table tbody tr:nth-child(even){background:#f6f9fb}.guide-table td:last-child{white-space:nowrap;font-weight:700;color:#224c78}
+.guide-steps{padding-left:23px}.guide-steps li{margin:0 0 16px;padding-left:4px}.guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.guide-actions .fbu-btn{text-decoration:none;display:inline-flex;align-items:center;min-height:42px;padding:8px 15px;border-radius:7px}.guide-btn-secondary{background:#eaf1f8!important;color:#123b67!important}
+.guide-quick{max-width:1200px;margin:24px auto -20px;padding:0 20px}.guide-quick__inner{display:flex;gap:15px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#eff5fb;border:1px solid #d8e6f2;padding:17px 22px;border-radius:10px}.guide-quick__inner strong{color:#103b72}.guide-quick__inner p{font-size:13px;color:#4e6982;margin:3px 0 0}.guide-quick__inner a{font-size:13px;font-weight:800;color:#114d86;white-space:normal}
+@media(max-width:650px){.guide-table{font-size:12px}.guide-table th,.guide-table td{padding:9px 7px}.guide-table td:last-child{white-space:normal}.guide-quick{margin-bottom:0}}
+</style></head>
+<body>
+<!-- HEADER / MENÜ -->
+<script data-part="header" src="components.js"></script>
+<!-- SAYFA BAŞLIĞI -->
+<div class="page-header">
+<h1>Erasmus+ Öğrenci Öğrenim Hareketliliği</h1>
+</div><div class="guide-quick"><div class="guide-quick__inner"><div><strong>Başvuru tarihleri ve sonuçlar tek yerde</strong><p>Her çağrının tarihleri, kontenjanları ve sınav/değerlendirme belgeleri ayrı duyuru sayfasında yayımlanır.</p></div><a href="duyurular-haberler.html">İlanlara ve sonuçlara git ↗</a></div></div>
+<!-- SEKMELİ (TAB) İÇERİK MİMARİSİ -->
+<div class="layout-wrapper">
+<!-- Sol Menü -->
+<div class="sidebar-menu">
+<button class="tab-btn active" onclick="openTab(event, 'sartlar')">
+<span class="icon">📋</span> Başvuru Şartları
+            </button>
+<button class="tab-btn" onclick="openTab(event, 'basvuru')"><span class="icon">📝</span> Başvuru ve Belgeler</button><button class="tab-btn" onclick="openTab(event, 'kriterler')">
+<span class="icon">📊</span> Seçim Kriterleri ve Puanlama
+            </button>
+<button class="tab-btn" onclick="openTab(event, 'hibe')">
+<span class="icon">💶</span> Hibe ve Seyahat Desteği
+            </button>
+<button class="tab-btn" onclick="openTab(event, 'surec')">
+<span class="icon">🗺️</span> Hareketlilik Süreci (Yol Rehberi)
+            </button>
+<button class="tab-btn" onclick="openTab(event, 'kurumlar')">
+<span class="icon">🏛️</span> Anlaşmalı Kurumlar
+            </button>
+</div>
+<!-- Sağ İçerik Alanı -->
+<div class="content-area">
+<!-- TAB 1: Başvuru Şartları -->
+<div class="tab-pane active" id="sartlar"><h2>Öğrenim Hareketliliği: Kimler Başvurabilir?</h2>
+<p>Erasmus+ öğrenim hareketliliği, öğrencilerin eğitimlerinin belirli bir bölümünü üniversitemizin anlaşmalı olduğu yurtdışındaki yükseköğretim kurumlarında tamamlamasına olanak tanır. Aşağıdaki bilgiler 2026 KA131 öğrenim ilanındaki genel çerçeve esas alınarak düzenlenmiştir; <strong>başvurulan çağrının özel koşulları ve yayımlanmış düzeltmeleri esas alınır.</strong></p>
+<h3>Ön lisans ve lisans</h3><ul>
+<li>Fenerbahçe Üniversitesinde <strong>tam zamanlı öğrenci</strong> olmak ve genel not ortalaması (GNO) için <strong>en az 2.20/4.00</strong> koşulunu karşılamak.</li>
+<li>Genel not ortalaması henüz oluşmamış öğrencilerin başvuru imkânı ve kullanabilecekleri önceki mezuniyet notu, ilgili çağrı koşullarına göre değerlendirilir. <strong>Hazırlık ve birinci sınıf statüsüyle ilgili özel hükümler çağrı ilanından kontrol edilmelidir.</strong></li>
+<li>Çift anadal öğrencileri aynı başvuru döneminde yalnızca bir anadal üzerinden hareketlilik başvurusu yapabilir.</li>
+<li>Dersler İngilizce dışında bir dilde işlenecekse ev sahibi kurumun talep ettiği düzeyde dil yeterliğini belgelendirmek.</li>
+</ul>
+<h3>Lisansüstü</h3><ul>
+<li>Tam zamanlı öğrenci olmak ve GNO için <strong>en az 2.50/4.00</strong> koşulunu karşılamak. Kayıtlı programında henüz GNO'su bulunmayanlar, ilgili çağrıda izin verildiği ve belge sunduğu takdirde önceki mezuniyet notuyla başvurabilir.</li>
+<li>Araştırma görevlilerinin başvuru sırasında ilgili birim yöneticisinden yazılı onay alması gerekir.</li>
+<li>Ders yükünü tamamlamamış tezli yüksek lisans/doktora öğrencileri için danışman ve anabilim dalı başkanının olumlu görüşü ile Enstitü Yönetim Kurulu kararı gerekir.</li>
+</ul>
+<h3>Tüm öğrenciler için diğer koşullar</h3><ul>
+<li>Kayıt dondurulan dönemde başvurulabilir; ancak öğrencinin kayıt dondurduğu dönemde hareketlilik gerçekleştirilemez.</li>
+<li>Öğrencilerin aynı öğrenim kademesindeki öğrenim ve staj hareketlilikleri toplamı, hibeli veya hibesiz olmasına bakılmaksızın <strong>12 ayı</strong> geçemez. Birleşik/tek kademeli belirli programlarda sınır <strong>24 ay</strong> olabilir.</li>
+<li>Hareketlilik ancak kayıtlı bölüm veya programla uygun kurumlararası anlaşması bulunan yükseköğretim kurumlarında yapılabilir. Karşı kurumun ders, dil ve kabul şartlarının ayrıca karşılanması gerekir.</li>
+</ul>
+<div class="guide-hint">İlgili çağrıda belirtilen şartlar ile bu rehber arasında farklılık varsa, tereddütlü konular için Uluslararası Ofisten yazılı doğrulama alın. Çağrı özelinde yayımlanmış hüküm ve resmî güncellemeler belirleyicidir.</div></div><div class="tab-pane" id="basvuru"><h2>Başvuru Nasıl Yapılır?</h2>
+<p>Başvuru yöntemine ilişkin aşağıdaki adımlar 2026 KA131 öğrenim ilanındaki açıklamalar temel alınarak hazırlanmıştır. <strong>Başvuruların hangi tarihlerde alınacağı, sınav takvimi ve çağrıya özgü belge şartları</strong> Duyurular bölümündeki ilgili ilanda gösterilir.</p>
+<ol class="guide-steps">
+<li><strong>Güncel ilanı inceleyin.</strong> Akademik yıl, dönem, başlangıç/bitiş tarihleri, hibe kontenjanı ve çağrıya özel tercih kısıtlamalarını kontrol edin.</li>
+<li><strong>Anlaşmalı kurumları araştırın.</strong> Yalnızca kendi bölümünüzle anlaşması bulunan kurumları inceleyin; ders kataloğu, öğretim dili, nominasyon ve karşı kurum başvuru tarihlerini kontrol edin.</li>
+<li><strong>Başvuruyu TurnaPortal üzerinden yapın.</strong> <a href="https://turnaportal.ua.gov.tr/" rel="noopener noreferrer" target="_blank">turnaportal.ua.gov.tr</a> adresinde e-Devlet kimlik doğrulaması kullanılır.</li>
+<li><strong>Doğrulanabilir transkript ekleyin.</strong> QR kodlu/onaylanabilir transkript OIS veya e-Devlet üzerinden alınabilir; OIS önizleme transkriptleri ilan metnine göre kabul edilmemektedir. Yüklenecek belgelerin PDF olması istenmektedir.</li>
+<li><strong>Tercihlerinizi kontrol edin.</strong> İncelenen 2026 ilanı üç tercih hakkının kullanılmasını istemektedir. Başvuracağınız çağrıdaki tercih sayısını ayrıca kontrol edin.</li>
+<li><strong>İlan ve sonuç aşamalarını izleyin.</strong> Dil sınavına girecekler, ön değerlendirme, itiraz ve nihai değerlendirme sonuçları <a href="duyurular-haberler.html">ilanın kendi detay sayfasında</a> tarihleriyle yayımlanır.</li>
+</ol>
+<h3>Başvuru öncesi önemli uyarılar</h3><ul>
+<li>Üniversite içi yerleştirme, ev sahibi kurumdan kesin kabul alındığı anlamına gelmez.</li>
+<li>Ev sahibi kurumlar kabul koşullarını veya ders tekliflerini güncelleyebilir; bu bilgileri takip etmek adayın sorumluluğundadır.</li>
+<li>Bir akademik yıl için kazanılan hareketlilik hakkı başka bir akademik yıla otomatik devredilmez.</li>
+<li>Başvuru ve belge teslim takvimleri her çağrıda değişebilir.</li>
+</ul>
+<div class="guide-actions"><a class="fbu-btn" href="duyurular-haberler.html">Güncel başvuru ilanları ↗</a><a class="fbu-btn guide-btn-secondary" href="partner-kurumlar.html">Anlaşmalı kurumlar ↗</a></div></div>
+<!-- TAB 2: Seçim Kriterleri -->
+<div class="tab-pane" id="kriterler"><h2>Seçim Kriterleri ve Puanlama</h2>
+<p>Akademik başarı ile yabancı dil puanı, incelenen 2026 KA131 öğrenim ilanında eşit ağırlıktadır. Aşağıdaki tablo, o ilanda yer alan öncelik ve azaltma kriterlerini özetler. <strong>Kriter ve belge şartları proje/çağrı yılına göre yeniden yayımlanabilir.</strong></p>
+<table class="guide-table"><thead><tr><th>Seçim kriteri</th><th>Etkisi</th></tr></thead><tbody>
+<tr><td>Akademik başarı düzeyi (GNO)</td><td>%50</td></tr><tr><td>Yabancı dil puanı (ilanda asgari B1 düzeyi belirtiliyor)</td><td>%50</td></tr>
+<tr><td>Şehit ve gazi çocukları</td><td>+15 puan</td></tr><tr><td>Engelli öğrenciler</td><td>+10 puan</td></tr>
+<tr><td>2828 ve 5395 sayılı kanunlar kapsamındaki korunma/bakım/barınma kararı bulunan öğrenciler</td><td>+10 puan</td></tr>
+<tr><td>Kendisi veya birinci derece yakını AFAD afetzede yardımı alanlar</td><td>+10 puan</td></tr>
+<tr><td>Aynı proje türünde, aynı öğrenim kademesinde önceden yararlanma (hibeli/hibesiz)</td><td>−10 puan</td></tr>
+<tr><td>Vatandaşı olunan ülkede hareketlilik yapma</td><td>−10 puan</td></tr>
+<tr><td>Süresinde feragat bildirmeden seçildiği hareketliliğe katılmama</td><td>−10 puan</td></tr>
+<tr><td>İki hareketlilik türüne aynı anda başvurma (belirlenen tercih edilen türde)</td><td>−10 puan</td></tr>
+<tr><td>Önceki hareketlilik kapsamında düzenlenen toplantı/eğitime mazeretsiz katılmama</td><td>−5 puan</td></tr>
+<tr><td>Dil sınavına gireceğini bildirip mazeretsiz katılmama</td><td>−5 puan</td></tr>
+</tbody></table>
+<div class="guide-hint">Önceliklendirme puanları için resmî belge ibrazı gerekebilir. Puanlama ön değerlendirme/nihai sonuç aşamalarına göre kesinleşir; sonuçlar ilgili <a href="duyurular-haberler.html">ilan detayında</a> duyurulur.</div></div>
+<!-- TAB 3: Hibe Desteği -->
+<div class="tab-pane" id="hibe"><h2>Hibe ve Seyahat Destekleri</h2>
+<div class="guide-version"><strong>2026 KA131 öğrenim ilanında belirtilen tutarlar</strong><span>2027–2028 güz dönemi için gönderilen çağrı belgelerinden derlenmiştir. Hibe tutarları ve hak ediş kuralları sözleşme yılına göre değişebilir; yeni çağrıda yeniden kontrol edin.</span></div>
+<p>İncelenen çağrıda hibeli öğrenim hareketliliği için <strong>en çok beş ay</strong> bireysel destek öngörülmüştür. Hesaplama karşı kurumun kabul belgesindeki tarihlere göre yapılır. Hibe tüm masrafları karşılamak amacı taşımaz. <strong>Çağrıya tahsis edilen hibeli kontenjan</strong> ise her ilanda ayrıca açıklanır.</p>
+<h3>Aylık bireysel destek (çağrı belgesindeki ülke grupları)</h3>
+<table class="guide-table"><thead><tr><th>Gidilecek ülkeler</th><th>Aylık destek</th></tr></thead><tbody>
+<tr><td>Almanya, Avusturya, Belçika, Çekya, Danimarka, Estonya, Finlandiya, Fransa, Güney Kıbrıs Rum Yönetimi, Hollanda, İrlanda, İspanya, İsveç, İtalya, İzlanda, Letonya, Lihtenştayn, Lüksemburg, Malta, Norveç, Portekiz, Slovakya, Slovenya, Yunanistan</td><td><strong>600 €</strong></td></tr>
+<tr><td>Bulgaristan, Hırvatistan, Kuzey Makedonya, Litvanya, Macaristan, Polonya, Romanya, Sırbistan</td><td><strong>450 €</strong></td></tr>
+</tbody></table>
+<h3>Seyahat hibesi (gidiş–dönüş toplamı)</h3>
+<p>Mesafe İstanbul ile faaliyet yeri arasında <a href="https://erasmus-plus.ec.europa.eu/resources-and-tools/distance-calculator" rel="noopener noreferrer" target="_blank">Avrupa Komisyonu Mesafe Hesaplayıcısı</a> kullanılarak belirlenir. Aşağıdaki tutarlar km başına değil, ilgili mesafe bandı için belirtilen toplam tutarlardır.</p>
+<table class="guide-table"><thead><tr><th>Mesafe bandı</th><th>Standart</th><th>Yeşil seyahat</th></tr></thead><tbody>
+<tr><td>10–99 km</td><td>28 €</td><td>56 €</td></tr><tr><td>100–499 km</td><td>211 €</td><td>285 €</td></tr><tr><td>500–1.999 km</td><td>309 €</td><td>417 €</td></tr><tr><td>2.000–2.999 km</td><td>395 €</td><td>535 €</td></tr><tr><td>3.000–3.999 km</td><td>580 €</td><td>785 €</td></tr><tr><td>4.000–7.999 km</td><td>1.188 €</td><td>1.188 €</td></tr><tr><td>8.000 km ve üzeri</td><td>1.735 €</td><td>1.735 €</td></tr>
+</tbody></table>
+<p>İlan, yeşil seyahat için otobüs, tren veya araç paylaşımı gibi düşük emisyonlu ulaşımın gidiş ve dönüşte kullanılması ve toplam mesafenin yarısından fazlasının bu yollarla kat edilmesini belirtir. Seyahat günleri için azami standart iki gün, yeşil seyahatte altı gün bireysel destek öngörülür.</p>
+<h3>İlave hibe ve içerme desteği</h3>
+<p>İncelenen çağrıya göre uygunluğu belgelendirilen sınırlı imkâna sahip öğrenciler için <strong>aylık 250 € ilave hibe</strong> öngörülmektedir (2–12 aylık öğrenci hareketliliği). İlgili gruplar arasında belirli sosyal koruma kararları, yetim/ölüm aylığı, belgelenmiş sosyal yardım, engellilik ve AFAD afetzede yardımı durumları sayılmaktadır.</p>
+<p>Standart ilave hibeden farklı olarak, katılım için ek finansal destek gerektiren durumlarda <a href="icerme-destegi.html">İçerme Desteği</a> başvurusuna ilişkin işlem ve belgeler ayrıca değerlendirilir.</p>
+<div class="guide-hint">Bu tutarlar yalnızca gönderdiğiniz 2026 KA131 çağrı metninin aktarımıdır; bağımsız bir mevzuat güncelliği teyidi değildir. İlandaki yeşil seyahate ilişkin ayrıca belirtilen 50 € ifadesi ve güncel uygulama şekli yayım öncesinde teyit edilmelidir.</div></div>
+<!-- TAB 4: Yol Rehberi -->
+<div class="tab-pane" id="surec">
+<h2>Öğrenci Öğrenim Hareketliliği Yol Rehberi</h2>
+<p>Hareketlilik sürecinin her aşamasında öğrencilerin sorumluluklarını zamanında yerine getirmesi büyük önem taşımaktadır. Süreci aşağıdaki aşamalardan takip edebilirsiniz.</p>
+<div class="roadmap-container">
+<div class="roadmap-step">
+<h3>1. Nominasyon ve Karşı Kuruma Başvuru</h3>
+<p>Erasmus Ofisi tarafından öğrencinin aday olduğuna dair bilgilendirme (nominasyon) karşı kuruma e-posta ile yapılır. Karşı kurumun belirlediği son başvuru tarihinden önce öğrenci istenilen belgeleri hazırlayarak başvurusunu bizzat yapmalıdır.</p>
+</div>
+<div class="roadmap-step">
+<h3>2. Kabul Mektubu ve Vize Süreci</h3>
+<p>Başvuruyu olumlu değerlendiren karşı kurum öğrenciye kabul mektubu (Acceptance Letter) gönderir. Kabul mektubu gelmeden vize başvurusu yapılması önerilmez. Vize, seyahat ve konaklama süreçlerinin takibi tamamen öğrencinin sorumluluğundadır.</p>
+</div>
+<div class="roadmap-step">
+<h3>3. Hareketlilik Öncesi İşlemler</h3>
+<ul>
+<li>Öğrencilerin EWP/OLA platformu üzerinden <strong>Çevrimiçi Öğrenim Anlaşması (Online Learning Agreement)</strong> hazırlaması zorunludur.</li>
+<li>Öğrencinin bir yarıyılda minimum 24, maksimum 36 AKTS (tercihen 30 AKTS) değerinde ders alması gerekir. Karşılık gelen FBU derslerinin kredi farkı en fazla +/- 3 AKTS olabilir.</li>
+<li>Hareketlilik başlamadan <strong>en az 15 gün önce</strong> Kabul Belgesi, OLA, TEB Euro Hesabı bilgisi, Fakülte YK Kararı ve Sağlık Sigortası ofise teslim edilip <strong>Hibe Sözleşmesi</strong> imzalanmalıdır.</li>
+</ul>
+</div>
+<div class="roadmap-step">
+<h3>4. Hareketlilik Sırası (During Mobility)</h3>
+<p>Gidilen kurumda ders değişikliği yapılması gerekirse, akademik dönemin başlamasını takip eden <strong>en geç 4-7 hafta içerisinde</strong> OLA üzerinden değişiklik yapılmalı ve Fakülte Yönetim Kurulu kararı güncellenmelidir.<br/>
+<strong>Önemli:</strong> Öğrencinin karşı kurumda bir yarıyılda aldığı en az <strong>21 AKTS</strong> değerindeki dersten başarılı olması gerekir. Aksi halde nihai hibesinden %20 kesinti uygulanır.</p>
+</div>
+<div class="roadmap-step">
+<h3>5. Hareketlilik Sonrası ve Ders Saydırma</h3>
+<p>Dönüşte, Orijinal Transkript ile bölüm koordinatörüne başvurularak ders saydırma işlemi tamamlanır. İşlemler bittikten sonra Uluslararası Ofis'e Katılım Sertifikası, Transkript ve FBU güncel Transkripti teslim edilir. Son olarak gönderilen EU Survey (Çevrimiçi AB Anketi) doldurulmalıdır.</p>
+</div>
+</div>
+</div>
+<!-- TAB 5: Anlaşmalı Kurumlar -->
+<div class="tab-pane" id="kurumlar">
+<h2>Bölümümün Hangi Kurumlarla Anlaşması Var?</h2>
+<p>Hareketliliğe yalnızca kayıtlı olduğunuz bölüm/program ile anlaşması bulunan kurumlara başvuru yapabilirsiniz. Anlaşmalı kurumlar listesi başvuru sistemi açılana kadar güncellenebilmektedir.</p>
+<p>Bölümünüzün anlaşmalı olduğu üniversiteleri, kontenjan durumlarını ve geçmiş yıllardaki AKTS not dönüşümlerini incelemek için aşağıdaki bağlantıları kullanabilirsiniz.</p>
+<div style="margin-top: 30px; display: flex; gap: 15px;">
+<a class="fbu-btn" href="partner-kurumlar.html">Anlaşmalı Kurumlar Listesi ➔</a>
+<a class="fbu-btn" href="aktsnotdonusum.html" style="background-color: var(--fbu-yellow); color: var(--fbu-blue);">AKTS Not Dönüşüm Tabloları ➔</a>
+</div>
+</div>
+</div>
+</div>
+<script data-part="footer" src="components.js"></script>
+<!-- Ortak JS Dosyası -->
+<script src="script.js"></script>
+<!-- TAB DEĞİŞTİRME MANTIĞI -->
+<script>
+function activateGuideTab(tabId, updateHash){
+  const pane=document.getElementById(tabId);if(!pane||!pane.classList.contains('tab-pane'))return;
+  document.querySelectorAll('.tab-pane').forEach(e=>e.classList.toggle('active',e===pane));
+  document.querySelectorAll('.sidebar-menu .tab-btn').forEach(b=>{const on=(b.getAttribute('onclick')||'').includes("'"+tabId+"'");b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
+  if(updateHash){try{history.replaceState(null,'','#'+tabId)}catch(_){location.hash=tabId}}
+}
+function openTab(evt,tabId){activateGuideTab(tabId,true)}
+document.addEventListener('DOMContentLoaded',()=>{let tab=decodeURIComponent((location.hash||'').slice(1));if(tab)activateGuideTab(tab,false)});
+</script>
+</body>
+</html>

@@ -10,14 +10,4 @@ document.addEventListener("DOMContentLoaded", () => {
             menuToggle.textContent = isOpen ? '✕' : '☰';
         });
     }
-
-    // Başvuru Durumu Etiketleri Hesaplama (Ana sayfa için)
-    document.querySelectorAll('.status-badge[data-deadline]').forEach(badge => {
-        const deadline = new Date(badge.dataset.deadline + 'T23:59:59');
-        const today = new Date();
-        const isActive = deadline >= today;
-        badge.classList.remove('active', 'expired');
-        badge.classList.add(isActive ? 'active' : 'expired');
-        badge.textContent = isActive ? 'Başvurular Devam Ediyor' : 'Başvuru Süresi Doldu';
-    });
 });
