@@ -12,6 +12,47 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
+        /* Üst Bilgilendirme ve Süreç Kutuları */
+        .process-intro {
+            background-color: #f8fafc;
+            border-left: 5px solid var(--fbu-blue);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            color: var(--text-dark);
+            font-size: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .step-badge {
+            display: inline-block;
+            background-color: var(--fbu-blue);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .step-badge.secondary {
+            background-color: #0369a1;
+        }
+
+        .info-alert {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            border: 1px solid #bae6fd;
+        }
+
         /* Gelişmiş Filtreleme Alanı Stilleri */
         .filter-container {
             background-color: #f8fafc;
@@ -96,69 +137,13 @@
             border: 0;
             height: 2px;
             background: var(--border-color);
-            margin: 40px 0;
+            margin: 45px 0;
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER / MENÜ -->
-    <header>
-        <!-- GÜNCELLENEN LOGO ALANI -->
-        <a href="index.html" class="logo-area">
-            <img src="fbu-logo.png" alt="FBU Logo" class="header-logo">
-            <div class="logo-separator"></div>
-            <div class="logo-text">
-                <span class="logo-title-top">FENERBAHÇE ÜNİVERSİTESİ</span>
-                <span class="logo-title-bottom">ULUSLARARASI İŞ BİRLİKLERİ &</span>
-		<span class="logo-title-bottom">VE DEĞİŞİM PROGRAMLARI</span>
-            </div>
-        </a>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">☰</button>
-        <ul class="nav-list" id="navList">
-            <li class="nav-item"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Erasmus+ ▾</a>
-                <div class="dropdown-menu">
-                    <a href="fbu-eche-belgesi.html" class="dropdown-item">ECHE (2021-2027)</a>
-                    <a href="ogrenci-beyannamesi.html" class="dropdown-item">Öğrenci Beyannamesi</a>
-                    <a href="fbu-politika-beyani.html" class="dropdown-item">Erasmus Politika Beyanı</a>
-                    <a href="icerme-destegi.html" class="dropdown-item">İçerme Desteği</a>
-                    <a href="aktsnotdonusum.html" class="dropdown-item">AKTS Not Dönüşüm Tablosu</a>
-                    <a href="akran-danismanligi.html" class="dropdown-item">Akran Danışmanlığı</a>
-                    <a href="degisim-komisyonu.html" class="dropdown-item">Değişim Programları Seçim Komisyonu</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Giden Yönlü Hareketlilik ▾</a>
-                <div class="dropdown-menu">
-                    <a href="ogrenci-ogrenim.html" class="dropdown-item">Öğrenci Öğrenim</a>
-                    <a href="ogrenci-staj.html" class="dropdown-item">Öğrenci Staj</a>
-                    <a href="personel-dersverme.html" class="dropdown-item">Personel Ders Verme</a>
-                    <a href="personel-egitimalma.html" class="dropdown-item">Personel Eğitim Alma</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Gelen Yönlü Hareketlilik ▾</a>
-                <div class="dropdown-menu">
-                    <a href="gelen-ogrenci.html" class="dropdown-item">Gelen Öğrenci</a>
-                    <a href="gelen-personel.html" class="dropdown-item">Gelen Personel</a>
-                </div>
-            </li>
-            <!-- Henüz oluşturmadığımız sayfalar için geçici olarak # bıraktım -->
-            <li class="nav-item"><a href="partner-kurumlar.html" class="nav-link" style="color: var(--fbu-yellow);">Partner Kurumlar</a></li>
-            <li class="nav-item"><a href="duyurular-haberler.html" class="nav-link">Duyurular &amp; Haberler</a></li>
-            <li class="nav-item"><a href="#" class="nav-link" style="color: var(--fbu-yellow);">İletişim</a></li>
-            
-            <!-- DİL SEÇİCİ -->
-            <div class="lang-switch">
-                <a href="#" class="active">TR</a>
-                <span style="color: var(--border-color);">|</span>
-                <a href="#">EN</a>
-            </div>
-        </ul>
-    </header>
+    <script src="components.js" data-part="header"></script>
 
     <!-- SAYFA BAŞLIĞI -->
     <div class="page-header">
@@ -168,52 +153,25 @@
     <!-- İÇERİK ALANI -->
     <div class="page-content">
         
-        <!-- STANDART EŞ DEĞERLİK TABLOSU -->
-        <h2>Ön Lisans - Lisans Düzeylerinde Not Sistemlerinin FBU Harf Notu Eş Değerlik Tablosu</h2>
-        <p style="background-color: #e0f2fe; color: #0369a1; padding: 15px; border-radius: 6px; font-weight: 500;">
-            Eğer daha önce hareketlilik yapılmamış bir kuruma gidildiyse (aşağıdaki listede bulunmuyorsa), karşı kurumun not dönüşüm tablosunu baz alarak aşağıdaki genel eş değerlik tablosu kullanılabilir.
-        </p>
-
-        <div style="overflow-x: auto; margin-bottom: 30px;">
-            <table class="fbu-table">
-                <thead>
-                    <tr>
-                        <th>4’lük Sistem</th>
-                        <th>100’lük Sistem</th>
-                        <th>30’luk Sistem</th>
-                        <th>20’lik Sistem</th>
-                        <th>13’lük Sistem</th>
-                        <th>10’luk Sistem</th>
-                        <th>5’lik Sistem</th>
-                        <th>FBU</th>
-                        <th>Başarı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>4,00 - 3,501</td><td>100,00 - 90,00</td><td>30,00 - 27,00</td><td>20,00 - 18,00</td><td>13,00 - 11,70</td><td>10,00 - 9,00</td><td>5,00 - 4,50</td><td><strong>AA</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
-                    <tr><td>3,50 - 3,001</td><td>89,99 - 85,00</td><td>26,99 - 25,50</td><td>17,99 - 17,00</td><td>11,699 - 11,050</td><td>8,99 - 8,50</td><td>4,49 - 4,25</td><td><strong>BA</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
-                    <tr><td>3,00 - 2,701</td><td>84,99 - 80,00</td><td>25,499 - 24,00</td><td>16,99 - 16,00</td><td>11,049 - 10,40</td><td>8,49 - 8,00</td><td>4,249 - 4,00</td><td><strong>BB</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
-                    <tr><td>2,70 - 2,001</td><td>79,99 - 70,00</td><td>23,99 - 21,00</td><td>15,99 - 14,00</td><td>10,399 - 9,10</td><td>7,99 - 7,00</td><td>3,99 - 3,50</td><td><strong>CB</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
-                    <tr><td>2,00 - 1,501</td><td>69,99 - 60,00</td><td>20,99 - 18,00</td><td>13,99 - 12,00</td><td>9,099 - 7,80</td><td>6,99 - 6,00</td><td>3,49 - 3,00</td><td><strong>CC</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
-                    <tr><td>1,50 - 1,001</td><td>59,99 - 55,00</td><td>17,99 - 16,50</td><td>11,99 - 11,00</td><td>7,79 - 7,15</td><td>5,99 - 5,50</td><td>2,99 - 2,75</td><td><strong>DC</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
-                    <tr><td>1,00 - 0,501</td><td>54,99 - 50,00</td><td>16,49 - 15,00</td><td>10,99 - 10,00</td><td>7,149 - 6,50</td><td>5,49 - 5,00</td><td>2,749 - 2,50</td><td><strong>DD</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
-                    <tr><td>0,50 - 0,401</td><td>49,99 - 40,00</td><td>14,99 - 12,00</td><td>9,99 - 8,00</td><td>6,49 - 5,20</td><td>4,99 - 4,00</td><td>2,49 - 2,00</td><td><strong>FD</strong></td><td style="color: #991b1b; font-weight: 700;">BAŞARISIZ</td></tr>
-                    <tr><td>0,40 - 0,00</td><td>39,99 - 0,00</td><td>11,99 - 0,00</td><td>7,99 - 0,00</td><td>5,199 - 0,00</td><td>3,99 - 0,00</td><td>1,99 - 0,00</td><td><strong>FF</strong></td><td style="color: #991b1b; font-weight: 700;">BAŞARISIZ</td></tr>
-                </tbody>
-            </table>
+        <!-- GENEL ESASLAR VE SÜREÇ AÇIKLAMASI -->
+        <div class="process-intro">
+            <p style="margin: 0;">
+                Erasmus hareketliliğinden dönen öğrencilerin notlarının uyarlanmasında <strong>AKTS not dönüşüm tablosu</strong> esas alınır. Dönüşüm işlemi yapılırken, hareketlilik öncesinde alınan kararlar ve hareketlilik sırasında yapılan ders değişiklikleri göz önünde bulundurulur. Ayrıca, karşı kurumun transkripti ile aynı kurum için daha önce alınmış yönetim kurulu kararları birlikte değerlendirilerek not dönüşümü gerçekleştirilir.
+            </p>
         </div>
 
-        <hr class="section-divider">
-
-        <!-- DİNAMİK FİLTRELEME ALANI -->
-        <h2>Geçmiş Yıllara Ait Kurum Bazlı İntibak Tabloları</h2>
-        <p>Aşağıdaki filtreleri kullanarak, daha önce hareketlilik gerçekleştirilmiş olan anlaşmalı üniversitelere ait intibak tablolarını inceleyebilirsiniz.</p>
+        <!-- 1. ADIM: DİNAMİK FİLTRELEME ALANI (GEÇMİŞ İNTİBAKLAR) -->
+        <span class="step-badge">1. Adım: Kurum Bazlı Kontrol</span>
+        <h2 style="margin-top: 5px;">Geçmiş Yıllara Ait Kurum Bazlı İntibak Tabloları</h2>
+        <p style="margin-bottom: 20px;">
+            Not dönüşümü yapılacak kurum için daha önce alınmış bir Yönetim Kurulu kararı olup olmadığını kontrol etmek üzere aşağıdaki filtrelerden <strong>Fakülte, Ülke ve Üniversite</strong> seçimi yapınız. Kurum listede mevcutsa açılan tablo esas alınır.
+        </p>
 
         <!-- Aşamalı Filtreleme Menüsü -->
         <div class="filter-container">
             <div class="filter-group">
                 <label class="filter-label" for="facultySelect">1. Fakülte Seçiniz</label>
-                <select id="facultySelect" class="fbu-select" onchange="onFacultyChange()">
+                <select id="facultySelect" class="fbu-select">
                     <option value="">-- Fakülte Seçin --</option>
                     <!-- JavaScript ile doldurulacak -->
                 </select>
@@ -221,14 +179,14 @@
 
             <div class="filter-group">
                 <label class="filter-label" for="countrySelect">2. Ülke Seçiniz</label>
-                <select id="countrySelect" class="fbu-select" disabled onchange="onCountryChange()">
+                <select id="countrySelect" class="fbu-select" disabled>
                     <option value="">-- Önce Fakülte Seçin --</option>
                 </select>
             </div>
 
             <div class="filter-group">
                 <label class="filter-label" for="uniSelect">3. Üniversite Seçiniz</label>
-                <select id="uniSelect" class="fbu-select" disabled onchange="renderTable()">
+                <select id="uniSelect" class="fbu-select" disabled>
                     <option value="">-- Önce Ülke Seçin --</option>
                 </select>
             </div>
@@ -239,339 +197,55 @@
             <table class="fbu-table" id="conversionTable">
                 <tbody>
                     <tr>
-                        <td style="border: none;"><div class="empty-state">Not dönüşüm tablosunu görüntülemek için yukarıdan seçimlerinizi tamamlayınız.</div></td>
+                        <td style="border: none;">
+                            <div class="empty-state">
+                                Kurum bazlı not dönüşüm tablosunu görüntülemek için yukarıdan seçimlerinizi tamamlayınız.
+                            </div>
+                        </td>
                     </tr>
+                </tbody>
+            </table>
+        </div>
+        <p id="conversionNote" style="font-size: 14px; color: var(--text-light); margin-top: 15px;"></p>
+
+        <hr class="section-divider">
+
+        <!-- 2. ADIM: STANDART EŞ DEĞERLİK TABLOSU -->
+        <span class="step-badge secondary">2. Adım: Listede Bulunmayan Kurumlar İçin</span>
+        <h2 style="margin-top: 5px;">Ön Lisans - Lisans Düzeylerinde Not Sistemlerinin FBU Harf Notu Eş Değerlik Tablosu</h2>
+        
+        <div class="info-alert">
+            <strong>Önemli Bilgilendirme:</strong> Eğer daha önce hareketlilik yapılmamış bir kuruma gidildiyse (yukarıdaki 1. Adım listesinde kurum yer almıyorsa), karşı kurumun transkriptindeki not dönüşüm sistemi baz alınarak aşağıdaki genel eş değerlik tablosu kullanılır.
+        </div>
+
+        <div style="overflow-x: auto; margin-bottom: 30px;">
+            <table class="fbu-table">
+                <thead>
+                    <tr><th>4’lük Sistem</th><th>FBU Harf Notu</th><th>Başarı Durumu</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>4,00 - 3,501</td><td><strong>AA</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
+                    <tr><td>3,50 - 3,001</td><td><strong>BA</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
+                    <tr><td>3,00 - 2,701</td><td><strong>BB</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
+                    <tr><td>2,70 - 2,001</td><td><strong>CB</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
+                    <tr><td>2,00 - 1,501</td><td><strong>CC</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
+                    <tr><td>1,50 - 1,001</td><td><strong>DC</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
+                    <tr><td>1,00 - 0,501</td><td><strong>DD</strong></td><td style="color: #166534; font-weight: 700;">BAŞARILI</td></tr>
+                    <tr><td>0,50 - 0,401</td><td><strong>FD</strong></td><td style="color: #991b1b; font-weight: 700;">BAŞARISIZ</td></tr>
+                    <tr><td>0,40 - 0,00</td><td><strong>FF</strong></td><td style="color: #991b1b; font-weight: 700;">BAŞARISIZ</td></tr>
                 </tbody>
             </table>
         </div>
 
     </div>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>İletişim Bilgileri</h3>
-                <p><span class="footer-icon">📍</span><span><strong>Fenerbahçe Üniversitesi</strong><br>Uluslararası Ofis<br>Atatürk Mah. Ataşehir Bulvarı,<br>Ataşehir / İstanbul, Türkiye</span></p>
-            </div>
-            <div class="footer-col">
-                <h3>Bize Ulaşın</h3>
-                <p><span class="footer-icon">✉️</span><span>erasmus@fbu.edu.tr</span></p>
-                <p><span class="footer-icon">📞</span><span>0216 910 19 07 / 1993</span></p>
-            </div>
-        </div>
-        <div class="footer-bottom">© 2026 Fenerbahçe Üniversitesi. Erasmus ve Değişim Programları. Tüm hakları saklıdır.</div>
-    </footer>
+    <script src="components.js" data-part="footer"></script>
 
     <!-- Ortak JS Dosyası -->
     <script src="script.js"></script>
 
-    <!-- FİLTRELEME VE TABLO MANTIĞI -->
-    <script>
-        // İÇERİK YÖNETİMİ: Kendi anlaşmalarınıza göre bu listeyi çoğaltabilirsiniz.
-        const agreementsDB = [
-            { faculty: "Mühendislik ve Mimarlık Fakültesi", country: "Almanya", id: "albstadt", name: "Hochschule Albstadt-Sigmaringen" },
-            { faculty: "Mühendislik ve Mimarlık Fakültesi", country: "Polonya", id: "silesia", name: "University of Silesia in Katowice" },
-            
-            { faculty: "Sağlık Bilimleri Fakültesi", country: "Polonya", id: "wloclawek", name: "State University of Applied Sciences Wloclawek" },
-            { faculty: "Sağlık Bilimleri Fakültesi", country: "Polonya", id: "lomza", name: "University of Lomza" },
-            
-            { faculty: "İletişim Fakültesi", country: "Kuzey Makedonya", id: "ibu", name: "International Balkan University" },
-            
-            { faculty: "İktisadi, İdari ve Sosyal Bilimler Fakültesi", country: "Polonya", id: "kul", name: "The John Paul II Catholic University of Lublin" },
-            { faculty: "İktisadi, İdari ve Sosyal Bilimler Fakültesi", country: "Slovakya", id: "comenius", name: "Comenius University Bratislava" },
-            { faculty: "İktisadi, İdari ve Sosyal Bilimler Fakültesi", country: "Polonya", id: "siedlce", name: "Uniwersytet w Siedlcach" },
-            { faculty: "İktisadi, İdari ve Sosyal Bilimler Fakültesi", country: "İspanya", id: "deusto", name: "University of Deusto" },
-            { faculty: "İktisadi, İdari ve Sosyal Bilimler Fakültesi", country: "Polonya", id: "lodz", name: "University of Lodz" }
-        ];
-
-        // Tablo HTML Verileri
-        const tableData = {
-            "albstadt": `
-                <thead>
-                    <tr>
-                        <th colspan="2">Karşı Kurum (Hochschule Albstadt-Sigmaringen) Notu</th>
-                        <th colspan="3">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Puan Oranı</th>
-                        <th>Değerlendirme</th>
-                        <th>Harf Notu</th>
-                        <th>Yüzlük</th>
-                        <th>Dörtlük</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1.0 - 1.5</td><td>Very good</td><td>AA</td><td>90-100</td><td>4,00</td></tr>
-                    <tr><td rowspan="2">1.6 - 2.5</td><td rowspan="2">Good</td><td>BA</td><td>85-89</td><td>3,50</td></tr>
-                    <tr><td>BB</td><td>80-84</td><td>3,00</td></tr>
-                    <tr><td rowspan="2">2.6 - 3.5</td><td rowspan="2">Satisfactory</td><td>CB</td><td>70-79</td><td>2,70</td></tr>
-                    <tr><td>CC</td><td>60-69</td><td>2,00</td></tr>
-                    <tr><td rowspan="2">3.6 - 4.0</td><td rowspan="2">Sufficient</td><td>DC</td><td>55-59</td><td>1,50</td></tr>
-                    <tr><td>DD</td><td>50-54</td><td>1,00</td></tr>
-                    <tr><td rowspan="2">From 4.1</td><td rowspan="2">Fail</td><td>FD</td><td>40-49</td><td>0,50</td></tr>
-                    <tr><td>FF</td><td>0-39</td><td>0,00</td></tr>
-                </tbody>`,
-            "silesia": `
-                <thead>
-                    <tr>
-                        <th colspan="3">Karşı Kurum (University of Silesia in Katowice) Notu</th>
-                        <th colspan="3">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Puan Oranı</th>
-                        <th>Harf</th>
-                        <th>Değerlendirme</th>
-                        <th>Harf Notu</th>
-                        <th>Yüzlük</th>
-                        <th>Dörtlük</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>5</td><td>A</td><td>Excellent</td><td>AA</td><td>90-100</td><td>4,00</td></tr>
-                    <tr><td rowspan="2">4,5</td><td rowspan="2">B</td><td rowspan="2">Very Good</td><td>BA</td><td>85-89</td><td>3,50</td></tr>
-                    <tr><td>BB</td><td>80-84</td><td>3,00</td></tr>
-                    <tr><td rowspan="2">4</td><td rowspan="2">C</td><td rowspan="2">Good</td><td>CB</td><td>70-79</td><td>2,70</td></tr>
-                    <tr><td>CC</td><td>60-69</td><td>2,00</td></tr>
-                    <tr><td>3,5</td><td>D</td><td>Satisfactory</td><td>DC</td><td>55-59</td><td>1,50</td></tr>
-                    <tr><td>3</td><td>E</td><td>Sufficient</td><td>DD</td><td>50-54</td><td>1,00</td></tr>
-                    <tr><td rowspan="2">2</td><td rowspan="2">F/FX</td><td rowspan="2">Fail</td><td>FD</td><td>40-49</td><td>0,50</td></tr>
-                    <tr><td>FF</td><td>0-39</td><td>0,00</td></tr>
-                </tbody>`,
-            "wloclawek": `
-                <thead>
-                    <tr>
-                        <th colspan="2">Karşı Kurum (State University of Applied Sciences Wloclawek) Notu</th>
-                        <th colspan="2">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Harf/Puan Notu</th>
-                        <th>FBU Dönüşüm Puanı</th>
-                        <th>FBU Harf Notu Karşılığı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>5 (A)</td><td>4,75 - 5,00</td><td>AA</td></tr>
-                    <tr><td>4.5 / 4+ (B)</td><td>4,25 - 4,749</td><td>BA</td></tr>
-                    <tr><td>4 (C)</td><td>3,75 - 4,249</td><td>BB</td></tr>
-                    <tr><td>3.5 / 3+ (D)</td><td>3,25 - 3,749</td><td>CC</td></tr>
-                    <tr><td>3 (E)</td><td>3,00 - 3,249</td><td>DD</td></tr>
-                    <tr><td>2 (F/FX)*</td><td>0 - 2,99</td><td>FF</td></tr>
-                </tbody>`,
-            "lomza": `
-                <thead>
-                    <tr>
-                        <th colspan="2">Karşı Kurum (University of Lomza) Notu</th>
-                        <th colspan="2">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Harf/Puan Notu</th>
-                        <th>FBU Dönüşüm Puanı</th>
-                        <th>FBU Harf Notu Karşılığı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>5 (A)</td><td>4,75 - 5,00</td><td>AA</td></tr>
-                    <tr><td>4.5 / 4+ (B)</td><td>4,25 - 4,749</td><td>BA</td></tr>
-                    <tr><td>4 (C)</td><td>3,75 - 4,249</td><td>BB</td></tr>
-                    <tr><td>3.5 / 3+ (D)</td><td>3,25 - 3,749</td><td>CC</td></tr>
-                    <tr><td>3 (E)</td><td>3,00 - 3,249</td><td>DD</td></tr>
-                    <tr><td>2 (F/FX)*</td><td>0 - 2,99</td><td>FF</td></tr>
-                </tbody>`,
-            "ibu": `
-                <thead>
-                    <tr>
-                        <th colspan="3">Karşı Kurum (International Balkan University) Notu</th>
-                        <th colspan="3">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Harf Notu</th><th>Yüzlük Aralık</th><th>Durum</th>
-                        <th>Harf Notu</th><th>Dörtlük</th><th>Yüzlük Aralık</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>A</td><td>100-90</td><td>Başarılı</td><td>AA</td><td>4,00</td><td>100-90</td></tr>
-                    <tr><td rowspan="2">B</td><td rowspan="2">89-80</td><td>Başarılı</td><td>BA</td><td>3,50</td><td>89-85</td></tr>
-                    <tr><td>Başarılı</td><td>BB</td><td>3,00</td><td>84-80</td></tr>
-                    <tr><td>C</td><td>79-70</td><td>Başarılı</td><td>CB</td><td>2,70</td><td>79-70</td></tr>
-                    <tr><td>D</td><td>69-60</td><td>Başarılı</td><td>CC</td><td>2,00</td><td>69-60</td></tr>
-                    <tr><td rowspan="2">E</td><td rowspan="2">59-50</td><td>Başarılı</td><td>DC</td><td>1,50</td><td>59-55</td></tr>
-                    <tr><td>Başarılı</td><td>DD</td><td>1,00</td><td>54-50</td></tr>
-                    <tr><td rowspan="2">F</td><td rowspan="2">&lt; 50</td><td>Başarısız</td><td>FD</td><td>0,50</td><td>49-40</td></tr>
-                    <tr><td>Başarısız</td><td>FF</td><td>0,00</td><td>39-0</td></tr>
-                </tbody>`,
-            "kul": `
-                <thead>
-                    <tr>
-                        <th colspan="2">Karşı Kurum (The John Paul II Catholic University of Lublin) Notu</th>
-                        <th colspan="2">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Harf/Puan Notu</th>
-                        <th>FBU Dönüşüm Puanı</th>
-                        <th>FBU Harf Notu Karşılığı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>5 (A)</td><td>4,75 - 5,00</td><td>AA</td></tr>
-                    <tr><td>4+ (B)</td><td>4,25 - 4,749</td><td>BA</td></tr>
-                    <tr><td>4 (C)</td><td>3,75 - 4,249</td><td>BB</td></tr>
-                    <tr><td>3+ (D)</td><td>3,25 - 3,749</td><td>CC</td></tr>
-                    <tr><td>3 (E)</td><td>3,00 - 3,249</td><td>DD</td></tr>
-                    <tr><td>2 (FX/F)*</td><td>2,99 - 0</td><td>FF</td></tr>
-                </tbody>`,
-            "comenius": `
-                <thead>
-                    <tr>
-                        <th colspan="2">Karşı Kurum (Comenius University Bratislava) Notu</th>
-                        <th colspan="2">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Harf/Puan Notu</th>
-                        <th>FBU Dönüşüm Puanı</th>
-                        <th>FBU Harf Notu Karşılığı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1 (A)</td><td>1,00 - 1,249</td><td>AA</td></tr>
-                    <tr><td>1,5 (B)</td><td>1,25 - 1,749</td><td>BA</td></tr>
-                    <tr><td>2 (C)</td><td>1,75 - 2,249</td><td>BB</td></tr>
-                    <tr><td>2,5 (D)</td><td>2,25 - 2,749</td><td>CC</td></tr>
-                    <tr><td>3 (E)</td><td>2,75 - 3,00</td><td>DD</td></tr>
-                    <tr><td>4 (FX)</td><td>3,01 - 4,00</td><td>FF</td></tr>
-                </tbody>`,
-            "siedlce": `
-                <thead>
-                    <tr>
-                        <th colspan="2">Karşı Kurum (Uniwersytet w Siedlcach) Notu</th>
-                        <th colspan="2">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Harf/Puan Notu</th>
-                        <th>FBU Dönüşüm Puanı</th>
-                        <th>FBU Harf Notu Karşılığı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>5 (A)</td><td>4,75 - 5,00</td><td>AA</td></tr>
-                    <tr><td>4+ (B)</td><td>4,25 - 4,749</td><td>BA</td></tr>
-                    <tr><td>4 (C)</td><td>3,75 - 4,249</td><td>BB</td></tr>
-                    <tr><td>3+ (D)</td><td>3,25 - 3,749</td><td>CC</td></tr>
-                    <tr><td>3 (E)</td><td>3,00 - 3,249</td><td>DD</td></tr>
-                    <tr><td>2 (FX/F)*</td><td>2,99 - 0</td><td>FF</td></tr>
-                </tbody>`,
-            "deusto": `
-                <thead>
-                    <tr>
-                        <th>Karşı Kurum (University of Deusto) Not Ortalama Aralığı</th>
-                        <th>Fenerbahçe Üniversitesi Harf Notu Karşılığı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>9,0 - 10,0</td><td>AA</td></tr>
-                    <tr><td>8,0 - 8,99</td><td>BA</td></tr>
-                    <tr><td>7,0 - 7,99</td><td>BB</td></tr>
-                    <tr><td>6,5 - 6,99</td><td>CB</td></tr>
-                    <tr><td>6,0 - 6,49</td><td>CC</td></tr>
-                    <tr><td>5,5 - 5,99</td><td>DC</td></tr>
-                    <tr><td>5,0 - 5,49</td><td>DD</td></tr>
-                    <tr><td>0,0 - 4,9</td><td>FF</td></tr>
-                </tbody>`,
-            "lodz": `
-                <thead>
-                    <tr>
-                        <th colspan="2">Karşı Kurum (University of Lodz) Notu</th>
-                        <th colspan="2">Fenerbahçe Üniversitesi Karşılığı</th>
-                    </tr>
-                    <tr>
-                        <th>Harf/Puan Notu</th>
-                        <th>FBU Dönüşüm Puanı</th>
-                        <th>FBU Harf Notu Karşılığı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>5 (A)</td><td>4,75 - 5,00</td><td>AA</td></tr>
-                    <tr><td>4+ (B)</td><td>4,25 - 4,749</td><td>BA</td></tr>
-                    <tr><td>4 (C)</td><td>3,75 - 4,249</td><td>BB</td></tr>
-                    <tr><td>3+ (D)</td><td>3,25 - 3,749</td><td>CC</td></tr>
-                    <tr><td>3 (E)</td><td>3,00 - 3,249</td><td>DD</td></tr>
-                    <tr><td>2 (FX/F)*</td><td>0 - 2,99</td><td>FF</td></tr>
-                </tbody>`
-        };
-
-        const facSelect = document.getElementById('facultySelect');
-        const countSelect = document.getElementById('countrySelect');
-        const uniSelect = document.getElementById('uniSelect');
-        const tableElement = document.getElementById('conversionTable');
-        const emptyStateHTML = '<tbody><tr><td style="border: none;"><div class="empty-state">Not dönüşüm tablosunu görüntülemek için yukarıdan seçimlerinizi tamamlayınız.</div></td></tr></tbody>';
-
-        // 1. Sayfa yüklendiğinde Fakülteleri doldur
-        window.onload = () => {
-            const faculties = [...new Set(agreementsDB.map(item => item.faculty))];
-            faculties.forEach(fac => {
-                const option = document.createElement('option');
-                option.value = fac;
-                option.textContent = fac;
-                facSelect.appendChild(option);
-            });
-        };
-
-        // 2. Fakülte değiştiğinde Ülkeleri doldur
-        function onFacultyChange() {
-            const selectedFac = facSelect.value;
-            countSelect.innerHTML = '<option value="">-- Ülke Seçin --</option>';
-            uniSelect.innerHTML = '<option value="">-- Önce Ülke Seçin --</option>';
-            uniSelect.disabled = true;
-            tableElement.innerHTML = emptyStateHTML;
-
-            if (selectedFac) {
-                const countries = [...new Set(agreementsDB.filter(i => i.faculty === selectedFac).map(i => i.country))];
-                countries.forEach(country => {
-                    const option = document.createElement('option');
-                    option.value = country;
-                    option.textContent = country;
-                    countSelect.appendChild(option);
-                });
-                countSelect.disabled = false;
-            } else {
-                countSelect.disabled = true;
-                countSelect.innerHTML = '<option value="">-- Önce Fakülte Seçin --</option>';
-            }
-        }
-
-        // 3. Ülke değiştiğinde Üniversiteleri doldur
-        function onCountryChange() {
-            const selectedFac = facSelect.value;
-            const selectedCount = countSelect.value;
-            
-            uniSelect.innerHTML = '<option value="">-- Üniversite Seçin --</option>';
-            tableElement.innerHTML = emptyStateHTML;
-
-            if (selectedCount) {
-                const universities = agreementsDB.filter(i => i.faculty === selectedFac && i.country === selectedCount);
-                universities.forEach(uni => {
-                    const option = document.createElement('option');
-                    option.value = uni.id;
-                    option.textContent = uni.name;
-                    uniSelect.appendChild(option);
-                });
-                uniSelect.disabled = false;
-            } else {
-                uniSelect.disabled = true;
-                uniSelect.innerHTML = '<option value="">-- Önce Ülke Seçin --</option>';
-            }
-        }
-
-        // 4. Üniversite seçildiğinde Tabloyu Göster
-        function renderTable() {
-            const selectedUniId = uniSelect.value;
-            tableElement.style.opacity = 0;
-            
-            setTimeout(() => {
-                tableElement.innerHTML = selectedUniId ? tableData[selectedUniId] : emptyStateHTML;
-                tableElement.style.opacity = 1;
-            }, 150);
-        }
-    </script>
+    <script src="data/terms-en.js"></script>
+    <script src="data/intibak.js"></script>
+    <script src="intibak.js"></script>
 </body>
 </html>

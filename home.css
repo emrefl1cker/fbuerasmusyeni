@@ -1,0 +1,87 @@
+/* ANA SAYFA (index.html) ÖZEL STİLLERİ — ortak stiller style.css içindedir */
+
+/* BAŞLIK STİLİ */
+.section-header { margin-bottom: 40px; padding-bottom: 10px; border-bottom: 2px solid var(--fbu-blue); display: inline-block; }
+.section-header h2 { font-size: 28px; color: var(--fbu-blue); margin: 0; font-weight: 800; }
+
+/* 1. DUYURULAR BÖLÜMÜ */
+.announcements-section {
+    position: relative;
+    padding: 80px 30px;
+    background-image: url('assets/img/fbu-logo-watermark.png');
+    background-size: 900px;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+.announcements-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg-color);
+    opacity: 0.94;
+    z-index: 0;
+}
+.announcements-container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
+.announcements-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+
+.prog-category { background: white; padding: 30px 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(10, 61, 122, 0.08); position: relative; }
+.prog-category:nth-child(1) { border-top: 6px solid var(--fbu-blue); }
+.prog-category:nth-child(2) { border-top: 6px solid var(--fbu-yellow); }
+.prog-category:nth-child(3) { border-top: 6px solid var(--fbu-blue); }
+
+.prog-title { font-size: 20px; font-weight: 800; color: var(--fbu-blue); margin: 0 0 18px 0; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; }
+.prog-title::before { content: ''; display: inline-block; width: 12px; height: 12px; border-radius: 50%; }
+.prog-category:nth-child(1) .prog-title::before { background: var(--fbu-yellow); }
+.prog-category:nth-child(2) .prog-title::before { background: var(--fbu-blue); }
+.prog-category:nth-child(3) .prog-title::before { background: var(--fbu-yellow); }
+
+/* Program tanımı (ilanların hemen üstünde) */
+.programs-lead { max-width: 760px; margin: -10px 0 35px 0; font-size: 15px; line-height: 1.6; color: var(--text-light); }
+.prog-category { display: flex; flex-direction: column; }
+.prog-tag { align-self: flex-start; background: var(--fbu-yellow); color: var(--fbu-blue); font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 14px; }
+.prog-desc { font-size: 14px; line-height: 1.65; color: var(--text-dark); margin: 0 0 26px 0; }
+.prog-sub { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-light); margin: 0 0 14px 0; }
+
+.a-row-card { background: var(--bg-color); border-radius: 8px; padding: 15px; display: flex; align-items: center; gap: 15px; transition: all 0.3s ease; margin-bottom: 15px; text-decoration: none; border-left: 4px solid transparent; }
+.a-row-card:last-child { margin-bottom: 0; }
+.a-row-card:hover { background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
+.prog-category:nth-child(odd) .a-row-card:hover { border-left: 4px solid var(--fbu-yellow); }
+.prog-category:nth-child(even) .a-row-card:hover { border-left: 4px solid var(--fbu-blue); }
+
+.a-date-box { background: white; padding: 10px; border-radius: 6px; text-align: center; min-width: 55px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+.a-date-box .day { display: block; font-size: 20px; font-weight: 800; color: var(--fbu-blue); line-height: 1; }
+.a-date-box .month { display: block; font-size: 11px; font-weight: 600; color: var(--text-light); text-transform: uppercase; margin-top: 5px; }
+
+.a-content-box { flex-grow: 1; }
+.a-content-box h3 { margin: 0; font-size: 13px; color: var(--text-dark); line-height: 1.5; }
+
+.app-deadline { display: block; font-size: 12px; color: var(--text-light); margin-top: 6px; font-weight: 500; }
+.status-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-top: 8px; }
+.status-badge.active { background: #dcfce7; color: #166534; }
+.status-badge.expired { background: #f1f5f9; color: #64748b; }
+
+.a-arrow { color: var(--fbu-blue); font-size: 16px; opacity: 0.2; transition: 0.3s; }
+.a-row-card:hover .a-arrow { opacity: 1; transform: translateX(3px); }
+
+.archive-wrapper { text-align: center; margin-top: 40px; position: relative; z-index: 2; }
+.archive-btn { display: inline-block; background: var(--fbu-blue); color: white; padding: 14px 35px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(10, 61, 122, 0.2); }
+.archive-btn:hover { background: var(--fbu-yellow); color: var(--fbu-blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 199, 44, 0.3); }
+
+/* 2. HABERLER BÖLÜMÜ */
+.news-section { background: white; padding: 80px 30px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+.news-container { max-width: 1400px; margin: 0 auto; }
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.n-card { background: var(--bg-color); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.3s ease; }
+.n-card:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
+.n-image { width: 100%; height: 200px; background-size: cover; background-position: center; }
+.n-content { padding: 25px; }
+.n-meta { font-size: 12px; color: var(--text-light); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.n-title { font-size: 17px; font-weight: 700; color: var(--fbu-blue); margin: 0 0 10px 0; line-height: 1.4; }
+.n-desc { font-size: 13px; color: var(--text-light); margin: 0; line-height: 1.5; }
+
+/* MOBİL (sadece ana sayfa bileşenleri) */
+@media (max-width: 1024px) {
+    .announcements-grid { grid-template-columns: 1fr; }
+}

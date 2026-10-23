@@ -172,3 +172,18 @@ header {
         height: 500px;
     }
 }
+
+/* Satır grubu başlığı (rowspan'lı tablolar, ör. Seçim Komisyonu) */
+.fbu-table th.row-head { background: var(--bg-color); color: var(--fbu-blue); text-transform: none; font-size: 14px; letter-spacing: 0; width: 35%; }
+.fbu-table .row-sub { display: block; font-size: 12px; color: var(--text-light); font-weight: 500; margin-top: 2px; }
+.fbu-table.plain tr:nth-child(even) td { background: transparent; }
+
+/* Aktif sayfa göstergesi (components.js ekler) */
+.nav-link.active { color: var(--fbu-yellow); }
+.dropdown-item.active { background: var(--bg-color); box-shadow: inset 3px 0 0 var(--fbu-yellow); }
+
+/* ERASMUS BELGELERİ: HEDEFLER VE PDF BAĞLANTILARI */
+.document-goals { padding-left: 24px; margin: 0 0 25px; color: var(--text-dark); }
+.document-goals li { padding-left: 3px; margin-bottom: 11px; }
+.document-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: -10px; }
+.document-actions .fbu-btn { margin-top: 15px; }
