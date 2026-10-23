@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ECTS Grade Conversion Table | Fenerbahçe University</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Ortak CSS Dosyası -->
+<link href="../style.css" rel="stylesheet"/>
+<style>
+        /* Üst Bilgilendirme ve Süreç Kutuları */
+        .process-intro {
+            background-color: #f8fafc;
+            border-left: 5px solid var(--fbu-blue);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            color: var(--text-dark);
+            font-size: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .step-badge {
+            display: inline-block;
+            background-color: var(--fbu-blue);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .step-badge.secondary {
+            background-color: #0369a1;
+        }
+
+        .info-alert {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            border: 1px solid #bae6fd;
+        }
+
+        /* Gelişmiş Filtreleme Alanı Stilleri */
+        .filter-container {
+            background-color: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid var(--fbu-yellow);
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .filter-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--fbu-blue);
+        }
+        .fbu-select {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+        }
+        .fbu-select:focus {
+            border-color: var(--fbu-blue);
+            box-shadow: 0 0 0 3px rgba(10, 61, 122, 0.1);
+        }
+        .fbu-select:disabled {
+            background-color: #e2e8f0;
+            cursor: not-allowed;
+            color: #94a3b8;
+        }
+        
+        /* Belirgin Kenarlıklı Tablo Stili */
+        .fbu-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #94a3b8;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .fbu-table th {
+            background-color: var(--fbu-blue);
+            color: white;
+            font-weight: 700;
+            border: 1px solid #94a3b8;
+            padding: 10px;
+            text-align: center;
+        }
+        .fbu-table td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .fbu-table tr:nth-child(even) { background-color: #f8fafc; }
+        .fbu-table tr:hover { background-color: #f1f5f9; }
+        
+        #conversionTable { transition: opacity 0.3s ease; }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-style: italic;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: var(--border-color);
+            margin: 45px 0;
+        }
+    </style>
+</head>
+<body>
+<script data-part="header" src="../components.js"></script>
+<!-- SAYFA BAŞLIĞI -->
+<div class="page-header">
+<h1>ECTS Grade Conversion Table</h1>
+</div>
+<!-- İÇERİK ALANI -->
+<div class="page-content">
+<!-- GENEL ESASLAR VE SÜREÇ AÇIKLAMASI -->
+<div class="process-intro">
+<p style="margin: 0;">
+                The grades of students returning from an Erasmus+ mobility are converted in accordance with the <strong>ECTS grade conversion table</strong> . Previous decisions made before mobility and any course changes during mobility are taken into account. The receiving institution’s Transcript of Records and earlier Faculty Board decisions concerning the same institution are also considered when converting grades.
+            </p>
+</div>
+<!-- 1. ADIM: DİNAMİK FİLTRELEME ALANI (GEÇMİŞ İNTİBAKLAR) -->
+<span class="step-badge">Step 1: Institution-Specific Check</span>
+<h2 style="margin-top: 5px;">Institution-Specific Grade Conversion Tables from Previous Years</h2>
+<p style="margin-bottom: 20px;">
+            Use the filters below to check whether a Faculty Board decision has previously been issued for the institution in question. Select the <strong>Faculty, Country and University</strong> . If the institution appears in the list, the corresponding table applies.
+        </p>
+<!-- Aşamalı Filtreleme Menüsü -->
+<div class="filter-container">
+<div class="filter-group">
+<label class="filter-label" for="facultySelect">1. Select Faculty</label>
+<select class="fbu-select" id="facultySelect">
+<option value="">-- Select a Faculty --</option>
+<!-- JavaScript ile doldurulacak -->
+</select>
+</div>
+<div class="filter-group">
+<label class="filter-label" for="countrySelect">2. Select Country</label>
+<select class="fbu-select" disabled="" id="countrySelect">
+<option value="">-- Select a Faculty First --</option>
+</select>
+</div>
+<div class="filter-group">
+<label class="filter-label" for="uniSelect">3. Select University</label>
+<select class="fbu-select" disabled="" id="uniSelect">
+<option value="">-- Select a Country First --</option>
+</select>
+</div>
+</div>
+<!-- Dinamik Tablo Alanı -->
+<div style="overflow-x: auto;">
+<table class="fbu-table" id="conversionTable">
+<tbody>
+<tr>
+<td style="border: none;">
+<div class="empty-state">
+                                Complete the selections above to view the institution-specific grade conversion table.
+                            </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p id="conversionNote" style="font-size: 14px; color: var(--text-light); margin-top: 15px;"></p>
+<hr class="section-divider"/>
+<!-- 2. ADIM: STANDART EŞ DEĞERLİK TABLOSU -->
+<span class="step-badge secondary">Step 2: Institutions Not Listed</span>
+<h2 style="margin-top: 5px;">FBU Letter Grade Equivalency Table for Associate and Undergraduate Degree Programmes</h2>
+<div class="info-alert">
+<strong>Important Information:</strong> If no previous mobility has taken place at an institution (i.e. it is not listed in Step 1), the general equivalency table below is used, taking into account the grading system shown on the receiving institution’s transcript.
+        </div>
+<div style="overflow-x: auto; margin-bottom: 30px;">
+<table class="fbu-table">
+<thead>
+<tr><th>4-Point Scale</th><th>FBU Letter Grade</th><th>Result</th></tr>
+</thead>
+<tbody>
+<tr><td>4,00 - 3,501</td><td><strong>AA</strong></td><td style="color: #166534; font-weight: 700;">PASS</td></tr>
+<tr><td>3,50 - 3,001</td><td><strong>BA</strong></td><td style="color: #166534; font-weight: 700;">PASS</td></tr>
+<tr><td>3,00 - 2,701</td><td><strong>BB</strong></td><td style="color: #166534; font-weight: 700;">PASS</td></tr>
+<tr><td>2,70 - 2,001</td><td><strong>CB</strong></td><td style="color: #166534; font-weight: 700;">PASS</td></tr>
+<tr><td>2,00 - 1,501</td><td><strong>CC</strong></td><td style="color: #166534; font-weight: 700;">PASS</td></tr>
+<tr><td>1,50 - 1,001</td><td><strong>DC</strong></td><td style="color: #166534; font-weight: 700;">PASS</td></tr>
+<tr><td>1,00 - 0,501</td><td><strong>DD</strong></td><td style="color: #166534; font-weight: 700;">PASS</td></tr>
+<tr><td>0,50 - 0,401</td><td><strong>FD</strong></td><td style="color: #991b1b; font-weight: 700;">FAIL</td></tr>
+<tr><td>0,40 - 0,00</td><td><strong>FF</strong></td><td style="color: #991b1b; font-weight: 700;">FAIL</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<script data-part="footer" src="../components.js"></script>
+<!-- Ortak JS Dosyası -->
+<script src="../script.js"></script>
+<script src="../data/terms-en.js"></script>
+<script src="../data/intibak.js"></script>
+<script src="../intibak.js"></script>
+</body>
+</html>

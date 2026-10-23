@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Staff Mobility for Teaching | Fenerbahçe University</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Ortak CSS Dosyası -->
+<link href="../style.css" rel="stylesheet"/>
+<style>
+        /* DİKEY SEKME (TAB) VE İÇERİK MİMARİSİ */
+        .layout-wrapper {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            align-items: flex-start;
+            padding: 0 20px;
+        }
+
+        /* Sol Menü (Sidebar) */
+        .sidebar-menu {
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 20px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px;
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            text-align: left;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+        .tab-btn:last-child { border-bottom: none; margin-bottom: 0; }
+        .tab-btn:hover { background: #f8fafc; color: var(--fbu-blue); }
+        
+        .tab-btn.active {
+            background: var(--fbu-blue);
+            color: white;
+            border-bottom: none;
+            box-shadow: 0 4px 15px rgba(10, 61, 122, 0.2);
+        }
+        .tab-btn .icon { font-size: 18px; }
+
+        /* Sağ İçerik Alanı */
+        .content-area {
+            flex-grow: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px;
+            min-height: 600px;
+            line-height: 1.8;
+        }
+
+        .content-area h2 {
+            color: var(--fbu-blue);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .tab-pane { 
+            display: none; 
+            animation: fadeIn 0.4s ease; 
+        }
+        .tab-pane.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Tablo ve Uyarı Kutuları Stilleri */
+        .warning-box {
+            background-color: #fffbeb;
+            color: #b45309;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background-color: #f0fdf4;
+            color: #166534;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 4px solid #22c55e;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* Yol Rehberi (Zaman Çizelgesi) Stilleri */
+        .roadmap-container { margin-top: 30px; position: relative; border-left: 3px solid var(--fbu-yellow); padding-left: 30px; margin-left: 15px; }
+        .roadmap-step { margin-bottom: 40px; position: relative; }
+        .roadmap-step::before {
+            content: ''; position: absolute; left: -41px; top: 0; width: 16px; height: 16px;
+            background: white; border: 4px solid var(--fbu-blue); border-radius: 50%;
+        }
+        .roadmap-step h3 { color: var(--fbu-blue); margin-top: -5px; font-size: 18px; font-weight: 800; }
+        .roadmap-step p { color: var(--text-dark); font-size: 14px; margin-bottom: 10px; }
+        .roadmap-step ul { margin: 0; padding-left: 20px; font-size: 14px; }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 900px) {
+            .layout-wrapper { flex-direction: column; padding: 0 15px; }
+            .sidebar-menu { width: 100%; position: static; padding: 15px; margin-bottom: 20px; }
+            .content-area { padding: 25px; min-height: auto; }
+        }
+    
+/* 2026 KA131 personnel guide: consistent with students’ guides. */
+.guide-version{background:#f1f6fa;border-left:4px solid var(--fbu-blue);padding:15px 18px;border-radius:8px;margin:18px 0 22px;display:grid;gap:7px;font-size:13px;line-height:1.7;color:#35546e}.guide-version strong{font-size:14px;color:#123c69}
+.guide-hint{background:#fff9e9;border-left:4px solid #d6ad46;padding:15px 18px;border-radius:8px;margin:22px 0;font-size:13px;line-height:1.7;color:#6c521f}
+.guide-table-scroll{max-width:100%;overflow-x:auto}.guide-table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55;margin:16px 0 25px}.guide-table th{background:var(--fbu-blue);color:#fff;text-align:left;font-size:13px}.guide-table th,.guide-table td{padding:12px 13px;border:1px solid #dbe5ee;vertical-align:top}.guide-table tbody tr:nth-child(even){background:#f6f9fb}.guide-table td:last-child{font-weight:700;color:#224c78;min-width:100px}
+.guide-steps{padding-left:23px}.guide-steps li{margin:0 0 16px;padding-left:4px}.guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}.guide-actions .fbu-btn{text-decoration:none;display:inline-flex;align-items:center;min-height:42px;padding:8px 15px;border-radius:7px}.guide-btn-secondary{background:#eaf1f8!important;color:#123b67!important}.guide-subtitle{color:var(--fbu-blue);margin-top:25px}.guide-quick{max-width:1200px;margin:24px auto -20px;padding:0 20px}.guide-quick__inner{display:flex;gap:15px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#eff5fb;border:1px solid #d8e6f2;padding:17px 22px;border-radius:10px}.guide-quick__inner strong{color:#103b72}.guide-quick__inner p{font-size:13px;color:#4e6982;margin:3px 0 0}.guide-quick__inner a{font-size:13px;font-weight:800;color:#114d86;white-space:normal}
+@media(max-width:900px){.layout-wrapper .sidebar-menu{box-sizing:border-box;min-width:0;max-width:100%;align-self:stretch}.layout-wrapper .content-area{box-sizing:border-box;min-width:0;width:100%;max-width:100%;overflow-wrap:anywhere}.guide-table{font-size:12px}}@media(max-width:650px){.guide-table th,.guide-table td{padding:9px 7px}.guide-quick{margin-bottom:0}}
+</style>
+</head>
+<body>
+<script src="../components.js" data-part="header"></script>
+  <div class="page-header"><h1>Erasmus+ Staff Mobility for Teaching</h1></div>
+  <div class="guide-quick"><div class="guide-quick__inner"><div><strong>2026 KA131 – Staff calls for academic year 2026–2027</strong><p>Call-specific deadlines, funded places and results are available under the individual announcement. This page explains the mobility rules.</p></div><a href="ilan.html?id=2026-ka131-02">Call details and assessment schedule ↗</a></div></div>
+  <main class="layout-wrapper"><nav class="sidebar-menu" aria-label="Guide sections"><button type="button" class="tab-btn active" onclick="openTab(event,'sartlar')"><span class="icon">📋</span>Eligibility and Overview</button><button type="button" class="tab-btn" onclick="openTab(event,'basvuru')"><span class="icon">📝</span>Application and Documents</button><button type="button" class="tab-btn" onclick="openTab(event,'kriterler')"><span class="icon">📊</span>Selection and Scoring</button><button type="button" class="tab-btn" onclick="openTab(event,'hibe')"><span class="icon">💶</span>Grants and Travel</button><button type="button" class="tab-btn" onclick="openTab(event,'surec')"><span class="icon">🗺️</span>Mobility Process</button><button type="button" class="tab-btn" onclick="openTab(event,'kurumlar')"><span class="icon">🔗</span>Hosts and FAQs</button></nav><article class="content-area"><div class="tab-pane active" id="sartlar"><h2>Eligibility and Overview</h2><div class="guide-version"><strong>Applicable period: 2026 KA131 / 2026–2027</strong><span>This guide is based on the Turkish first-call document dated <strong>28 September 2026</strong>. Rules may change in later calls; the relevant official call and subsequent amendments take precedence.</span></div><p>Staff Mobility for Teaching allows staff with teaching responsibilities at Fenerbahçe University to deliver teaching at an <strong>ECHE-holding partner higher education institution with a valid Erasmus+ inter-institutional agreement</strong>.</p><h3 class="guide-subtitle">Eligibility</h3><ul><li>Staff employed full- or part-time and actively working at the University, with teaching duties or a teaching assignment.</li><li>A permanent academic appointment is not required; staff employed under a university contract may apply.</li></ul><h3 class="guide-subtitle">Duration and minimum teaching hours</h3><ul><li>At least <strong>two consecutive days</strong> and at most two months, excluding travel days.</li><li>At least <strong>eight teaching hours</strong> for up to one week; the minimum increases proportionally for longer stays (e.g. 16 hours for two weeks).</li><li>When combined with training, a mobility of one week or less requires at least <strong>four teaching hours</strong>; the combined activity is classified as teaching.</li><li>The mobility agreement must detail subjects, teaching content, days and hours.</li></ul><div class="guide-hint">A valid Erasmus+ inter-institutional agreement is mandatory for teaching mobility.</div></div><div class="tab-pane" id="basvuru"><h2>Application and Documents</h2><p>Applications are submitted exclusively via <a href="https://turnaportal.ua.gov.tr/" target="_blank" rel="noopener noreferrer">TurnaPortal</a> using e-Government authentication. All uploaded documents must be in PDF format.</p><h3 class="guide-subtitle">Required documents</h3><ol class="guide-steps"><li>An <strong>invitation letter</strong> from the receiving HEI explicitly confirming acceptance under Erasmus+.</li><li>A <strong>Staff Mobility Agreement for Teaching</strong> signed/approved by the staff member and receiving institution, with University approval finalised before mobility.</li><li>A valid inter-institutional agreement and a teaching schedule meeting the minimum hours.</li><li>Language proficiency evidence and documentation for any bonus points claimed.</li></ol><div class="guide-hint">Supporting documents are required for the relevant bonus points. Individual application deadlines are stated in the call, not in this programme guide.</div><div class="guide-actions"><a class="fbu-btn" href="duyurular-haberler.html">Calls and results ↗</a><a class="fbu-btn guide-btn-secondary" href="https://turnaportal.ua.gov.tr/">TurnaPortal ↗</a></div></div><div class="tab-pane" id="kriterler"><h2>Selection and Scoring</h2><div class="guide-table-scroll"><table class="guide-table"><thead><tr><th>2026 KA131 selection criterion</th><th>Points</th></tr></thead><tbody><tr><td>Successfully completing the application</td><td>+30</td></tr><tr><td>Documented language proficiency</td><td>Language score × 10% (maximum +10)</td></tr><tr><td>Previous participation of the same type</td><td>−5 per previous mobility</td></tr><tr><td>Erasmus Institutional/Unit/Department/Programme Coordinator</td><td>+5</td></tr><tr><td>Documented disability</td><td>+10</td></tr><tr><td>Veteran staff / spouses and children of martyrs and veterans</td><td>+10</td></tr><tr><td>Documented AFAD disaster assistance (subject to conditions)</td><td>+10</td></tr><tr><td>Mobility to country of citizenship</td><td>−10</td></tr><tr><td>Prior FBU staff mobilities to the host institution</td><td>0: +10; 1: +7; 2: +5; 3: +3; 4+: 0</td></tr><tr><td>Managing an inter-institutional agreement in full (documented)</td><td>+2 per agreement, maximum +10</td></tr><tr><td>Host university in top 500 of THE or QS overall ranking</td><td>+10</td></tr><tr><td>Failure to complete a previous awarded mobility without timely withdrawal</td><td>−20</td></tr></tbody></table></div><h3 class="guide-subtitle">Language evidence and tie-break</h3><ul><li>The 2026 call lists ÜDS, KPDS, YDS, TOEFL, PTE, YÖKDİL and IELTS with ÖSYM equivalence. No expiry requirement is stated for language evidence.</li><li>A degree entirely taught in the activity language may be scored 90/100; at least one year in an institution teaching in that language may be scored 70/100; at least one year teaching in the language may be scored 90/100.</li><li>For equal scores, priority goes first to first-time participants, then to longer service at Fenerbahçe University.</li></ul><div class="guide-hint">These are the <strong>2026 KA131 first-call criteria</strong>, not permanent rules for all future calls.</div></div><div class="tab-pane" id="hibe"><h2>Grants and Travel</h2><div class="guide-version"><strong>2026 KA131 staff grants</strong><span>Daily grants are determined by the country group. Up to <strong>five activity days</strong> can be funded per staff member under this call (minimum two funded days).</span></div><div class="guide-table-scroll"><table class="guide-table"><thead><tr><th>Country group</th><th>Countries</th><th>Daily grant</th></tr></thead><tbody><tr><td>Group 1</td><td>Germany, Austria, Belgium, Denmark, Finland, France, the Netherlands, Ireland, Italy, Sweden, Iceland, Liechtenstein, Luxembourg, Norway</td><td>€171</td></tr><tr><td>Group 2</td><td>Cyprus (Republic of Cyprus), Spain, Malta, Portugal, Greece, Czechia, Estonia, Latvia, Slovakia, Slovenia</td><td>€153</td></tr><tr><td>Group 3</td><td>Bulgaria, Croatia, North Macedonia, Lithuania, Hungary, Poland, Romania, Serbia</td><td>€133</td></tr></tbody></table></div><ul><li>For activities longer than 14 days, 70% of the applicable daily rate is used from day 15.</li><li>Normally one travel day before and one day after may be funded; up to six travel days may be supported for eligible green travel.</li><li>Funding is a contribution and may not cover all actual costs. Zero-grant mobility still requires selection.</li></ul><h3 class="guide-subtitle">Travel grants</h3><div class="guide-table-scroll"><table class="guide-table"><thead><tr><th>Distance band</th><th>Standard</th><th>Green travel</th></tr></thead><tbody><tr><td>10–99 km</td><td>28 €</td><td>56 €</td></tr><tr><td>100–499 km</td><td>211 €</td><td>285 €</td></tr><tr><td>500–1.999 km</td><td>309 €</td><td>417 €</td></tr><tr><td>2.000–2.999 km</td><td>395 €</td><td>535 €</td></tr><tr><td>3.000–3.999 km</td><td>580 €</td><td>785 €</td></tr><tr><td>4.000–7.999 km</td><td>1.188 €</td><td>1.188 €</td></tr><tr><td>8.000+ km</td><td>1.735 €</td><td>1.735 €</td></tr></tbody></table></div><p>Use the European Commission <a href="https://erasmus-plus.ec.europa.eu/resources-and-tools/distance-calculator" target="_blank" rel="noopener noreferrer">Distance Calculator</a>. The table represents a <strong>round-trip amount</strong> and must not be doubled.</p><div class="guide-hint">Additional eligibility and documentation apply to green travel, exceptional travel costs, force majeure and inclusion support; consult the applicable call.</div></div><div class="tab-pane" id="surec"><h2>Mobility Process</h2><ol class="guide-steps"><li>Obtain the invitation and agree on a <strong>teaching schedule</strong> with the host.</li><li>Submit the application and all supporting PDF documents through TurnaPortal.</li><li>Follow preliminary results and the appeal period in the individual call.</li><li>After final selection, obtain required approvals and sign the grant agreement; submit withdrawal by the stated deadline if not participating.</li><li>Complete the mobility, submit the certificate of attendance and travel evidence, and complete the Participant Report in the Beneficiary Module.</li></ol><div class="guide-actions"><a class="fbu-btn" href="duyurular-haberler.html">Calls and results ↗</a><a class="fbu-btn guide-btn-secondary" href="icerme-destegi.html">Inclusion Support ↗</a></div></div><div class="tab-pane" id="kurumlar"><h2>Hosts and FAQs</h2><h3 class="guide-subtitle">Receiving organisation</h3><p>Teaching requires an Erasmus+ inter-institutional agreement with the receiving HEI and suitable academic provision.</p><div class="guide-actions"><a class="fbu-btn" href="partner-kurumlar.html#personel">Staff partner institutions ↗</a><a class="fbu-btn guide-btn-secondary" href="personel-egitimalma.html">Training guide ↗</a></div><h3 class="guide-subtitle">Frequently asked questions</h3><ul><li><strong>Which academic year?</strong> The staff mobility year for this call is <strong>2026–2027</strong>.</li><li><strong>Where are deadlines?</strong> The individual call detail provides the application and assessment calendar.</li><li><strong>Where can I find results?</strong> Preliminary results, appeals and final results appear in the timeline for the call.</li></ul></div></article></main>
+  <script src="../components.js" data-part="footer"></script><script src="../script.js"></script>
+  <script>function openTab(event,tabId){document.querySelectorAll('.tab-pane').forEach(el=>el.classList.toggle('active',el.id===tabId));document.querySelectorAll('.sidebar-menu .tab-btn').forEach(el=>{const on=(el.getAttribute('onclick')||'').includes("'"+tabId+"'");el.classList.toggle('active',on);el.setAttribute('aria-pressed',String(on));});if(event)event.preventDefault();}
+  document.querySelectorAll('.sidebar-menu .tab-btn').forEach(el=>el.setAttribute('aria-pressed',String(el.classList.contains('active'))));</script></body></html>

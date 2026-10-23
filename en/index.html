@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Office and Exchange Programmes | Fenerbahçe University</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../home.css">
+    <link rel="stylesheet" href="../announcement.css">
+</head>
+<body>
+
+    <script src="../components.js" data-part="header"></script>
+
+    <!-- 1. BÖLÜM: DUYURULAR & İLANLAR -->
+    <section class="announcements-section">
+        <div class="announcements-container">
+            <div class="section-header">
+                <h2>Exchange Programmes and Current Calls</h2>
+            </div>
+            <p class="programs-lead">Not sure which programme fits you? Each programme is briefly explained below, followed by its current calls.</p>
+
+            <div class="announcements-grid">
+                <article class="prog-category">
+                    <span class="prog-tag">Erasmus+ Programme Countries</span>
+                    <h3 class="prog-title">KA131 Project</h3>
+                    <p class="prog-desc">Study or traineeship opportunities at partner universities in Erasmus+ Programme Countries (EU Member States and other countries associated to the Programme). Also covers staff mobility for teaching and training.</p>
+                    <div class="prog-sub">Current Calls</div>
+                    <div data-render="announcements-program" data-program="KA131" data-limit="3"></div>
+                </article>
+
+                <article class="prog-category">
+                    <span class="prog-tag">Erasmus+ Partner Countries</span>
+                    <h3 class="prog-title">KA171 Project</h3>
+                    <p class="prog-desc">Student and staff exchange with universities in Partner Countries outside the Programme Countries (e.g. the Western Balkans, Asia and Africa) under International Credit Mobility (ICM).</p>
+                    <div class="prog-sub">Current Calls</div>
+                    <div data-render="announcements-program" data-program="KA171" data-limit="3"></div>
+                </article>
+
+                <article class="prog-category">
+                    <span class="prog-tag">Bilateral Agreement-Based</span>
+                    <h3 class="prog-title">Global Exchange</h3>
+                    <p class="prog-desc">Student exchange outside the Erasmus+ framework, based on bilateral agreements (MoU) our university has signed with institutions around the world.</p>
+                    <div class="prog-sub">Current Calls</div>
+                    <div data-render="announcements-program" data-program="Global" data-limit="3"></div>
+                </article>
+            </div>
+
+            <!-- İLAN ARŞİVİ BUTONU -->
+            <div class="archive-wrapper">
+                <a href="duyurular-haberler.html" class="archive-btn">All Announcements and Calls Archive ➔</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. HABERLER BÖLÜMÜ -->
+    <section class="news-section">
+        <div class="news-container">
+            <div class="section-header">
+                <h2>News &amp; Events</h2>
+            </div>
+
+            <div class="news-grid" data-render="news-home" data-limit="3"></div>
+
+            <!-- HABER ARŞİVİ BUTONU -->
+            <div class="archive-wrapper" style="margin-top: 30px;">
+                <a href="duyurular-haberler.html?tab=news" class="archive-btn" style="background: var(--fbu-yellow); color: var(--fbu-blue);">View All News ➔</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGOLAR BÖLÜMÜ -->
+    <section style="background-color: #ffffff; padding: 40px 20px; text-align: center; border-top: 1px solid var(--border-color);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <img src="../assets/img/partner-logos-en.png" alt="Erasmus+ and Institutional Logos" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+        </div>
+    </section>
+
+    <script src="../components.js" data-part="footer"></script>
+
+    <script src="../data/ilanlar.js"></script>
+    <script src="../data/duyurular.js"></script>
+    <script src="../render.js"></script>
+    <script src="../announcements.js"></script>
+    <script src="../script.js"></script>
+
+</body>
+</html>

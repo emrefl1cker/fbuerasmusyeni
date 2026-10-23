@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Mobility for Traineeships | Fenerbahçe University</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Ortak CSS Dosyası -->
+<link href="../style.css" rel="stylesheet"/>
+<style>
+        /* DİKEY SEKME (TAB) VE İÇERİK MİMARİSİ */
+        .layout-wrapper {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            align-items: flex-start;
+            padding: 0 20px;
+        }
+
+        /* Sol Menü (Sidebar) */
+        .sidebar-menu {
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 20px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px; /* Sayfa kaydırıldığında ekranda sabit kalması için */
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            text-align: left;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+        .tab-btn:last-child { border-bottom: none; margin-bottom: 0; }
+        .tab-btn:hover { background: #f8fafc; color: var(--fbu-blue); }
+        
+        .tab-btn.active {
+            background: var(--fbu-blue);
+            color: white;
+            border-bottom: none;
+            box-shadow: 0 4px 15px rgba(10, 61, 122, 0.2);
+        }
+        .tab-btn .icon { font-size: 18px; }
+
+        /* Sağ İçerik Alanı */
+        .content-area {
+            flex-grow: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px;
+            min-height: 600px;
+            line-height: 1.8;
+        }
+
+        .content-area h2 {
+            color: var(--fbu-blue);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .tab-pane { 
+            display: none; 
+            animation: fadeIn 0.4s ease; 
+        }
+        .tab-pane.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Tablo ve Uyarı Kutuları Stilleri */
+        .warning-box {
+            background-color: #fffbeb;
+            color: #b45309;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Yol Rehberi (Zaman Çizelgesi) Stilleri */
+        .roadmap-container { margin-top: 30px; position: relative; border-left: 3px solid var(--fbu-yellow); padding-left: 30px; margin-left: 15px; }
+        .roadmap-step { margin-bottom: 40px; position: relative; }
+        .roadmap-step::before {
+            content: ''; position: absolute; left: -41px; top: 0; width: 16px; height: 16px;
+            background: white; border: 4px solid var(--fbu-blue); border-radius: 50%;
+        }
+        .roadmap-step h3 { color: var(--fbu-blue); margin-top: -5px; font-size: 18px; font-weight: 800; }
+        .roadmap-step p { color: var(--text-dark); font-size: 14px; margin-bottom: 10px; }
+        .roadmap-step ul { margin: 0; padding-left: 20px; font-size: 14px; }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 900px) {
+            .layout-wrapper { flex-direction: column; padding: 0 15px; }
+            .sidebar-menu { width: 100%; position: static; padding: 15px; margin-bottom: 20px; }
+            .content-area { padding: 25px; min-height: auto; }
+        }
+    </style>
+<style>
+/* Learning guide additions */
+.guide-version{background:#f1f6fa;border-left:4px solid var(--fbu-blue);padding:15px 18px;border-radius:8px;margin:18px 0 22px;display:grid;gap:7px;font-size:13px;line-height:1.7;color:#35546e}
+.guide-version strong{font-size:14px;color:#123c69}.guide-hint{background:#fff9e9;border-left:4px solid #d6ad46;padding:15px 18px;border-radius:8px;margin:22px 0;font-size:13px;line-height:1.7;color:#6c521f}
+.guide-table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55;margin:16px 0 25px}
+.guide-table th{background:var(--fbu-blue);color:#fff;text-align:left;font-size:13px}.guide-table th,.guide-table td{padding:12px 13px;border:1px solid #dbe5ee;vertical-align:top}.guide-table tbody tr:nth-child(even){background:#f6f9fb}.guide-table td:last-child{white-space:nowrap;font-weight:700;color:#224c78}
+.guide-steps{padding-left:23px}.guide-steps li{margin:0 0 16px;padding-left:4px}.guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.guide-actions .fbu-btn{text-decoration:none;display:inline-flex;align-items:center;min-height:42px;padding:8px 15px;border-radius:7px}.guide-btn-secondary{background:#eaf1f8!important;color:#123b67!important}
+.guide-quick{max-width:1200px;margin:24px auto -20px;padding:0 20px}.guide-quick__inner{display:flex;gap:15px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#eff5fb;border:1px solid #d8e6f2;padding:17px 22px;border-radius:10px}.guide-quick__inner strong{color:#103b72}.guide-quick__inner p{font-size:13px;color:#4e6982;margin:3px 0 0}.guide-quick__inner a{font-size:13px;font-weight:800;color:#114d86;white-space:normal}
+@media(max-width:650px){.guide-table{font-size:12px}.guide-table th,.guide-table td{padding:9px 7px}.guide-table td:last-child{white-space:normal}.guide-quick{margin-bottom:0}}
+</style><style>
+/* Traineeship guide: prevent narrow-screen flex and comparison table overflow. */
+@media(max-width:900px){.layout-wrapper .sidebar-menu{box-sizing:border-box;min-width:0;max-width:100%;align-self:stretch}.layout-wrapper .content-area{box-sizing:border-box;min-width:0;width:100%;max-width:100%;overflow-wrap:anywhere}.guide-table{display:block;overflow-x:auto;max-width:100%}}
+</style></head>
+<body>
+<!-- HEADER / MENÜ -->
+<script data-part="header" src="../components.js"></script>
+<!-- SAYFA BAŞLIĞI -->
+<div class="page-header">
+<h1>Erasmus+ Student Mobility for Traineeships</h1>
+</div><div class="guide-quick"><div class="guide-quick__inner"><div><strong>Traineeship calls, language exams and results in one place</strong><p>Each call page provides its application dates, funded places, acceptance-letter deadline and assessment results.</p></div><a href="duyurular-haberler.html">Browse calls and results ↗</a></div></div>
+<!-- SEKMELİ (TAB) İÇERİK MİMARİSİ -->
+<div class="layout-wrapper">
+<!-- Sol Menü -->
+<div class="sidebar-menu"><button class="tab-btn active" onclick="openTab(event, 'sartlar')"><span class="icon">📋</span> Eligibility</button><button class="tab-btn" onclick="openTab(event, 'basvuru')"><span class="icon">📝</span> Applications and Documents</button><button class="tab-btn" onclick="openTab(event, 'kriterler')"><span class="icon">📊</span> Selection Criteria and Scoring</button><button class="tab-btn" onclick="openTab(event, 'hibe')"><span class="icon">💶</span> Grants and Travel Support</button><button class="tab-btn" onclick="openTab(event, 'surec')"><span class="icon">🗺️</span> Mobility Process</button><button class="tab-btn" onclick="openTab(event, 'tavsiyeler')"><span class="icon">💡</span> Finding a Host Organisation</button></div>
+<!-- Sağ İçerik Alanı -->
+<div class="content-area"><div class="tab-pane active" id="sartlar">
+<h2>Who Can Apply for Traineeship Mobility?</h2>
+<p>Erasmus+ traineeship mobility enables students to undertake work-based training abroad at a business, research institute, laboratory or other organisation related to their academic discipline. The traineeship must complement their study programme; <strong>attending courses at a higher education institution is not a traineeship.</strong></p>
+<div class="guide-version"><strong>Reference: 2026 KA131 traineeship call</strong><span>This page has been updated using the Turkish and English first-call documents dated 20 October 2026 for academic year 2026–2027. Conditions may change in later calls. <strong>The relevant official call and subsequent amendments take precedence.</strong></span></div>
+<h3>Academic status and grades</h3><ul>
+<li>Be a <strong>full-time student</strong> enrolled in an associate, bachelor's or postgraduate programme.</li>
+<li>Minimum cumulative GPA: <strong>2.20/4.00</strong> for associate/bachelor's students; <strong>2.50/4.00</strong> for postgraduate students.</li>
+<li>Under the examined call, students transferring from an associate programme without a current transcript may use an associate graduation GPA of at least 2.20/4.00; preparatory and first-year students without an established GPA must have a high-school graduation grade of at least <strong>75/100</strong>.</li>
+<li>New postgraduate students without a GPA in the current programme may apply using a documented previous bachelor's or master's graduation GPA.</li>
+</ul>
+<h3>Other eligibility rules</h3><ul>
+<li>Double-major students may apply through only <strong>one major</strong> in a single application period.</li>
+<li>Students may apply while their registration is suspended, but <strong>may not undertake mobility during their leave of absence.</strong></li>
+<li>Thesis master's/doctoral students who have not completed their course obligations require the appropriate favourable academic opinions and a Graduate School board decision.</li>
+<li>Studies and traineeships undertaken in the same study cycle, funded or unfunded, generally count towards a combined <strong>12-month</strong> limit. Certain integrated/single-cycle programmes may allow <strong>24 months</strong>.</li>
+<li>The examined call excludes mobility during certain final semesters associated with doctoral qualification, thesis proposal defence or maximum programme duration. Affected students should consult their Graduate School and International Office.</li>
+<li>For <strong>recent-graduate traineeships</strong>, the application must be submitted before graduation and the activity must be completed within 12 months of graduation.</li>
+</ul>
+<h3>Duration and host organisation</h3><ul><li>The examined call requires a traineeship of at least <strong>60 days</strong>, with funding for a maximum of <strong>90 days</strong>. The activity period and funded period need not be identical.</li><li>The student is responsible for securing a host organisation. Under the relevant programme conditions, <strong>an inter-institutional agreement is not required</strong> for a traineeship.</li></ul>
+<div class="guide-hint">Project-specific deadlines, acceptance-letter submission dates, grants and academic requirements may differ in later calls. Check the individual call page.</div>
+</div><div class="tab-pane" id="basvuru">
+<h2>How to Apply and Required Documents</h2>
+<p>This guide follows the 2026 KA131 traineeship call. <strong>Final application deadlines, examination dates and acceptance-letter submission deadlines</strong> are published on the relevant call page.</p>
+<ol class="guide-steps">
+<li><strong>Read the call.</strong> Check its project, academic year, application window, funded quota, language examination and assessment timetable in <a href="duyurular-haberler.html">Announcements</a>.</li>
+<li><strong>Apply on TurnaPortal.</strong> Use e-Government identification via <a href="https://turnaportal.ua.gov.tr/" rel="noopener noreferrer" target="_blank">turnaportal.ua.gov.tr</a>.</li>
+<li><strong>Upload a current, verifiable QR-coded transcript.</strong> The examined call requires a transcript issued within the application window and uploaded as a PDF. Newly enrolled postgraduate students may need to upload transcripts from their previous studies as well.</li>
+<li><strong>Upload an acceptance letter if available.</strong> Under the examined call, an acceptance letter submitted <strong>at the time of application earns +10 points</strong>. If you do not yet have one, check the separate acceptance-letter deadline and conditions of the call.</li>
+<li><strong>Follow examination and assessment notices.</strong> Eligibility for the language exam, preliminary results, appeals and final results are published on the same call detail page.</li>
+</ol>
+<h3>Required content of an acceptance letter</h3><ul>
+<li>An explicit reference to Erasmus+ Student Mobility for Traineeships.</li>
+<li>Planned start and end dates (allow for visa processing).</li>
+<li>Traineeship position or topic.</li>
+<li>Host organisation's details.</li>
+<li>Name, position and contact details of the responsible signatory.</li>
+</ul>
+<div class="guide-hint">The Turkish and English source calls cite <strong>different academic years</strong> for the prior transcript of newly enrolled postgraduate students without an established GPA. Confirm the required transcript period in the current call or with the office before submitting.</div>
+<div class="guide-actions"><a class="fbu-btn" href="duyurular-haberler.html">Current traineeship calls ↗</a><a [onclick*='tavsiyeler]").click();"' class="fbu-btn guide-btn-secondary" href="#" onclick="event.preventDefault();document.getElementsByClassName('tab-btn')[5].click();">Tips for finding a host ↗</a></div>
+</div><div class="tab-pane" id="kriterler">
+<h2>Selection Criteria and Scoring</h2>
+<p>The following scoring table is taken from the <strong>2026 KA131 traineeship first call</strong>. Documentary evidence may be required for bonus-point eligibility.</p>
+<table class="guide-table"><thead><tr><th>Selection criterion</th><th>Weight / points</th></tr></thead><tbody>
+<tr><td>Academic achievement (cumulative GPA)</td><td>50%</td></tr><tr><td>Language proficiency (minimum B1)</td><td>50%</td></tr>
+<tr><td>Application for a compulsory traineeship</td><td>+5 points</td></tr><tr><td>Acceptance letter submitted at application</td><td>+10 points</td></tr>
+<tr><td>Children of martyrs and veterans</td><td>+15 points</td></tr><tr><td>Students with disabilities (with documentation)</td><td>+10 points</td></tr>
+<tr><td>Students covered by protection/care/accommodation decisions under Laws 2828 and 5395</td><td>+10 points</td></tr><tr><td>Applicants or first-degree relatives receiving AFAD disaster assistance</td><td>+10 points</td></tr>
+<tr><td>Digital Opportunity Traineeships (DOTs)</td><td>+5 points</td></tr>
+<tr><td>Prior mobility in the same project type and study cycle (funded or unfunded)</td><td>−10 points</td></tr>
+<tr><td>Mobility in the country of citizenship</td><td>−10 points</td></tr>
+<tr><td>Failure to withdraw in time and failure to participate after selection</td><td>−10 points</td></tr>
+<tr><td>Simultaneous application for both mobility types (applied to preferred type)</td><td>−10 points</td></tr>
+<tr><td>Unexcused absence from required mobility meetings/training (in a later application)</td><td>−5 points</td></tr>
+<tr><td>Unexcused non-attendance after registering for a language exam (in a later application)</td><td>−5 points</td></tr>
+</tbody></table>
+<h3>What counts as a Digital Opportunity Traineeship?</h3><p>The source call lists software/web development, data analytics and visualisation, cybersecurity, digital marketing, design and artificial intelligence as examples. <strong>Routine data entry, general customer service and ordinary office duties</strong> do not qualify as DOTs.</p>
+<div class="guide-hint">These are the published scoring rules for the cited 2026 call. Archived selection outcomes should not be recalculated using future versions of this guide.</div>
+</div><div class="tab-pane" id="hibe">
+<h2>Grants and Travel Support</h2>
+<div class="guide-version"><strong>Reference project: 2026 KA131 traineeships</strong><span>The amounts below are from the supplied call dated 20 October 2026 for academic year <strong>2026–2027</strong>. They are not fixed entitlements for all future calls. The cited call specifies <strong>10 funded places</strong>; call-specific quotas are also shown on the individual call page.</span></div>
+<h3>Monthly individual support</h3>
+<table class="guide-table"><thead><tr><th>Country group</th><th>Example host countries</th><th>Monthly grant</th></tr></thead><tbody>
+<tr><td>Groups 1 and 2</td><td>Austria, Belgium, Cyprus, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Iceland, Ireland, Italy, Latvia, Liechtenstein, Luxembourg, Malta, Netherlands, Norway, Portugal, Slovakia, Slovenia, Spain, Sweden</td><td>€750</td></tr>
+<tr><td>Group 3</td><td>Bulgaria, Croatia, Hungary, Lithuania, North Macedonia, Poland, Romania, Serbia</td><td>€600</td></tr>
+</tbody></table>
+<p>Under the source call, the traineeship must last at least <strong>60 days</strong>, while a maximum of <strong>90 days</strong> may be funded. Eligible students may also choose <strong>zero-grant mobility</strong>.</p>
+<h3>2026 travel grants (round trip, not per leg)</h3>
+<table class="guide-table"><thead><tr><th>Distance band</th><th>Standard travel</th><th>Green travel</th></tr></thead><tbody>
+<tr><td>10–99 km</td><td>€28</td><td>€56</td></tr><tr><td>100–499 km</td><td>€211</td><td>€285</td></tr><tr><td>500–1,999 km</td><td>€309</td><td>€417</td></tr><tr><td>2,000–2,999 km</td><td>€395</td><td>€535</td></tr><tr><td>3,000–3,999 km</td><td>€580</td><td>€785</td></tr><tr><td>4,000–7,999 km</td><td>€1,188</td><td>€1,188</td></tr><tr><td>8,000 km or more</td><td>€1,735</td><td>€1,735</td></tr>
+</tbody></table>
+<p>Use the <a href="https://erasmus-plus.ec.europa.eu/resources-and-tools/distance-calculator" rel="noopener noreferrer" target="_blank">European Commission Distance Calculator</a>. These are <strong>round-trip total amounts</strong> and must not be multiplied by two. Green travel requires low-emission transport on both outward and return journeys and for more than half the overall distance.</p>
+<p>Where justified, the call allows individual support for up to <strong>2 travel days</strong> under standard travel or <strong>6 days</strong> for green travel.</p>
+<h3>Top-up grants and inclusion support</h3><p>The examined call provides an additional <strong>€250 per month</strong> for eligible participants with fewer opportunities, subject to supporting documents. Participants with specific needs may also be eligible for extra support through the <a href="icerme-destegi.html">Inclusion Support</a> process. Eligibility depends on the applicable official call.</p>
+<div class="guide-hint">Grant rates and travel support depend on the <strong>project and call year</strong>. Refer to the relevant call for the terms governing your own application.</div>
+</div><div class="tab-pane" id="surec">
+<h2>Traineeship Mobility: Step-by-Step</h2>
+<ol class="guide-steps">
+<li><strong>Find a suitable host.</strong> The traineeship should be relevant to your field. An inter-institutional agreement is not a prerequisite for the traineeship.</li>
+<li><strong>Apply during the call.</strong> Upload required documents and, if available, an acceptance letter via TurnaPortal.</li>
+<li><strong>Attend the exam and assessment stages.</strong> Follow published exam lists, preliminary results and appeals on the individual call page.</li>
+<li><strong>Confirm the acceptance letter.</strong> Agree on the activities, host contact, dates and job description with the host organisation.</li>
+<li><strong>Complete mobility documents.</strong> Prepare the Learning Agreement for Traineeships and the visa, insurance, grant agreement and other documents required by the International Office.</li>
+<li><strong>Undertake your traineeship.</strong> Notify the office of any changes to dates, activities or documents as required.</li>
+<li><strong>Complete post-mobility formalities.</strong> Obtain the host's completion/evaluation documents and submit the required closing documents for academic recognition or recording.</li>
+</ol>
+<p>Selection by Fenerbahçe University does not itself constitute acceptance by a traineeship host. Host approval, immigration and insurance requirements must also be met.</p>
+<div class="guide-actions"><a class="fbu-btn" href="duyurular-haberler.html">Call and results timetable ↗</a><a class="fbu-btn guide-btn-secondary" href="icerme-destegi.html">Inclusion Support ↗</a></div>
+</div><div class="tab-pane" id="tavsiyeler">
+<h2>How to Find a Traineeship Host</h2>
+<p>In traineeship mobility, an inter-institutional agreement is not required as a general prerequisite; <strong>finding a suitable host organisation is the student's responsibility.</strong> Always check the relevant call's eligibility and deadlines.</p>
+<ol class="guide-steps">
+<li><strong>Define your goals.</strong> Identify tasks related to your department, desired skills and preferred countries/cities.</li>
+<li><strong>Use academic contacts.</strong> Speak with instructors, supervisors and professionals in your subject area.</li>
+<li><strong>Research organisations.</strong> Explore companies, laboratories, traineeship portals and professional networks.</li>
+<li><strong>Send tailored applications.</strong> Include your CV, a concise motivation, possible dates and a short explanation of Erasmus+ traineeship mobility.</li>
+<li><strong>Check the acceptance letter.</strong> Make sure it includes complete host details, the responsible person, position and dates.</li>
+</ol>
+<h3>Digital Opportunity Traineeships (DOTs)</h3><p>The cited 2026 call lists data analytics, software and web development, cybersecurity, artificial intelligence, digital marketing and design among its examples. <strong>Routine data entry and general office duties</strong> are excluded from the DOTs category.</p>
+<div class="guide-hint">Before accepting an offer, check the job description, visa/accommodation arrangements, insurance requirements and the identity of the host organisation.</div>
+</div></div>
+</div>
+<script data-part="footer" src="../components.js"></script>
+<!-- Ortak JS Dosyası -->
+<script src="../script.js"></script>
+<!-- TAB DEĞİŞTİRME MANTIĞI -->
+<script>
+function activateGuideTab(tabId, updateHash){
+  const pane=document.getElementById(tabId);if(!pane||!pane.classList.contains('tab-pane'))return;
+  document.querySelectorAll('.tab-pane').forEach(e=>e.classList.toggle('active',e===pane));
+  document.querySelectorAll('.sidebar-menu .tab-btn').forEach(b=>{const on=(b.getAttribute('onclick')||'').includes("'"+tabId+"'");b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
+  if(updateHash){try{history.replaceState(null,'','#'+tabId)}catch(_){location.hash=tabId}}
+}
+function openTab(evt,tabId){activateGuideTab(tabId,true)}
+document.addEventListener('DOMContentLoaded',()=>{let tab=decodeURIComponent((location.hash||'').slice(1));if(tab)activateGuideTab(tab,false)});
+</script>
+</body>
+</html>

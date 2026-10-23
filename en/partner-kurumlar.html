@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Partner Institutions | Fenerbahçe University</title>
+<!-- Ortak Fontlar -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tablo Widget'ı İçin Özel Fontlar -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Ortak CSS Dosyası -->
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<script data-part="header" src="../components.js"></script>
+<!-- SAYFA BAŞLIĞI -->
+<div class="page-header">
+<h1>Partner Institutions</h1>
+</div>
+<!-- İÇERİK ALANI -->
+<div class="page-content" style="max-width: 1200px;">
+<h2>Erasmus+ Inter-Institutional Agreements</h2>
+<p>Use the search and filters below to explore the institutions with which our university cooperates under Erasmus+ and other exchange programmes, along with available places and language requirements.</p>
+<!-- ==========================================================================
+          ERASMUS+ ANLAŞMALARI WIDGET'I
+          Sekmeler, filtreler, tablo başlığı ve arayüz metinleri partners-widget.js tarafından
+          (TR/EN) oluşturulur; bu bloğu çevirmeye gerek yok.
+        =========================================================================== -->
+<div class="fbe-agreements" id="fbeRoot">
+<div class="fbe-tabs" id="fbeTabs" role="tablist"></div>
+            <div class="fbe-context" id="fbeContext" hidden></div>
+<div class="fbe-toolbar">
+<div class="fbe-search-box">
+<input autocomplete="off" id="fbeSearch" type="text"/>
+</div>
+<div class="fbe-filters" id="fbeFilters"></div>
+</div>
+<div class="fbe-list-header fbe-grid" id="fbeHeader"></div>
+<div class="fbe-list" id="fbeList"></div>
+<div class="fbe-empty" id="fbeEmpty"></div>
+<div class="fbe-toast" id="fbeToast"></div>
+</div>
+</div>
+<script data-part="footer" src="../components.js"></script>
+<!-- Ortak JS Dosyası ve Menü İşlemleri -->
+<script src="../script.js"></script>
+<script src="../data/partners.js"></script>
+<script src="../data/partners-staff.js"></script>
+    <script src="../data/agreements-public.js"></script>
+<script src="../data/terms-en.js"></script>
+<script src="../partners-widget.js"></script>
+</body>
+</html>

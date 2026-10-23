@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Mobility for Studies | Fenerbahçe University</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Ortak CSS Dosyası -->
+<link href="../style.css" rel="stylesheet"/>
+<style>
+        /* DİKEY SEKME (TAB) VE İÇERİK MİMARİSİ */
+        .layout-wrapper {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            align-items: flex-start;
+            padding: 0 20px;
+        }
+
+        /* Sol Menü (Sidebar) */
+        .sidebar-menu {
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 20px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px; /* Sayfa kaydırıldığında ekranda sabit kalması için */
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            text-align: left;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+        .tab-btn:last-child { border-bottom: none; margin-bottom: 0; }
+        .tab-btn:hover { background: #f8fafc; color: var(--fbu-blue); }
+        
+        .tab-btn.active {
+            background: var(--fbu-blue);
+            color: white;
+            border-bottom: none;
+            box-shadow: 0 4px 15px rgba(10, 61, 122, 0.2);
+        }
+        .tab-btn .icon { font-size: 18px; }
+
+        /* Sağ İçerik Alanı */
+        .content-area {
+            flex-grow: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px;
+            min-height: 600px;
+            line-height: 1.8;
+        }
+
+        .content-area h2 {
+            color: var(--fbu-blue);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .tab-pane { 
+            display: none; 
+            animation: fadeIn 0.4s ease; 
+        }
+        .tab-pane.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Tablo ve Uyarı Kutuları Stilleri */
+        .warning-box {
+            background-color: #fffbeb;
+            color: #b45309;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Yol Rehberi (Zaman Çizelgesi) Stilleri */
+        .roadmap-container { margin-top: 30px; position: relative; border-left: 3px solid var(--fbu-yellow); padding-left: 30px; margin-left: 15px; }
+        .roadmap-step { margin-bottom: 40px; position: relative; }
+        .roadmap-step::before {
+            content: ''; position: absolute; left: -41px; top: 0; width: 16px; height: 16px;
+            background: white; border: 4px solid var(--fbu-blue); border-radius: 50%;
+        }
+        .roadmap-step h3 { color: var(--fbu-blue); margin-top: -5px; font-size: 18px; font-weight: 800; }
+        .roadmap-step p { color: var(--text-dark); font-size: 14px; margin-bottom: 10px; }
+        .roadmap-step ul { margin: 0; padding-left: 20px; font-size: 14px; }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 900px) {
+            .layout-wrapper { flex-direction: column; padding: 0 15px; }
+            .sidebar-menu { width: 100%; position: static; padding: 15px; margin-bottom: 20px; }
+            .content-area { padding: 25px; min-height: auto; }
+        }
+    </style>
+<style>
+/* Learning guide additions */
+.guide-version{background:#f1f6fa;border-left:4px solid var(--fbu-blue);padding:15px 18px;border-radius:8px;margin:18px 0 22px;display:grid;gap:7px;font-size:13px;line-height:1.7;color:#35546e}
+.guide-version strong{font-size:14px;color:#123c69}.guide-hint{background:#fff9e9;border-left:4px solid #d6ad46;padding:15px 18px;border-radius:8px;margin:22px 0;font-size:13px;line-height:1.7;color:#6c521f}
+.guide-table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55;margin:16px 0 25px}
+.guide-table th{background:var(--fbu-blue);color:#fff;text-align:left;font-size:13px}.guide-table th,.guide-table td{padding:12px 13px;border:1px solid #dbe5ee;vertical-align:top}.guide-table tbody tr:nth-child(even){background:#f6f9fb}.guide-table td:last-child{white-space:nowrap;font-weight:700;color:#224c78}
+.guide-steps{padding-left:23px}.guide-steps li{margin:0 0 16px;padding-left:4px}.guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.guide-actions .fbu-btn{text-decoration:none;display:inline-flex;align-items:center;min-height:42px;padding:8px 15px;border-radius:7px}.guide-btn-secondary{background:#eaf1f8!important;color:#123b67!important}
+.guide-quick{max-width:1200px;margin:24px auto -20px;padding:0 20px}.guide-quick__inner{display:flex;gap:15px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#eff5fb;border:1px solid #d8e6f2;padding:17px 22px;border-radius:10px}.guide-quick__inner strong{color:#103b72}.guide-quick__inner p{font-size:13px;color:#4e6982;margin:3px 0 0}.guide-quick__inner a{font-size:13px;font-weight:800;color:#114d86;white-space:normal}
+@media(max-width:650px){.guide-table{font-size:12px}.guide-table th,.guide-table td{padding:9px 7px}.guide-table td:last-child{white-space:normal}.guide-quick{margin-bottom:0}}
+</style></head>
+<body>
+<!-- HEADER / MENÜ -->
+<script data-part="header" src="../components.js"></script>
+<!-- SAYFA BAŞLIĞI -->
+<div class="page-header">
+<h1>Erasmus+ Student Mobility for Studies</h1>
+</div><div class="guide-quick"><div class="guide-quick__inner"><div><strong>Calls and results in one place</strong><p>Application dates, funded places and examination/assessment documents are posted on each call page.</p></div><a href="duyurular-haberler.html">Browse calls and results ↗</a></div></div>
+<!-- SEKMELİ (TAB) İÇERİK MİMARİSİ -->
+<div class="layout-wrapper">
+<!-- Sol Menü -->
+<div class="sidebar-menu">
+<button class="tab-btn active" onclick="openTab(event, 'sartlar')">
+<span class="icon">📋</span> Eligibility Requirements
+            </button>
+<button class="tab-btn" onclick="openTab(event, 'basvuru')"><span class="icon">📝</span> Applications and Documents</button><button class="tab-btn" onclick="openTab(event, 'kriterler')">
+<span class="icon">📊</span> Selection Criteria and Scoring
+            </button>
+<button class="tab-btn" onclick="openTab(event, 'hibe')">
+<span class="icon">💶</span> Grants and Travel Support
+            </button>
+<button class="tab-btn" onclick="openTab(event, 'surec')">
+<span class="icon">🗺️</span> Mobility Process (Step-by-Step Guide)
+            </button>
+<button class="tab-btn" onclick="openTab(event, 'kurumlar')">
+<span class="icon">🏛️</span> Partner Institutions
+            </button>
+</div>
+<!-- Sağ İçerik Alanı -->
+<div class="content-area">
+<!-- TAB 1: Başvuru Şartları -->
+<div class="tab-pane active" id="sartlar"><h2>Who Can Apply for Mobility for Studies?</h2>
+<p>Erasmus+ Student Mobility for Studies allows eligible students to complete part of their programme at a partner higher education institution abroad. This guide is based on the general provisions in the supplied 2026 KA131 call documents. <strong>The specific conditions and subsequent official corrections of each call take precedence.</strong></p>
+<h3>Associate and undergraduate students</h3><ul>
+<li>Be enrolled full-time at Fenerbahçe University and have a cumulative GPA of at least <strong>2.20/4.00</strong>.</li>
+<li>Eligibility where a student has not yet received a university GPA, and the use of previous graduation grades, depend on the relevant call. <strong>Check the call-specific provisions regarding preparatory-year and first-year students.</strong></li>
+<li>Double-major students may apply under only one major during the same application period.</li>
+<li>If courses are taught in a language other than English, provide evidence of the language proficiency required by the host institution.</li>
+</ul>
+<h3>Graduate students</h3><ul>
+<li>Be enrolled full-time and have a GPA of at least <strong>2.50/4.00</strong>. Where permitted by the call, applicants without a GPA in their current programme may apply with a documented GPA from a previous degree.</li>
+<li>Research assistants must obtain written approval from the relevant unit head at the time of application.</li>
+<li>Thesis-track master's and doctoral students who have not completed their coursework require the positive opinions of their supervisor and head of department, together with the Graduate School Administrative Board's decision.</li>
+</ul>
+<h3>Additional conditions for all students</h3><ul>
+<li>Students on leave may apply, but may not undertake mobility during the period in which their enrolment is suspended.</li>
+<li>Across study and traineeship mobilities, the total duration in the same study cycle may not exceed <strong>12 months</strong>, whether funded or zero-grant. The limit may be <strong>24 months</strong> for certain integrated or single-cycle programmes.</li>
+<li>Applications for studies must relate to a valid inter-institutional agreement in the student's own department/programme. The host institution's academic, admission and language requirements must also be met.</li>
+</ul>
+<div class="guide-hint">If this guide and a specific call appear to differ, request written clarification from the International Office. Official call-specific conditions and published amendments are decisive.</div></div><div class="tab-pane" id="basvuru"><h2>How to Apply and Required Documents</h2>
+<p>These steps are drawn from the supplied 2026 KA131 studies call. <strong>Application dates, exam arrangements, and call-specific document requirements</strong> appear on the relevant announcement page.</p>
+<ol class="guide-steps">
+<li><strong>Review the current call.</strong> Check the academic year, semester, opening/closing dates, funded places and any preferences restricted in that call.</li>
+<li><strong>Research partner universities.</strong> Check the agreements for your department, course catalogue, teaching language, nomination and host application deadlines.</li>
+<li><strong>Apply through TurnaPortal.</strong> Use e-Government authentication at <a href="https://turnaportal.ua.gov.tr/" rel="noopener noreferrer" target="_blank">turnaportal.ua.gov.tr</a>.</li>
+<li><strong>Upload a verifiable transcript.</strong> The supplied call requires a QR-coded/verifiable transcript from OIS or e-Government. OIS preview transcripts are not accepted, and uploaded documents must be in PDF format.</li>
+<li><strong>Check your preferences.</strong> The reviewed 2026 call asks applicants to use all three choices; confirm the allowed number in each future call.</li>
+<li><strong>Follow the evaluation timeline.</strong> Language exam lists, preliminary results, appeals and final decisions appear on the <a href="duyurular-haberler.html">same announcement's detail page</a>.</li>
+</ol>
+<h3>Important reminders</h3><ul>
+<li>Internal placement does not guarantee admission by the receiving institution.</li>
+<li>Host institutions can revise their entry conditions or course availability; applicants must monitor these updates.</li>
+<li>A mobility place awarded for one academic year cannot automatically be transferred to a different academic year.</li>
+<li>Application and document submission schedules vary by call.</li>
+</ul>
+<div class="guide-actions"><a class="fbu-btn" href="duyurular-haberler.html">Current Calls ↗</a><a class="fbu-btn guide-btn-secondary" href="partner-kurumlar.html">Partner Institutions ↗</a></div></div>
+<!-- TAB 2: Seçim Kriterleri -->
+<div class="tab-pane" id="kriterler"><h2>Selection Criteria and Scoring</h2>
+<p>In the provided 2026 KA131 studies announcement, academic performance and language proficiency carry equal weight. The table below reproduces the main priority and deduction categories. <strong>Criteria and proof requirements may change between projects or calls.</strong></p>
+<table class="guide-table"><thead><tr><th>Criterion</th><th>Weight / adjustment</th></tr></thead><tbody>
+<tr><td>Academic merit (GPA)</td><td>50%</td></tr><tr><td>Foreign-language score (the call specifies at least B1)</td><td>50%</td></tr>
+<tr><td>Children of martyrs and veterans</td><td>+15 points</td></tr><tr><td>Students with disabilities</td><td>+10 points</td></tr>
+<tr><td>Students covered by protection, care or accommodation decisions under Laws No. 2828 and 5395</td><td>+10 points</td></tr>
+<tr><td>Students or their first-degree relatives receiving AFAD disaster assistance</td><td>+10 points</td></tr>
+<tr><td>Previous participation under the same project type and study cycle, funded or zero-grant</td><td>−10 points</td></tr>
+<tr><td>Mobility in the country of citizenship</td><td>−10 points</td></tr>
+<tr><td>Failure to participate without timely notice of withdrawal</td><td>−10 points</td></tr>
+<tr><td>Simultaneous application to two mobility types (applied to the preferred type as specified)</td><td>−10 points</td></tr>
+<tr><td>Failure to attend a required mobility meeting/training without a valid excuse</td><td>−5 points</td></tr>
+<tr><td>Failure to attend a language test after declaring participation, without a valid excuse</td><td>−5 points</td></tr>
+</tbody></table>
+<div class="guide-hint">Priority points may require official supporting evidence. Preliminary assessments, appeals and final results are announced on the relevant <a href="duyurular-haberler.html">call detail page</a>.</div></div>
+<!-- TAB 3: Hibe Desteği -->
+<div class="tab-pane" id="hibe"><h2>Grants and Travel Support</h2>
+<div class="guide-version"><strong>Amounts quoted in the 2026 KA131 studies call</strong><span>Compiled from the supplied documents for the Fall 2027–2028 call. Rates and entitlement rules may change by grant-agreement year. Always check the relevant call.</span></div>
+<p>The call provides individual support for a maximum of <strong>five months</strong> of funded mobility for studies, calculated on the basis of dates stated in the host acceptance letter. Erasmus+ grants contribute to costs; they are not intended to cover all expenses. <strong>The funded quota</strong> is specified separately in each call.</p>
+<h3>Monthly individual support (destination groups in the supplied call)</h3>
+<table class="guide-table"><thead><tr><th>Host countries</th><th>Monthly grant</th></tr></thead><tbody>
+<tr><td>Austria, Belgium, Cyprus, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Iceland, Ireland, Italy, Latvia, Liechtenstein, Luxembourg, Malta, Netherlands, Norway, Portugal, Slovakia, Slovenia, Spain, Sweden</td><td><strong>€600</strong></td></tr>
+<tr><td>Bulgaria, Croatia, Hungary, Lithuania, North Macedonia, Poland, Romania, Serbia</td><td><strong>€450</strong></td></tr>
+</tbody></table>
+<h3>Travel grant (total for the round trip)</h3>
+<p>Distance is calculated between Istanbul and the host location using the <a href="https://erasmus-plus.ec.europa.eu/resources-and-tools/distance-calculator" rel="noopener noreferrer" target="_blank">European Commission Distance Calculator</a>. The following rates are totals for the distance band, not amounts per kilometre.</p>
+<table class="guide-table"><thead><tr><th>Distance band</th><th>Standard</th><th>Green travel</th></tr></thead><tbody>
+<tr><td>10–99 km</td><td>€28</td><td>€56</td></tr><tr><td>100–499 km</td><td>€211</td><td>€285</td></tr><tr><td>500–1,999 km</td><td>€309</td><td>€417</td></tr><tr><td>2,000–2,999 km</td><td>€395</td><td>€535</td></tr><tr><td>3,000–3,999 km</td><td>€580</td><td>€785</td></tr><tr><td>4,000–7,999 km</td><td>€1,188</td><td>€1,188</td></tr><tr><td>8,000 km or more</td><td>€1,735</td><td>€1,735</td></tr>
+</tbody></table>
+<p>The call describes green travel as travel by lower-emission modes such as bus, train or carpooling on both outward and return journeys, covering more than half of the overall distance. The stated maximum number of supported travel days is two for standard travel and six for green travel.</p>
+<h3>Fewer-opportunities top-ups and inclusion support</h3>
+<p>According to the supplied call, eligible students with fewer opportunities who submit the required proof may receive an additional <strong>€250 per month</strong> (for student mobility of 2–12 months). The specified groups include certain social protection or care orders, survivor benefits, documented social assistance, disabilities and AFAD disaster assistance.</p>
+<p>Where additional funding is necessary to enable participation, see the separate <a href="icerme-destegi.html">Inclusion Support</a> guidance.</p>
+<div class="guide-hint">These figures reproduce the supplied 2026 KA131 call documents and are not an independent verification of current regulations. A separate €50 green-travel sentence in the original requires clarification before final publication.</div></div>
+<!-- TAB 4: Yol Rehberi -->
+<div class="tab-pane" id="surec">
+<h2>Student Mobility for Studies: Step-by-Step Guide</h2>
+<p>Students must fulfil their responsibilities on time at each stage of mobility. The steps are explained below.</p>
+<div class="roadmap-container">
+<div class="roadmap-step">
+<h3>1. Nomination and Application to the Receiving Institution</h3>
+<p>The Erasmus Office nominates the student to the receiving institution by email. The student must then prepare the required documents and submit their own application before the receiving institution’s deadline.</p>
+</div>
+<div class="roadmap-step">
+<h3>2. Acceptance Letter and Visa Process</h3>
+<p>If the application is accepted, the receiving institution issues an Acceptance Letter. Applying for a visa before receiving this letter is not recommended. Visa, travel and accommodation arrangements are entirely the student’s responsibility.</p>
+</div>
+<div class="roadmap-step">
+<h3>3. Before the Mobility</h3>
+<ul>
+<li>Students must prepare their <strong>Online Learning Agreement (OLA)</strong> via the EWP/OLA platform.</li>
+<li>Students must take between 24 and 36 ECTS credits per semester (preferably 30 ECTS). The difference in credits between equivalent FBU courses may not exceed ±3 ECTS.</li>
+<li>At least <strong>15 days before mobility begins</strong> , the student must submit the Acceptance Letter, OLA, TEB EUR bank account details, Faculty Board Decision and health insurance documents to the International Office and sign the <strong>Grant Agreement</strong> .</li>
+</ul>
+</div>
+<div class="roadmap-step">
+<h3>4. During the Mobility</h3>
+<p>If course changes are necessary at the receiving institution, the changes must be recorded in the OLA within <strong>4–7 weeks of the start of the academic semester</strong> , and the Faculty Board Decision must be updated.<br/>
+<strong>Important:</strong> Students must successfully complete at least <strong>21 ECTS</strong> of courses at the receiving institution in one semester. Otherwise, 20% will be deducted from their final grant.</p>
+</div>
+<div class="roadmap-step">
+<h3>5. After the Mobility and Credit Recognition</h3>
+<p>Upon return, students must contact their departmental coordinator with the original Transcript of Records to complete credit recognition. They must then submit the Certificate of Attendance, the host institution’s Transcript of Records and an updated FBU transcript to the International Office. Finally, students must complete the online EU Survey.</p>
+</div>
+</div>
+</div>
+<!-- TAB 5: Anlaşmalı Kurumlar -->
+<div class="tab-pane" id="kurumlar">
+<h2>Which Institutions Have Agreements with My Department?</h2>
+<p>You may apply only to institutions that have a valid agreement with your registered department or programme. The list of partner institutions may be updated until the application system opens.</p>
+<p>Use the links below to view your department’s partner institutions, available places and ECTS grade conversions from previous years.</p>
+<div style="margin-top: 30px; display: flex; gap: 15px;">
+<a class="fbu-btn" href="partner-kurumlar.html">Partner Institutions List ➔</a>
+<a class="fbu-btn" href="aktsnotdonusum.html" style="background-color: var(--fbu-yellow); color: var(--fbu-blue);">ECTS Grade Conversion Tables ➔</a>
+</div>
+</div>
+</div>
+</div>
+<script data-part="footer" src="../components.js"></script>
+<!-- Ortak JS Dosyası -->
+<script src="../script.js"></script>
+<!-- TAB DEĞİŞTİRME MANTIĞI -->
+<script>
+function activateGuideTab(tabId, updateHash){
+  const pane=document.getElementById(tabId);if(!pane||!pane.classList.contains('tab-pane'))return;
+  document.querySelectorAll('.tab-pane').forEach(e=>e.classList.toggle('active',e===pane));
+  document.querySelectorAll('.sidebar-menu .tab-btn').forEach(b=>{const on=(b.getAttribute('onclick')||'').includes("'"+tabId+"'");b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
+  if(updateHash){try{history.replaceState(null,'','#'+tabId)}catch(_){location.hash=tabId}}
+}
+function openTab(evt,tabId){activateGuideTab(tabId,true)}
+document.addEventListener('DOMContentLoaded',()=>{let tab=decodeURIComponent((location.hash||'').slice(1));if(tab)activateGuideTab(tab,false)});
+</script>
+</body>
+</html>

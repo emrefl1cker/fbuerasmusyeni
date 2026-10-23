@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Announcements, Calls and Results | Fenerbahçe University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../announcement.css">
+</head>
+<body>
+  <script src="../components.js" data-part="header"></script>
+  <div class="page-header"><h1>Announcements, Calls and Results</h1></div>
+  <main class="call-wrap">
+    <p class="call-lead">Track Erasmus+ and Global Exchange calls, language examinations, evaluation results and completed calls in one place.</p>
+    <div class="call-master-tabs" role="tablist" aria-label="Content type">
+      <button type="button" role="tab" data-ann-tab="calls" aria-selected="true" class="is-active">Announcements and Call Archive</button>
+      <button type="button" role="tab" data-ann-tab="news" aria-selected="false">News and Events</button>
+    </div>
+    <section id="announcementArchive" aria-label="Call archive">
+      <div class="call-controlbox">
+        <label for="callSearch" style="position:absolute;left:-10000px;">Search calls</label>
+        <input id="callSearch" class="call-search" type="search" placeholder="Search by call, academic year, programme or keyword..." autocomplete="off">
+        <div class="call-status-tabs" role="group" aria-label="Call status">
+          <button type="button" class="is-active" data-call-status="all" aria-pressed="true">All Calls</button>
+          <button type="button" data-call-status="open" aria-pressed="false">Open / Upcoming</button>
+          <button type="button" data-call-status="pending" aria-pressed="false">Under Review / Applications Closed</button>
+          <button type="button" data-call-status="completed" aria-pressed="false">Completed</button>
+        </div>
+        <div class="call-selects">
+          <label for="callAudience">Applicant type<select id="callAudience"><option value="">Student and staff</option><option value="student">Student</option><option value="staff">Staff</option></select></label>
+          <label for="callProgram">Programme<select id="callProgram"><option value="">All programmes</option><option value="KA131">KA131</option><option value="KA171">KA171</option><option value="Global">Global Exchange</option></select></label>
+          <label for="callYear">Academic year<select id="callYear"><option value="">All academic years</option></select></label>
+          <label for="callMobility">Mobility type<select id="callMobility"><option value="">All mobility types</option><option value="studies">Studies</option><option value="traineeship">Traineeships</option><option value="teaching">Teaching</option><option value="training">Training</option><option value="other">Other</option></select></label>
+        </div>
+      </div>
+      <div class="call-result-info"><span id="callResultCount" aria-live="polite"></span><button id="callClear" class="call-clear" type="button">Clear filters</button></div>
+      <div id="callResults" class="call-cards"></div><nav id="callPagination" class="call-page-nav" aria-label="Pages"></nav>
+    </section>
+    <section id="newsArchive" hidden aria-label="News and events"><div class="call-news-grid" data-render="news-archive"></div></section>
+  </main>
+  <script src="../components.js" data-part="footer"></script>
+  <script src="../data/ilanlar.js"></script><script src="../data/duyurular.js"></script><script src="../render.js"></script><script src="../announcements.js"></script><script src="../script.js"></script>
+</body>
+</html>
