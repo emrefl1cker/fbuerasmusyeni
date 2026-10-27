@@ -54,7 +54,7 @@ window.FBU_ANNOUNCEMENTS = [
           {
             "label": "(Dil Sınavı Sonuçları",
             "label_en": "Language Exam Results",
-            "url": "assets/docs/ilanlar/2022-ka131-ogrenim-1cagri/2022ka131studies1dilsinavi"
+            "url": "assets/docs/ilanlar/2022-ka131-ogrenim-1cagri/2022ka131studies1dilsinavi.pdf"
           }
         ]
       }
