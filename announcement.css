@@ -83,3 +83,15 @@
 @media(max-width:600px){.call-facts{grid-template-columns:1fr}.call-schedule{grid-template-columns:1fr}.call-schedule dt{border-bottom:0;padding-bottom:3px}.call-schedule dd{padding-top:3px}}
 
 .call-state--upcoming{color:#4b668f;background:#e9f0fd}
+
+/* Legacy calls and concise bullet-point announcements */
+.call-card__archive-label{font-weight:700;color:#6e7d90}
+.call-legacy-block{border-left:4px solid var(--call-navy)}
+.call-legacy-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#59718b;font-weight:800;margin:0 0 8px}
+.call-legacy-block .call-documents{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:11px}
+.call-legacy-block .call-document{font-size:13px;padding:15px 17px;line-height:1.45;min-height:55px}
+.call-bullets{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:11px}
+.call-bullets li{position:relative;padding:12px 14px 12px 36px;border:1px solid #e0eaf3;border-radius:8px;background:#f7fafc;color:#314d68;font-size:14px;line-height:1.65}
+.call-bullets li::before{content:'•';position:absolute;left:15px;font-size:20px;color:#12508a;top:8px}
+.call-action-block{background:#f6f9fc}
+@media(max-width:560px){.call-legacy-block .call-documents{grid-template-columns:1fr}}

@@ -23,6 +23,9 @@
     examEligible:'Eligible language exam participants',acceptanceDue:'Acceptance letter deadline',start:'Applications open',deadlineUnverified:'Application deadline',examWindow:'Language exam (planned)',preDate:'Preliminary assessment',appealWindow:'Appeals',finalDate:'Final assessment',withdrawalDue:'Withdrawal notice deadline',
     guideTitle:'General studies mobility guide',guideDescription:'Eligibility, application procedure, selection criteria, grants and travel support are explained in the programme guide.',guideLink:'Read the full programme guide ↗',
     sourceTitle:'Original call documents (for internal review)',reviewPending:'The dates shown here are transcribed from the supplied documents and include unresolved inconsistencies.',
+    legacyLabel:'Legacy archive',legacyTitle:'Original announcements and results',legacyHelp:'This call was published in the previous website format. The original announcement and available results can be accessed through the links below.',
+    legacyLink:'Open original announcement',legacyEmpty:'Links for this archive entry have not been added yet.',
+    keyPoints:'Key points for this call',moreInfo:'Additional information',applyOnline:'Application and official details on TurnaPortal',externalNote:'The original page opens in a new tab.',
   } : {
     all:'Tüm İlanlar',open:'Açık / Yaklaşan',pending:'Değerlendirmede / Başvurusu Kapanmış',completed:'Tamamlananlar',
     no:'Filtrelerinize uygun ilan bulunamadı.',search:'İlanlarda ara',
@@ -43,6 +46,9 @@
     examEligible:'Dil sınavına gireceklerin ilanı',acceptanceDue:'Kabul mektubu son teslimi',start:'Başvuru başlangıcı',deadlineUnverified:'Son başvuru',examWindow:'Yabancı dil sınavı (planlanan)',preDate:'Ön değerlendirme',appealWindow:'İtiraz',finalDate:'Nihai değerlendirme',withdrawalDue:'Feragat bildirimi son tarihi',
     guideTitle:'Genel öğrenim hareketliliği rehberi',guideDescription:'Başvuru koşulları, başvuru yöntemi, seçim kriterleri, hibeler ve seyahat desteği genel program rehberinde yer alır.',guideLink:'Program rehberini incele ↗',
     sourceTitle:'Orijinal çağrı belgeleri (iç kontrol)',reviewPending:'Buradaki tarihler gönderilen kaynak belgelerden aktarılmıştır ve henüz giderilmemiş tutarsızlıklar içermektedir.',
+    legacyLabel:'Eski ilan arşivi',legacyTitle:'Orijinal ilan ve sonuç bağlantıları',legacyHelp:'Bu ilan önceki web sitesi düzeninde yayımlanmıştır. Orijinal ilan metnine ve mevcut sonuç duyurularına aşağıdaki bağlantılardan ulaşabilirsiniz.',
+    legacyLink:'Orijinal ilanı aç',legacyEmpty:'Bu arşiv kaydının bağlantıları henüz eklenmedi.',
+    keyPoints:'Bu ilana özel kısa bilgiler',moreInfo:'Ek açıklamalar',applyOnline:'Başvuru ve resmî ayrıntılar için TurnaPortal',externalNote:'Orijinal sayfa yeni sekmede açılır.',
   };
   const allRecords = (Array.isArray(window.FBU_ANNOUNCEMENTS) ? window.FBU_ANNOUNCEMENTS : []).filter(a => a && a.id && a.title);
   const records = allRecords.filter(a => !a.draft); // Drafts never appear in the home page or archive.
@@ -56,8 +62,9 @@
     return new Intl.DateTimeFormat(EN?'en-GB':'tr-TR',{day:'numeric',month:'long',year:'numeric'}).format(date);
   };
   const today = () => {let d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');};
+  const isLegacy = a => a.format === 'legacy';
   const status = a => {
-    if (a.status === 'completed') return 'completed';
+    if (isLegacy(a) || a.status === 'completed') return 'completed';
     if (a.status === 'evaluation') return 'evaluation';
     if(a.callMeta?.applicationStart && a.callMeta.applicationStart > today())return 'upcoming';
     return (a.deadline && a.deadline >= today()) ? 'open' : 'closed';
@@ -87,6 +94,7 @@
     add(meta,node('span','',T.posted+': '+(fmt(a.posted)||'—')));
     if(a.deadline)add(meta,node('span','',T.deadline+': '+(fmt(a.deadline)||'—')));
     if(updated(a)!==a.posted)add(meta,node('span','',T.updated+': '+fmt(updated(a))));
+    if(isLegacy(a))add(meta,node('span','call-card__archive-label',T.legacyLabel));
     add(left,meta);
     let right=node('div','call-card__right');add(right,badge(a),node('span','call-card__arrow','↗'));
     return add(item,left,right);
@@ -110,7 +118,7 @@
       let q=search.value.trim().toLocaleLowerCase(EN?'en':'tr');
       let items=sorted(records.filter(a=>{
         let s=status(a), matchesStatus=filter==='all'||(filter==='open'&&(s==='open'||s==='upcoming'))||(filter==='pending'&&(s==='evaluation'||s==='closed'))||(filter==='completed'&&s==='completed');
-        const hay=[a.title,a.title_en,a.program,a.academicYear,a.summary,a.summary_en,a.body,a.body_en,a.id].filter(Boolean).join(' ').toLocaleLowerCase(EN?'en':'tr');
+        const hay=[a.title,a.title_en,a.program,a.academicYear,a.summary,a.summary_en,a.body,a.body_en,a.highlights,a.highlights_en,a.id].filter(Boolean).join(' ').toLocaleLowerCase(EN?'en':'tr');
         return matchesStatus && (!q||hay.includes(q)) && (!aud.value||a.audience===aud.value) && (!program.value||a.program===program.value)
           && (!year.value||a.academicYear===year.value) && (!mobility.value||a.mobility===mobility.value);
       }));
@@ -146,6 +154,9 @@
       add(a,node('span','call-document__icon','↗'),node('span','',pick(f,'label')||T.file));wrap.append(a);});return wrap;
   }
   function paragraphs(text){let box=node('div','call-prose');String(text||'').split(/\n\s*\n/).filter(x=>x.trim()).forEach(line=>{const p=node('p','',line.trim());p.style.whiteSpace='pre-line';box.append(p);});return box;}
+  function bulletList(text){
+    const list=node('ul','call-bullets');String(text||'').split(/\r?\n/).map(x=>x.replace(/^\s*(?:[•*-]|\d+[.)])\s*/, '').trim()).filter(Boolean).forEach(item=>list.append(node('li','',item)));return list;
+  }
   function renderDetail(){const root=document.getElementById('announcementDetail');if(!root)return;
     const params=new URLSearchParams(location.search);
     let id=params.get('id')||'', a=records.find(x=>x.id===id);
@@ -161,6 +172,14 @@
     if(a.deadline)add(hdr,node('span','',T.deadline+': '+fmt(a.deadline)));
     if(updated(a) && updated(a)!==a.posted)add(hdr,node('span','',T.updated+': '+fmt(updated(a))));if(hdr.children.length)hero.append(hdr);
     if(pick(a,'summary'))hero.append(node('p','call-intro',pick(a,'summary')));root.append(hero);
+    if(isLegacy(a)){
+      const archive=node('section','call-content-block call-legacy-block');
+      add(archive,node('p','call-legacy-kicker',T.legacyLabel),node('h2','',T.legacyTitle),node('p','call-subtext',T.legacyHelp));
+      const links=documentBlock(a.legacyLinks);
+      if(links)archive.append(links);else archive.append(node('p','call-empty',T.legacyEmpty));
+      root.append(archive);
+      return;
+    }
     if(a.callMeta){
       const m=a.callMeta, overview=node('section','call-content-block');overview.append(node('h2','',T.callOverview));
       const facts=node('div','call-facts');
@@ -180,7 +199,14 @@
       if(m.withdrawalDeadline)addDate(T.withdrawalDue,fmt(m.withdrawalDeadline)+(m.withdrawalDeadlineTime?' · '+m.withdrawalDeadlineTime:''));
       overview.append(sched);root.append(overview);
     }
-    if(pick(a,'body')){const section=node('section','call-content-block');add(section,node('h2','',EN?'About this call':'İlan hakkında'),paragraphs(pick(a,'body')));root.append(section);}
+    if(pick(a,'highlights')){
+      const section=node('section','call-content-block');add(section,node('h2','',T.keyPoints),bulletList(pick(a,'highlights')));root.append(section);
+    }
+    if(pick(a,'body')){const section=node('section','call-content-block');add(section,node('h2','',pick(a,'highlights')?T.moreInfo:(EN?'About this call':'İlan hakkında')),paragraphs(pick(a,'body')));root.append(section);}
+    if(a.applicationUrl && safeURL(a.applicationUrl)){
+      const section=node('section','call-content-block call-action-block');
+      const l=node('a','call-guide-button',T.applyOnline+' ↗');l.href=safeURL(a.applicationUrl);l.target='_blank';l.rel='noopener noreferrer';section.append(l);root.append(section);
+    }
     if(a.audience==='student' && ['studies','traineeship'].includes(a.mobility)){
       const internship=a.mobility==='traineeship';
       const guidesec=node('section','call-content-block call-guide-link');add(guidesec,node('h2','',internship?(EN?'Traineeship mobility guide':'Staj hareketliliği rehberi'):T.guideTitle),node('p','',internship?(EN?'Eligibility, acceptance letters, selection criteria, grants and travel support are covered in the traineeship guide.':'Başvuru koşulları, kabul mektubu, değerlendirme, hibeler ve seyahat desteği staj rehberinde açıklanmıştır.'):T.guideDescription));
